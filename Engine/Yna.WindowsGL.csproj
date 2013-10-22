@@ -48,7 +48,6 @@
     <Compile Include="Extensions\Vector2Extension.cs" />
     <Compile Include="Extensions\ViewportExtension.cs" />
     <Compile Include="Graphics2D\YnScene.cs" />
-    <Compile Include="State\StateManagerException.cs" />
     <Compile Include="Winforms\GraphicsDeviceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -58,6 +57,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="YnBasicCollection.cs" />
+    <Compile Include="EventDispatcher.cs" />
     <Compile Include="YnGameEntityCollection.cs" />
     <Compile Include="YnGameEntity.cs" />
     <Compile Include="Graphics2D\Animation\AnimationEventArgs.cs" />
@@ -84,14 +84,13 @@
     <Compile Include="Graphics2D\YnCollider.cs" />
     <Compile Include="Graphics2D\YnSprite.cs" />
     <Compile Include="Content\ContentHelper.cs" />
-    <Compile Include="ScreenHelper.cs" />
     <Compile Include="Input\YnGamepad.cs" />
     <Compile Include="Input\YnKeyboard.cs" />
     <Compile Include="Input\YnMouse.cs" />
     <Compile Include="Input\YnTouch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="State\StateManager.cs" />
-    <Compile Include="State\YnState.cs" />
+    <Compile Include="StateManager.cs" />
+    <Compile Include="YnState.cs" />
     <Compile Include="Storage\BasicStorageDevice.cs" />
     <Compile Include="Storage\IStorageDevice.cs" />
     <Compile Include="Storage\StorageManager.cs" />
@@ -102,6 +101,7 @@
     <Compile Include="Graphics2D\YnGroup.cs" />
     <Compile Include="Graphics2D\YnEntity.cs" />
     <Compile Include="YnCollection.cs" />
+    <Compile Include="YnInput.cs" />
     <Compile Include="YnQuadTree.cs" />
     <Compile Include="YnScreen.cs" />
     <Compile Include="YnTimer.cs" />

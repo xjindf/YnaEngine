@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Yna.Engine.State;
 using Yna.Engine.Graphics3D.Camera;
 
 namespace Yna.Engine.Graphics3D

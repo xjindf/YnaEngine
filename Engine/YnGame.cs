@@ -5,8 +5,6 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Yna.Engine.Audio;
-using Yna.Engine.State;
-using Yna.Engine.Helpers;
 using Yna.Engine.Input;
 using Yna.Engine.Storage;
 
@@ -37,18 +35,20 @@ namespace Yna.Engine
             YnG.Game = this;
             YnG.GraphicsDevice = GraphicsDevice;
             YnG.GraphicsDeviceManager = this.graphics;
-            YnG.Keys = new YnKeyboard(this);
-            YnG.Mouse = new YnMouse(this);
-            YnG.Gamepad = new YnGamepad(this);
-            YnG.Touch = new YnTouch(this);
+            YnG.Content = this.Content;
             YnG.StateManager = new StateManager(this);
             YnG.StorageManager = new StorageManager();
             YnG.AudioManager = new AudioManager();
 
-            Components.Add(YnG.Keys);
-            Components.Add(YnG.Mouse);
-            Components.Add(YnG.Gamepad);
-            Components.Add(YnG.Touch);
+            YnInput.Keys = new YnKeyboard(this);
+            YnInput.Mouse = new YnMouse(this);
+            YnInput.Gamepad = new YnGamepad(this);
+            YnInput.Touch = new YnTouch(this);
+
+            Components.Add(YnInput.Keys);
+            Components.Add(YnInput.Mouse);
+            Components.Add(YnInput.Gamepad);
+            Components.Add(YnInput.Touch);
             Components.Add(YnG.StateManager);
 
             YnScreen.Width = this.graphics.PreferredBackBufferWidth;
@@ -73,9 +73,7 @@ namespace Yna.Engine
             : this()
         {
 #if XNA || MONOGAME && (OPENGL || DIRECTX || LINUX || MACOSX) ||SDL2
-            YnScreen.Setup(width, height);
-            ScreenHelper.ScreenWidthReference = width;
-            ScreenHelper.ScreenHeightReference = height;
+            YnScreen.Setup(width, height, width, height, true);
             this.Window.Title = title;
 #endif
         }

@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Yna.Engine.Audio;
 using Yna.Engine.Input;
-using Yna.Engine.State;
 using Yna.Engine.Storage;
 
 namespace Yna.Engine
@@ -65,10 +64,10 @@ namespace Yna.Engine
         /// <summary>
         /// Gets or Set the State Manager
         /// </summary>
-        public static StateManager StateManager 
-        { 
-            get; 
-            internal set; 
+        public static StateManager StateManager
+        {
+            get;
+            internal set;
         }
 
         /// <summary>
@@ -85,33 +84,11 @@ namespace Yna.Engine
 
         #region Inputs
 
-        /// <summary>
-        /// Gets or Set the keyboard states
-        /// </summary>
-        public static YnKeyboard Keys { get; set; }
-
-        /// <summary>
-        /// Gets or Set the mouse states
-        /// </summary>
-        public static YnMouse Mouse { get; set; }
-
-        /// <summary>
-        /// Gets or Set the Gamepad states
-        /// </summary>
-        public static YnGamepad Gamepad { get; set; }
-
-        /// <summary>
-        /// Gets or Set the Touch states
-        /// </summary>
-        public static YnTouch Touch { get; set; }
-
         public static bool ShowMouse
         {
             get { return Game.IsMouseVisible; }
             set { Game.IsMouseVisible = value; }
         }
-
-
 
         #endregion
 
@@ -133,12 +110,90 @@ namespace Yna.Engine
 
         #endregion
 
+        #region Deprecated
+
+        public static int Width
+        {
+            get
+            {
+                LogError("YnG.Width", "YnScreen.Width");
+                return YnScreen.Width;
+            }
+        }
+
+        public static int Height
+        {
+            get
+            {
+                LogError("YnG.Height", "YnScreen.Height");
+                return YnScreen.Height;
+            }
+        }
+
+        /// <summary>
+        /// Gets or Set the keyboard states
+        /// </summary>
+        public static YnKeyboard Keys 
+        { 
+            get 
+            {
+                LogError("YnG.Keys", "YnInput.Keys");
+                return YnInput.Keys; 
+            } 
+        }
+
+        /// <summary>
+        /// Gets or Set the mouse states
+        /// </summary>
+        public static YnMouse Mouse 
+        {
+            get
+            {
+                LogError("YnG.Mouse", "YnInput.Mouse");
+                return YnInput.Mouse;
+            } 
+        }
+
+        /// <summary>
+        /// Gets or Set the Gamepad states
+        /// </summary>
+        public static YnGamepad Gamepad 
+        {
+            get
+            {
+                LogError("YnG.Gamepad", "YnInput.Gamepad");
+                return YnInput.Gamepad;
+            } 
+        }
+
+        /// <summary>
+        /// Gets or Set the Touch states
+        /// </summary>
+        public static YnTouch Touch 
+        {
+            get
+            {
+                LogError("YnG.Touch", "YnInput.Touch");
+                return YnInput.Touch;
+            }  
+        }
+
+        #endregion
+
         /// <summary>
         /// Close the game
         /// </summary>
         public static void Exit()
         {
             Game.Exit();
+        }
+
+        public static void LogError(string method, string replace)
+        {
+            string output = "[" + method + "] is deprecated use " + replace + " instead";
+#if !WINDOWS_STORE && !WINDOWS_PHONE && !ANDROID
+            System.Console.Error.WriteLine(output);
+#endif
         }
     }
 }

@@ -5,7 +5,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Yna.Engine.State
+namespace Yna.Engine
 {
     /// <summary>
     /// A basic state used with the state manager

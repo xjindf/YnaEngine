@@ -7,7 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Yna.Engine.State
+namespace Yna.Engine
 {
     /// <summary>
     /// The StateManager is responsible off managing the various screens that composes the game.
@@ -92,7 +92,7 @@ namespace Yna.Engine.State
 
         public override void Initialize()
         {
-            //base.Initialize();
+            base.Initialize();
 
             if (!_initialized)
             {
@@ -360,5 +360,10 @@ namespace Yna.Engine.State
         }
 
         #endregion
+    }
+
+    public class StateManagerException : Exception
+    {
+        public StateManagerException(string message) : base(message) { }
     }
 }
