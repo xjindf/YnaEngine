@@ -17,6 +17,13 @@ namespace Yna.Editor
         public MainEditor()
         {
             InitializeComponent();
+            ynGameControl.Click += menuItemAddYnSprite_Click;
+        }
+
+        private void menuItemAddYnSprite_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs me = e as MouseEventArgs;
+            ynGameControl.AddSprite(me.X, me.Y);
         }
     }
 }

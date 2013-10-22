@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Yna.Engine.Graphics;
+using Yna.Engine.Graphics2D;
 
 namespace Yna.Engine.Script
 {

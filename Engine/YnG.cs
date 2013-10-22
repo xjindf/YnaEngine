@@ -17,17 +17,29 @@ namespace Yna.Engine
     /// </summary>
     public static class YnG
     {
+        private static int _width;
+        private static int _height;
+        private static Game _game;
+        private static GraphicsDevice _device;
+        private static GraphicsDeviceManager _graphics;
+        private static ContentManager _content;
+
         /// <summary>
         /// Gets or Set the Game instance
         /// </summary>
-        public static Game Game { get; set; }
+        public static Game Game
+        {
+            get { return _game; }
+            internal set { _game = value; }
+        }
 
         /// <summary>
         /// Gets the GraphicsDevice instance relative to the Game object
         /// </summary>
         public static GraphicsDevice GraphicsDevice
         {
-            get { return Game.GraphicsDevice; }
+            get { return _device; }
+            internal set { _device = value; }
         }
 
         #region Managers
@@ -35,14 +47,19 @@ namespace Yna.Engine
         /// <summary>
         /// Gets the GraphicsDeviceManager relative to the Game object
         /// </summary>
-        public static GraphicsDeviceManager GraphicsDeviceManager { get; set; }
+        public static GraphicsDeviceManager GraphicsDeviceManager
+        {
+            get { return _graphics; }
+            internal set { _graphics = value; }
+        }
 
         /// <summary>
         /// Gets the ContentManager instance relative to the Game object
         /// </summary>
         public static ContentManager Content
         {
-            get { return Game.Content; }
+            get { return _content; }
+            internal set { _content = value; }
         }
 
         /// <summary>
@@ -90,7 +107,7 @@ namespace Yna.Engine
             set { Game.IsMouseVisible = value; }
         }
 
-        
+
 
         #endregion
 
@@ -101,13 +118,8 @@ namespace Yna.Engine
         /// </summary>
         public static int Width
         {
-            get
-            {
-                if (GraphicsDeviceManager != null)
-                    return GraphicsDeviceManager.PreferredBackBufferWidth;
-
-                return Game.GraphicsDevice.Viewport.Width;
-            }
+            get { return _width; }
+            internal set { _width = value; }
         }
 
         /// <summary>
@@ -115,13 +127,8 @@ namespace Yna.Engine
         /// </summary>
         public static int Height
         {
-            get
-            {
-                if (GraphicsDeviceManager != null)
-                    return GraphicsDeviceManager.PreferredBackBufferHeight;
-
-                return Game.GraphicsDevice.Viewport.Height;
-            }
+            get { return _height; }
+            internal set { _height = value; }
         }
 
         /// <summary>
@@ -129,7 +136,7 @@ namespace Yna.Engine
         /// </summary>
         public static Rectangle ScreenRectangle
         {
-            get { return new Rectangle(0, 0, YnG.Game.GraphicsDevice.Viewport.Width, YnG.Game.GraphicsDevice.Viewport.Height); }
+            get { return new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height); }
         }
 
         /// <summary>
