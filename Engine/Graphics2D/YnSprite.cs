@@ -193,7 +193,7 @@ namespace Yna.Engine.Graphics2D
             : base ()
         {
             _sourceRectangle = null;
-            _gameViewport = new Rectangle(0, 0, YnG.Width, YnG.Height);
+            _gameViewport = new Rectangle(0, 0, YnScreen.Width, YnScreen.Height);
             _forceInsideScreen = false;
             _forceAllowAcrossScreen = false;
             

@@ -161,7 +161,7 @@ namespace Yna.Engine.Graphics3D.Controls
                 _enableMouse = value;
 #if !DIRECTX
                 if (_enableMouse)
-                    Mouse.SetPosition(YnG.Width / 2, YnG.Height / 2);
+                    Mouse.SetPosition(YnScreen.Width / 2, YnScreen.Height / 2);
 #endif
             }
         }

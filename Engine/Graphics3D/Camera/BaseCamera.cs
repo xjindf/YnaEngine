@@ -328,7 +328,7 @@ namespace Yna.Engine.Graphics3D.Camera
             _vectorUp = Vector3.Up;
 
             // Screen view
-            _aspectRatio = (float)((float)YnG.Width / (float)YnG.Height);
+            _aspectRatio = (float)((float)YnScreen.Width / (float)YnScreen.Height);
             _fieldOfView = MathHelper.PiOver4;
             _nearClip = 1.0f;
             _farClip = 3500.0f;

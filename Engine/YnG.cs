@@ -65,7 +65,11 @@ namespace Yna.Engine
         /// <summary>
         /// Gets or Set the State Manager
         /// </summary>
-        public static StateManager StateManager { get; set; }
+        public static StateManager StateManager 
+        { 
+            get; 
+            internal set; 
+        }
 
         /// <summary>
         /// Gets or Set the audio manager
@@ -111,86 +115,20 @@ namespace Yna.Engine
 
         #endregion
 
-        #region Screen size and screen management
-
-        /// <summary>
-        /// Gets the width of the current viewport
-        /// </summary>
-        public static int Width
-        {
-            get { return _width; }
-            internal set { _width = value; }
-        }
-
-        /// <summary>
-        /// Gets the height of the current viewport
-        /// </summary>
-        public static int Height
-        {
-            get { return _height; }
-            internal set { _height = value; }
-        }
-
-        /// <summary>
-        /// Gets the rectangle that represent the screen size
-        /// </summary>
-        public static Rectangle ScreenRectangle
-        {
-            get { return new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height); }
-        }
-
-        /// <summary>
-        /// Gets the center of the screen on X axis
-        /// </summary>
-        public static int ScreenCenterX
-        {
-#if !ANDROID && !WINDOWS_PHONE_7 && !WINDOWS_PHONE_8
-            get { return Game.Window.ClientBounds.Width / 2; }
-#else
-			get { return YnG.Width / 2; }
-#endif
-        }
-
-        /// <summary>
-        /// Gets the center of the screen on Y axis
-        /// </summary>
-        public static int ScreenCenterY
-        {
-#if !ANDROID && !WINDOWS_PHONE_7 && !WINDOWS_PHONE_8
-            get { return Game.Window.ClientBounds.Height / 2; }
-#else
-			get { return YnG.Height / 2; }
-#endif
-        }
-
-
-        /// <summary>
-        /// Change the screen resolution
-        /// </summary>
-        /// <param name="width">Screen width</param>
-        /// <param name="height">Screen height</param>
-        public static void SetScreenResolution(int width, int height)
-        {
-            (Game as YnGame).SetScreenResolution(width, height);
-        }
-
-        /// <summary>
-        /// Set the screen resolution to the same resolution used on desktop
-        /// </summary>
-        /// <param name="fullscreen"></param>
-        public static void DetermineBestResolution(bool fullscreen)
-        {
-            (Game as YnGame).DetermineBestResolution(true);
-        }
-
-        #endregion
-
         #region StateManager
 
+        // @deprecated
         public static void SetStateActive(string name, bool desactiveOtherStates)
         {
+            System.Console.Error.WriteLine("YnG.SetStateActive is depreacted use YnG.LoadLevel instead");
             if (StateManager != null)
                 StateManager.SetActive(name, desactiveOtherStates);
+        }
+
+        public static void LoadLevel(string name)
+        {
+            if (StateManager != null)
+                StateManager.SetActive(name, true);
         }
 
         #endregion

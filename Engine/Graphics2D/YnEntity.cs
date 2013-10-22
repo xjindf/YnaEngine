@@ -747,7 +747,7 @@ namespace Yna.Engine.Graphics2D
         /// </summary>
         public void SetFullScreen()
         {
-            Rectangle = new Rectangle(0, 0, YnG.Width, YnG.Height);
+            Rectangle = new Rectangle(0, 0, YnScreen.Width, YnScreen.Height);
         }
 
         /// <summary>

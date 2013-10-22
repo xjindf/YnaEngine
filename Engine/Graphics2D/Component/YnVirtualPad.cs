@@ -352,7 +352,7 @@ namespace Yna.Engine.Graphics2D.Component
             Add(_buttonPause);
 
             //X = (int)(10 + _margin.X);
-            //Y = (int)(YnG.Height - (2 * _downPad.Height) - (2 * _margin.Y));
+            //Y = (int)(YnScreen.Height - (2 * _downPad.Height) - (2 * _margin.Y));
 
             _alpha = 0.75f;
 
@@ -404,7 +404,7 @@ namespace Yna.Engine.Graphics2D.Component
         /// </summary>
         public virtual void UpdateLayout()
         {
-            _leftPad.Position = new Vector2(_padding.X, YnG.Height - _leftPad.Height * 2 - _padding.Y * 2);
+            _leftPad.Position = new Vector2(_padding.X, YnScreen.Height - _leftPad.Height * 2 - _padding.Y * 2);
             _upPad.Position = new Vector2(_leftPad.X + _leftPad.Width + _margin.X, _leftPad.Y);
             _rightPad.Position = new Vector2(_upPad.X + _upPad.Width + _margin.X, _leftPad.Y);
 
@@ -412,7 +412,7 @@ namespace Yna.Engine.Graphics2D.Component
             _downPad.Position = new Vector2(_strafeLeftPad.X + _strafeLeftPad.Width + _margin.X, _strafeLeftPad.Y);
             _strafeRightPad.Position = new Vector2(_downPad.X + _downPad.Width + _margin.X, _strafeLeftPad.Y);
 
-            _buttonActionA.Position = new Vector2(YnG.Width - ((2 * _inputRectangle.Width) + _padding.X + _margin.X + _spaceBetweenActionButtons), _downPad.Y);
+            _buttonActionA.Position = new Vector2(YnScreen.Width - ((2 * _inputRectangle.Width) + _padding.X + _margin.X + _spaceBetweenActionButtons), _downPad.Y);
             _buttonActionB.Position = new Vector2(_buttonActionA.X + _buttonActionA.Width + _margin.X + _spaceBetweenActionButtons, _downPad.Y);
             _buttonPause.Position = new Vector2(_padding.X, _padding.Y);
         }

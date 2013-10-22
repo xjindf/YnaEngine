@@ -74,7 +74,7 @@ namespace Yna.Engine.Graphics2D.TileMap.Basic
 		/// <param name="camera">The current position of the camera on the map</param>
 		public void Draw(SpriteBatch spriteBatch, Vector2 camera)
 		{
-			Draw(spriteBatch, camera, new Rectangle(0, 0, YnG.Width, YnG.Height));
+			Draw(spriteBatch, camera, new Rectangle(0, 0, YnScreen.Width, YnScreen.Height));
 		}
 			
 		/// <summary>

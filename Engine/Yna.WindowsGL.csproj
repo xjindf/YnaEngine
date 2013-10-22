@@ -103,6 +103,7 @@
     <Compile Include="Graphics2D\YnEntity.cs" />
     <Compile Include="YnCollection.cs" />
     <Compile Include="YnQuadTree.cs" />
+    <Compile Include="YnScreen.cs" />
     <Compile Include="YnTimer.cs" />
     <Compile Include="YnRandom.cs" />
     <Compile Include="Extensions\PointExtension.cs" />

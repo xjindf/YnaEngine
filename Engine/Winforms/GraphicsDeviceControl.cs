@@ -66,9 +66,7 @@ namespace Yna.Engine.Winforms
             // Don't initialize the graphics device if we are running in the designer.
             if (!DesignMode)
             {
-                graphicsDeviceService = GraphicsDeviceService.AddRef(Handle,
-                                                                     ClientSize.Width,
-                                                                     ClientSize.Height);
+                graphicsDeviceService = GraphicsDeviceService.AddRef(Handle, ClientSize.Width,  ClientSize.Height);
 
                 // Register the service, so components like ContentManager can find it.
                 services.AddService<IGraphicsDeviceService>(graphicsDeviceService);

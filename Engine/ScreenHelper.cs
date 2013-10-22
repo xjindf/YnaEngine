@@ -28,7 +28,7 @@ namespace Yna.Engine.Helpers
         /// <returns></returns>
         public static float GetScaleX(float value)
         {
-            return (((float)YnG.Width * value) / (float)ScreenWidthReference);
+            return (((float)YnScreen.Width * value) / (float)ScreenWidthReference);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Yna.Engine.Helpers
         /// <returns>A scaled Y coordinate</returns>
         public static float GetScaleY(float value)
         {
-            return (((float)YnG.Height * value) / (float)ScreenHeightReference);
+            return (((float)YnScreen.Height * value) / (float)ScreenHeightReference);
         }
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace Yna.Engine.Helpers
         public static Vector2 GetScale()
         {
             return new Vector2(
-                (float)((float)YnG.Width / (float)ScreenWidthReference),
-                (float)((float)YnG.Height / (float)ScreenHeightReference));
+                (float)((float)YnScreen.Width / (float)ScreenWidthReference),
+                (float)((float)YnScreen.Height / (float)ScreenHeightReference));
         }
     }
 }

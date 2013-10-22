@@ -60,7 +60,7 @@ namespace Yna.Engine.Graphics2D
             Rotation = 0.0f;
             Zoom = 1.0f;
 
-            _centerScreen = new Vector2(YnG.Width / 2, YnG.Height / 2);
+            _centerScreen = new Vector2(YnScreen.Width / 2, YnScreen.Height / 2);
             _shakeEffect = new YnShakeEffect(this);
         }
 
@@ -91,10 +91,10 @@ namespace Yna.Engine.Graphics2D
         /// <returns></returns>
         public Matrix GetTransformMatrix()
         {
-            _originMatrix = Matrix.CreateTranslation(X + (-YnG.Width / 2), Y + (-YnG.Height / 2), 0);
+            _originMatrix = Matrix.CreateTranslation(X + (-YnScreen.Width / 2), Y + (-YnScreen.Height / 2), 0);
             _rotationMatrix = Matrix.CreateRotationZ(MathHelper.ToRadians(Rotation));
             _zoomMatrix = Matrix.CreateScale(Zoom);
-            _translationMatrix = Matrix.CreateTranslation(X + (YnG.Width / 2), Y + (YnG.Height / 2), 0);
+            _translationMatrix = Matrix.CreateTranslation(X + (YnScreen.Width / 2), Y + (YnScreen.Height / 2), 0);
 
             return (_zoomMatrix * _originMatrix * _rotationMatrix * _translationMatrix);
         }

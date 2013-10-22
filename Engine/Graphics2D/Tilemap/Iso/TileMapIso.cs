@@ -162,7 +162,7 @@ namespace Yna.Engine.Graphics2D.TileMap.Isometric
         public void Draw(SpriteBatch spriteBatch, Vector2 camera)
         {
             // TODO use static rectangle instead of this
-            Rectangle rec = new Rectangle(0, 0, YnG.Width, YnG.Height);
+            Rectangle rec = new Rectangle(0, 0, YnScreen.Width, YnScreen.Height);
             Draw(spriteBatch, camera, rec);
         }
 
@@ -242,7 +242,7 @@ namespace Yna.Engine.Graphics2D.TileMap.Isometric
                         // Textures may not be rendered entirely if the drawZone parameter
                         // is a smaller rectangle than the game window.
                         texRect = layer.Mapping[tile.TileType() + tile.TextureID * 23];
-                        if (drawZone.Width != YnG.Width && drawZone.Height != YnG.Height)
+                        if (drawZone.Width != YnScreen.Width && drawZone.Height != YnScreen.Height)
                         {
                             // The tile must be cropped.
                             // If the tile is on the edge of the draw zone, only the portion

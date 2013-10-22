@@ -17,13 +17,18 @@ namespace Yna.Editor
         public MainEditor()
         {
             InitializeComponent();
-            ynGameControl.Click += menuItemAddYnSprite_Click;
         }
 
-        private void menuItemAddYnSprite_Click(object sender, EventArgs e)
+        void glGameControl_Click(object sender, EventArgs e)
         {
             MouseEventArgs me = e as MouseEventArgs;
-            ynGameControl.AddSprite(me.X, me.Y);
+            glGameControl.DrawAt(me.X, me.Y);
+        }
+
+        private void MainEditor_Load(object sender, EventArgs evt)
+        {
+            Application.Idle += (s, e) => glGameControl.Invalidate();
+            glGameControl.Click += glGameControl_Click;
         }
     }
 }

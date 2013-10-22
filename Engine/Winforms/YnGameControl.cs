@@ -32,9 +32,21 @@ namespace Yna.Engine.Winforms
         {
             if (disposing)
                 content.Unload();
-            
+
             base.Dispose(disposing);
         }
+
+        public void DrawAt(int x, int y)
+        {
+            tex = YnGraphics.CreateTexture(YnRandom.GetColor(), 50, 50);
+            this.x = x;
+            this.y = y;
+            //OnPaint(null);
+        }
+
+        Texture2D tex;
+        int x;
+        int y;
 
         /// <summary>
         /// Draws the control, using SpriteBatch and SpriteFont.
@@ -42,6 +54,10 @@ namespace Yna.Engine.Winforms
         protected override void Draw()
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            if (tex != null)
+                spriteBatch.Draw(tex, new Rectangle(x, y, 50, 50), Color.White);
+            spriteBatch.End();
         }
     }
 }

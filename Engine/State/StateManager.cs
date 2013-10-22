@@ -92,7 +92,7 @@ namespace Yna.Engine.State
 
         public override void Initialize()
         {
-            base.Initialize();
+            //base.Initialize();
 
             if (!_initialized)
             {
