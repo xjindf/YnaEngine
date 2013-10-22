@@ -31,7 +31,7 @@ namespace WinFormsGraphicsDevice
         SpriteBatch spriteBatch;
         SpriteFont font;
 
-        YnSprite testSprite;
+        Texture2D tex;
 
         /// <summary>
         /// Initializes the control, creating the ContentManager
@@ -42,7 +42,11 @@ namespace WinFormsGraphicsDevice
             content = new ContentManager(Services, "Content");
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            testSprite = new YnSprite(new Rectangle(25, 25, 100, 100), Color.Red);
+            tex = new Texture2D(GraphicsDevice, 50, 50);
+            Color[] c = new Color[50 * 50];
+            for (int i = 0; i < c.Length; i++)
+                c[i] = Color.Red;
+            tex.SetData<Color>(c);
         }
 
 
@@ -67,7 +71,7 @@ namespace WinFormsGraphicsDevice
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            testSprite.Draw(null, spriteBatch);
+            spriteBatch.Draw(tex, new Rectangle(25, 25, 100, 100), Color.White);
             spriteBatch.End();
         }
     }
