@@ -58,6 +58,9 @@ namespace Yna.Engine
             YnG.StorageManager = new StorageManager();
             YnG.AudioManager = new AudioManager();
 
+
+            YnG.Width = this.graphics.PreferredBackBufferWidth;
+            YnG.Height = this.graphics.PreferredBackBufferHeight;
 #if !ANDROID
             this.Window.Title = String.Format("{0} - v{1}", GameTitle, GameVersion);
 #endif
@@ -100,6 +103,12 @@ namespace Yna.Engine
 
         #region GameState pattern
 
+        protected override void Initialize()
+        {
+            base.Initialize();
+            YnG.GraphicsDevice = GraphicsDevice;
+        }
+
         /// <summary>
         /// Load assets from content manager
         /// </summary>
@@ -139,6 +148,9 @@ namespace Yna.Engine
             this.graphics.PreferredBackBufferWidth = width;
             this.graphics.PreferredBackBufferHeight = height;
             this.graphics.ApplyChanges();
+
+            YnG.Width = width;
+            YnG.Height = height;
         }
 
         /// <summary>
