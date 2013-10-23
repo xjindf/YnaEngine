@@ -9,6 +9,7 @@ namespace Yna.Engine.Winforms
     public abstract class YnGameControl : GraphicsDeviceControl
     {
         protected SpriteBatch spriteBatch;
+        // TODO: Move GameTime here
 
         /// <summary>
         /// Initializes the control, creating the ContentManager
@@ -20,6 +21,7 @@ namespace Yna.Engine.Winforms
 
             YnG.Content = new ContentManager(Services, "Content"); ;
             YnG.GraphicsDevice = GraphicsDevice;
+            YnG.StateManager = new StateManager(null);
         }
 
         /// <summary>

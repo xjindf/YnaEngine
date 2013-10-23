@@ -109,6 +109,7 @@ namespace Yna.Engine.Winforms
             if (string.IsNullOrEmpty(beginDrawError))
             {
                 // Draw the control using the GraphicsDevice.
+                Update();
                 Draw();
                 EndDraw();
             }
@@ -225,8 +226,7 @@ namespace Yna.Engine.Winforms
             {
                 try
                 {
-                    graphicsDeviceService.ResetDevice(ClientSize.Width,
-                                                      ClientSize.Height);
+                    graphicsDeviceService.ResetDevice(ClientSize.Width, ClientSize.Height);
                 }
                 catch (Exception e)
                 {
@@ -281,6 +281,7 @@ namespace Yna.Engine.Winforms
         /// </summary>
         protected abstract void Initialize();
 
+        protected abstract void Update();
 
         /// <summary>
         /// Derived classes override this to draw themselves using the GraphicsDevice.

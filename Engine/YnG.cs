@@ -97,7 +97,7 @@ namespace Yna.Engine
         // @deprecated
         public static void SetStateActive(string name, bool desactiveOtherStates)
         {
-            System.Console.Error.WriteLine("YnG.SetStateActive is depreacted use YnG.LoadLevel instead");
+            LogError("YnG.SetStateActive", "YnG.LoadLevel");
             if (StateManager != null)
                 StateManager.SetActive(name, desactiveOtherStates);
         }
@@ -191,7 +191,7 @@ namespace Yna.Engine
         public static void LogError(string method, string replace)
         {
             string output = "[" + method + "] is deprecated use " + replace + " instead";
-#if !WINDOWS_STORE && !WINDOWS_PHONE && !ANDROID
+#if !WINDOWS_STOREAPP && !WINDOWS_PHONE && !ANDROID
             System.Console.Error.WriteLine(output);
 #endif
         }
