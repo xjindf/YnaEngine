@@ -9,11 +9,13 @@ using System.Windows.Forms;
 
 namespace Yna.Editor
 {
+    using System.Threading;
     using GdiColor = System.Drawing.Color;
     using XnaColor = Microsoft.Xna.Framework.Color;
 
     public partial class MainEditor : Form
     {
+        private Thread _splashThread;
         private bool _autoUpdateScene;
 
         public bool AutoUpdateScene
@@ -34,10 +36,19 @@ namespace Yna.Editor
 
         public MainEditor()
         {
+            _splashThread = new Thread(new ThreadStart(OnSplashThread));
+            _splashThread.Start();
+
             InitializeComponent();
             _autoUpdateScene = true;
 
             sceneTreeView.Controls.Add(new Label() { Text = "Scene 2D" });
+        }
+
+        void OnSplashThread()
+        {
+            SplashScreen sp = new SplashScreen();
+            sp.ShowDialog();
         }
 
         void glGameControl_Click(object sender, EventArgs e)
@@ -50,6 +61,9 @@ namespace Yna.Editor
         {
             Application.Idle += UpdateGLControl;
             glGameControl.Click += glGameControl_Click;
+
+            _splashThread.Abort();
+            
         }
 
         private void UpdateGLControl(object sender, EventArgs e)

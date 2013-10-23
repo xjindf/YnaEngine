@@ -58,6 +58,7 @@ namespace Yna.Editor
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.glGameControl = new Yna.Editor.EditorGameControl();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -78,7 +79,6 @@ namespace Yna.Editor
             this.sceneTreeView = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.assetsTreeView = new System.Windows.Forms.TreeView();
-            this.glGameControl = new Yna.Editor.EditorGameControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -302,6 +302,18 @@ namespace Yna.Editor
             this.mainSplitContainer.SplitterDistance = 537;
             this.mainSplitContainer.TabIndex = 3;
             // 
+            // glGameControl
+            // 
+            this.glGameControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.glGameControl.BackColor = System.Drawing.Color.Black;
+            this.glGameControl.Location = new System.Drawing.Point(0, 0);
+            this.glGameControl.Name = "glGameControl";
+            this.glGameControl.Size = new System.Drawing.Size(538, 515);
+            this.glGameControl.TabIndex = 0;
+            this.glGameControl.VSync = false;
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -519,18 +531,6 @@ namespace Yna.Editor
             this.assetsTreeView.Size = new System.Drawing.Size(219, 345);
             this.assetsTreeView.TabIndex = 0;
             // 
-            // glGameControl
-            // 
-            this.glGameControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.glGameControl.BackColor = System.Drawing.Color.Black;
-            this.glGameControl.Location = new System.Drawing.Point(0, 0);
-            this.glGameControl.Name = "glGameControl";
-            this.glGameControl.Size = new System.Drawing.Size(538, 515);
-            this.glGameControl.TabIndex = 0;
-            this.glGameControl.VSync = false;
-            // 
             // MainEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -543,6 +543,7 @@ namespace Yna.Editor
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yna Engine Editor";
             this.Load += new System.EventHandler(this.MainEditor_Load);
             this.menuStrip1.ResumeLayout(false);
