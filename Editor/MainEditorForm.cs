@@ -11,6 +11,7 @@ namespace Yna.Editor
 {
     using Microsoft.Xna.Framework.Graphics;
     using System.Threading;
+    using Yna.Engine.Graphics2D;
     using Yna.Engine.Graphics3D;
     using Yna.Engine.Graphics3D.Geometry;
     using Yna.Engine.Graphics3D.Terrain;
@@ -31,7 +32,6 @@ namespace Yna.Editor
         private string _typeToAdd;
         private TreeNode _rootSceneNode;
         private TreeNode _currentSceneNode;
-
         private RenderSettingsForm _settingsForm;
 
         public bool AutoUpdateScene
@@ -67,18 +67,27 @@ namespace Yna.Editor
                 item.Click += gameObjectMenuItem_Click;
 
             _typeToAdd = String.Empty;
+
+            YnText.DefaultColor = XnaColor.White;
         }
 
-        void gameObjectMenuItem_Click(object sender, EventArgs e)
+        private void AddGameObject(string type, string subType)
         {
-            string[] temp = (sender as ToolStripItem).Name.Split(new char[] { '_' });
-            string type = temp[1];
-            string subType = temp[2];
-
             // 2D
             if (type == "Sprite")
             {
+                YnEntity gameObject = null;
+                switch (subType)
+                {
+                    case "Sprite": gameObject = new YnSprite("images/default_sprite"); break;
+                    case "Particles": break;
+                    case "Text": gameObject = new YnText("font/default", "Hello World"); break;
+                }
 
+                if (gameObject == null)
+                    gameObject = new YnGroup(); // Fix that
+
+                glGameControl.AddGameObject(gameObject);
             }
             else if (type == "Geometry")
             {
@@ -139,25 +148,16 @@ namespace Yna.Editor
             sp.ShowDialog();
         }
 
-        void glGameControl_Click(object sender, EventArgs e)
-        {
-            MouseEventArgs me = e as MouseEventArgs;
-
-        }
-
         private void MainEditor_Load(object sender, EventArgs evt)
         {
             Application.Idle += UpdateGLControl;
             glGameControl.Click += glGameControl_Click;
+            glGameControl.GameObjectClicked += glGameControl_GameObjectClicked;
 
             _splashThread.Abort();
-
         }
 
-        private void UpdateGLControl(object sender, EventArgs e)
-        {
-            glGameControl.Invalidate();
-        }
+        #region Menu handlers
 
         private void exitMenuItem_Click(object sender, EventArgs e)
         {
@@ -176,5 +176,37 @@ namespace Yna.Editor
 
             _settingsForm.ShowDialog();
         }
+
+        private void gameObjectMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] temp = (sender as ToolStripItem).Name.Split(new char[] { '_' });
+            string type = temp[1];
+            string subType = temp[2];
+
+            AddGameObject(type, subType)
+        }
+
+        #endregion
+
+        #region GLGameControl handlers
+
+        private void glGameControl_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs me = e as MouseEventArgs;
+
+            glGameControl.checkMouseClick(me.X, me.Y);
+        }
+
+        private void glGameControl_GameObjectClicked(object sender, GameObjectClickedEventArgs e)
+        {
+            Console.WriteLine("Clicked !");
+        }
+
+        private void UpdateGLControl(object sender, EventArgs e)
+        {
+            glGameControl.Invalidate();
+        }
+
+        #endregion
     }
 }

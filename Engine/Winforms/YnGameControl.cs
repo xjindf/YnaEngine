@@ -22,6 +22,8 @@ namespace Yna.Engine.Winforms
             YnG.Content = new ContentManager(Services, "Content"); ;
             YnG.GraphicsDevice = GraphicsDevice;
             YnG.StateManager = new StateManager(null);
+            YnScreen.Width = Width;
+            YnScreen.Height = Height;
         }
 
         /// <summary>

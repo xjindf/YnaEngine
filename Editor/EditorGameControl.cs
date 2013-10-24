@@ -14,6 +14,18 @@ using Yna.Engine.Graphics3D.Camera;
 
 namespace Yna.Editor
 {
+    public class GameObjectClickedEventArgs : EventArgs
+    {
+        public YnEntity GameObject { get; set; }
+        public YnEntity3D GameObject3D { get; set; }
+
+        public GameObjectClickedEventArgs(YnEntity go, YnEntity3D go3)
+        {
+            GameObject = go;
+            GameObject3D = go3;
+        }
+    }
+
     public class EditorGameControl : YnGameControl
     {
         public enum GameObjectType
@@ -32,6 +44,8 @@ namespace Yna.Editor
         private List<YnEntity> _gameObjects;
         private List<YnEntity3D> _gameObjects3D;
 
+        public event EventHandler<GameObjectClickedEventArgs> GameObjectClicked = null;
+
         public void AddGameObject(YnEntity gameObject)
         {
             gameObject.LoadContent();
@@ -46,6 +60,21 @@ namespace Yna.Editor
             _gameObjects3D.Add(gameObject);
         }
 
+        public void checkMouseClick(int x, int y)
+        {
+            foreach (YnEntity go in _gameObjects)
+            {
+                if (go.Rectangle.Contains(x, y) && GameObjectClicked != null)
+                    GameObjectClicked(this, new GameObjectClickedEventArgs(go, null));
+            }
+
+            foreach (YnEntity3D go3 in _gameObjects3D)
+            {
+                if (YnG3.MouseCollideWithObject(camera, go3) > 0 && GameObjectClicked != null)
+                    GameObjectClicked(this, new GameObjectClickedEventArgs(null, go3));
+            }
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -56,7 +85,7 @@ namespace Yna.Editor
             _gameObjects3D = new List<YnEntity3D>();
 
             _lastUpdate = new TimeSpan(DateTime.Now.Ticks);
-            _stopWatch = new Stopwatch(); 
+            _stopWatch = new Stopwatch();
             _stopWatch.Start();
 
             _is3DScene = true;
@@ -89,8 +118,15 @@ namespace Yna.Editor
 
             if (_is3DScene)
             {
-                foreach (YnEntity go in _gameObjects)
-                    go.Draw(gameTime, spriteBatch);
+                if (_gameObjects.Count > 0)
+                {
+                    spriteBatch.Begin();
+
+                    foreach (YnEntity go in _gameObjects)
+                        go.Draw(gameTime, spriteBatch);
+
+                    spriteBatch.End();
+                }
 
                 YnG3.RestoreGraphicsDeviceStates();
 
@@ -104,7 +140,7 @@ namespace Yna.Editor
 
                 foreach (YnEntity go in _gameObjects)
                     go.Draw(gameTime, spriteBatch);
-                
+
                 spriteBatch.End();
             }
         }
