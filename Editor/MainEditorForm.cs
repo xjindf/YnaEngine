@@ -9,14 +9,28 @@ using System.Windows.Forms;
 
 namespace Yna.Editor
 {
+    using Microsoft.Xna.Framework.Graphics;
     using System.Threading;
+    using Yna.Engine.Graphics3D;
+    using Yna.Engine.Graphics3D.Geometry;
+    using Yna.Engine.Graphics3D.Terrain;
     using GdiColor = System.Drawing.Color;
     using XnaColor = Microsoft.Xna.Framework.Color;
+    using XnaVector2 = Microsoft.Xna.Framework.Vector2;
+    using XnaVector3 = Microsoft.Xna.Framework.Vector3;
+
+    public enum EditorMode
+    {
+        Add = 0, Move, Rotate, Scale, Edit, Remove
+    }
 
     public partial class MainEditorForm : Form
     {
         private Thread _splashThread;
         private bool _autoUpdateScene;
+        private string _typeToAdd;
+        private TreeNode _rootSceneNode;
+        private TreeNode _currentSceneNode;
 
         private RenderSettingsForm _settingsForm;
 
@@ -44,7 +58,79 @@ namespace Yna.Editor
             InitializeComponent();
             _autoUpdateScene = true;
 
-            sceneTreeView.Controls.Add(new Label() { Text = "Scene 2D" });
+            _rootSceneNode = new TreeNode("Scene");
+            sceneTreeView.Nodes.Add(_rootSceneNode);
+            sceneTreeView.NodeMouseClick += sceneTreeView_NodeMouseClick;
+            _currentSceneNode = _rootSceneNode;
+
+            foreach (ToolStripItem item in menuItem_GameObject.DropDownItems)
+                item.Click += gameObjectMenuItem_Click;
+
+            _typeToAdd = String.Empty;
+        }
+
+        void gameObjectMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] temp = (sender as ToolStripItem).Name.Split(new char[] { '_' });
+            string type = temp[1];
+            string subType = temp[2];
+
+            // 2D
+            if (type == "Sprite")
+            {
+
+            }
+            else if (type == "Geometry")
+            {
+                YnEntity3D gameObject = null;
+                BaseGeometry<VertexPositionNormalTexture> geometry = null;
+
+                switch (subType)
+                {
+                    case "Cube": geometry = new CubeGeometry(); break;
+                    case "Cylinder": new CylinderGeometry(new XnaVector3(0, 10, 0), new XnaVector3(0, 0, 0), 5, 5, false, 10, 10, XnaVector3.One); break;
+                    case "IcoSphere": new IcoSphereGeometry(32, 4, false); break;
+                    case "Plane": new PlaneGeometry(new XnaVector3(10)); break;
+                    case "Pyramid": new PyramidGeometry(new XnaVector3(10)); break;
+                    case "Sphere": new SphereGeometry(10); break;
+                    case "Torus": new TorusGeometry(6, 1, false, 5, 15, XnaVector3.One, XnaVector3.Zero); break;
+                }
+
+                if (geometry != null)
+                    gameObject = new YnMeshGeometry(geometry, "images/default_geometry");
+                else
+                    gameObject = new YnGroup3D(null); // TODO fix that
+
+                glGameControl.AddGameObject(gameObject);
+            }
+            else if (type == "Terrain")
+            {
+                BaseTerrain terrain = null;
+                if (subType == "Simple")
+                    terrain = new SimpleTerrain("images/terrain_map", 500, 500, 10, 10);
+                else
+                    terrain = new Heightmap("images/terrain_heightfield", "images/terrain_map", new XnaVector3(500, 500, 500));
+
+                glGameControl.AddGameObject(terrain);
+            }
+
+            AddSceneNode(subType);
+        }
+
+        private void sceneTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            TreeNode node = sender as TreeNode;
+            if (node != null)
+            {
+                if (node.Nodes.Count > 0)
+                    _currentSceneNode = node;
+            }
+        }
+
+        public void AddSceneNode(string type)
+        {
+            TreeNode node = new TreeNode(type);
+            _currentSceneNode.Nodes.Add(node);
         }
 
         void OnSplashThread()

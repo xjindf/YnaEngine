@@ -16,6 +16,11 @@ namespace Yna.Editor
 {
     public class EditorGameControl : YnGameControl
     {
+        public enum GameObjectType
+        {
+            GameObject2D = 0, GameObject3D, NonDrawable
+        }
+
         public Color ClearColor;
 
         private GameTime gameTime;
@@ -26,6 +31,16 @@ namespace Yna.Editor
         private BaseCamera camera;
         private List<YnEntity> _gameObjects;
         private List<YnEntity3D> _gameObjects3D;
+
+        public void AddGameObject(YnEntity gameObject)
+        {
+
+        }
+
+        public void AddGameObject(YnEntity3D gameObject)
+        {
+
+        }
 
         protected override void Initialize()
         {
