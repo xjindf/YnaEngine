@@ -2,7 +2,7 @@
 
 namespace Yna.Editor
 {
-    partial class MainEditor
+    partial class MainEditorForm
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -30,7 +30,7 @@ namespace Yna.Editor
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEditor));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEditorForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,17 +43,22 @@ namespace Yna.Editor
             this.gameObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameObjectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ynEntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ynGroupToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ynParticleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ynSpriteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ynTextToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scene2DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scene2DGUIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scene3DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cubeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cylinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.icoSphereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pyramidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sphereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.torusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.terrainsimpleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.terrainHeighmapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.renderingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -124,41 +129,41 @@ namespace Yna.Editor
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // openMenuItem
             // 
             this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openMenuItem.Text = "Open";
             // 
             // saveMenuItem
             // 
             this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveMenuItem.Text = "Save";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // optionsMenuItem
             // 
             this.optionsMenuItem.Name = "optionsMenuItem";
-            this.optionsMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.optionsMenuItem.Size = new System.Drawing.Size(152, 22);
             this.optionsMenuItem.Text = "Options";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -166,7 +171,6 @@ namespace Yna.Editor
             // 
             this.gameObjectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gameObjectToolStripMenuItem1,
-            this.sceneToolStripMenuItem,
             this.settingsToolStripMenuItem});
             this.gameObjectToolStripMenuItem.Name = "gameObjectToolStripMenuItem";
             this.gameObjectToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -176,91 +180,126 @@ namespace Yna.Editor
             // 
             this.gameObjectToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ynEntityToolStripMenuItem,
-            this.ynGroupToolStripMenuItem1,
             this.ynParticleToolStripMenuItem1,
             this.ynSpriteToolStripMenuItem1,
             this.ynTextToolStripMenuItem1,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.cubeToolStripMenuItem,
+            this.cylinderToolStripMenuItem,
+            this.icoSphereToolStripMenuItem,
+            this.planeToolStripMenuItem,
+            this.pyramidToolStripMenuItem,
+            this.sphereToolStripMenuItem,
+            this.torusToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.terrainsimpleToolStripMenuItem,
+            this.terrainHeighmapToolStripMenuItem});
             this.gameObjectToolStripMenuItem1.Name = "gameObjectToolStripMenuItem1";
-            this.gameObjectToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
-            this.gameObjectToolStripMenuItem1.Text = "Game Object";
+            this.gameObjectToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.gameObjectToolStripMenuItem1.Text = "Add";
             // 
             // ynEntityToolStripMenuItem
             // 
             this.ynEntityToolStripMenuItem.Name = "ynEntityToolStripMenuItem";
-            this.ynEntityToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.ynEntityToolStripMenuItem.Text = "YnEntity";
-            // 
-            // ynGroupToolStripMenuItem1
-            // 
-            this.ynGroupToolStripMenuItem1.Name = "ynGroupToolStripMenuItem1";
-            this.ynGroupToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
-            this.ynGroupToolStripMenuItem1.Text = "YnGroup";
+            this.ynEntityToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.ynEntityToolStripMenuItem.Text = "Empty";
             // 
             // ynParticleToolStripMenuItem1
             // 
             this.ynParticleToolStripMenuItem1.Name = "ynParticleToolStripMenuItem1";
-            this.ynParticleToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
-            this.ynParticleToolStripMenuItem1.Text = "YnParticle";
+            this.ynParticleToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
+            this.ynParticleToolStripMenuItem1.Text = "Particles";
             // 
             // ynSpriteToolStripMenuItem1
             // 
             this.ynSpriteToolStripMenuItem1.Name = "ynSpriteToolStripMenuItem1";
-            this.ynSpriteToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
-            this.ynSpriteToolStripMenuItem1.Text = "YnSprite";
+            this.ynSpriteToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
+            this.ynSpriteToolStripMenuItem1.Text = "Sprite";
             // 
             // ynTextToolStripMenuItem1
             // 
             this.ynTextToolStripMenuItem1.Name = "ynTextToolStripMenuItem1";
-            this.ynTextToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
-            this.ynTextToolStripMenuItem1.Text = "YnText";
+            this.ynTextToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
+            this.ynTextToolStripMenuItem1.Text = "Text";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
             // 
-            // sceneToolStripMenuItem
+            // cubeToolStripMenuItem
             // 
-            this.sceneToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scene2DToolStripMenuItem,
-            this.scene2DGUIToolStripMenuItem,
-            this.scene3DToolStripMenuItem});
-            this.sceneToolStripMenuItem.Name = "sceneToolStripMenuItem";
-            this.sceneToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.sceneToolStripMenuItem.Text = "Scene";
+            this.cubeToolStripMenuItem.Name = "cubeToolStripMenuItem";
+            this.cubeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.cubeToolStripMenuItem.Text = "Cube";
             // 
-            // scene2DToolStripMenuItem
+            // cylinderToolStripMenuItem
             // 
-            this.scene2DToolStripMenuItem.Name = "scene2DToolStripMenuItem";
-            this.scene2DToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.scene2DToolStripMenuItem.Text = "Scene 2D";
+            this.cylinderToolStripMenuItem.Name = "cylinderToolStripMenuItem";
+            this.cylinderToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.cylinderToolStripMenuItem.Text = "Cylinder";
             // 
-            // scene2DGUIToolStripMenuItem
+            // icoSphereToolStripMenuItem
             // 
-            this.scene2DGUIToolStripMenuItem.Name = "scene2DGUIToolStripMenuItem";
-            this.scene2DGUIToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.scene2DGUIToolStripMenuItem.Text = "Scene 2D + GUI";
+            this.icoSphereToolStripMenuItem.Name = "icoSphereToolStripMenuItem";
+            this.icoSphereToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.icoSphereToolStripMenuItem.Text = "IcoSphere";
             // 
-            // scene3DToolStripMenuItem
+            // planeToolStripMenuItem
             // 
-            this.scene3DToolStripMenuItem.Name = "scene3DToolStripMenuItem";
-            this.scene3DToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.scene3DToolStripMenuItem.Text = "Scene 3D";
+            this.planeToolStripMenuItem.Name = "planeToolStripMenuItem";
+            this.planeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.planeToolStripMenuItem.Text = "Plane";
+            // 
+            // pyramidToolStripMenuItem
+            // 
+            this.pyramidToolStripMenuItem.Name = "pyramidToolStripMenuItem";
+            this.pyramidToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.pyramidToolStripMenuItem.Text = "Pyramid";
+            // 
+            // sphereToolStripMenuItem
+            // 
+            this.sphereToolStripMenuItem.Name = "sphereToolStripMenuItem";
+            this.sphereToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.sphereToolStripMenuItem.Text = "Sphere";
+            // 
+            // torusToolStripMenuItem
+            // 
+            this.torusToolStripMenuItem.Name = "torusToolStripMenuItem";
+            this.torusToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.torusToolStripMenuItem.Text = "Torus";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(175, 6);
+            // 
+            // terrainsimpleToolStripMenuItem
+            // 
+            this.terrainsimpleToolStripMenuItem.Name = "terrainsimpleToolStripMenuItem";
+            this.terrainsimpleToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.terrainsimpleToolStripMenuItem.Text = "Terrain (Simple)";
+            // 
+            // terrainHeighmapToolStripMenuItem
+            // 
+            this.terrainHeighmapToolStripMenuItem.Name = "terrainHeighmapToolStripMenuItem";
+            this.terrainHeighmapToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.terrainHeighmapToolStripMenuItem.Text = "Terrain (Heighmap)";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renderingToolStripMenuItem});
+            this.renderMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
-            // renderingToolStripMenuItem
+            // renderMenuItem
             // 
-            this.renderingToolStripMenuItem.Name = "renderingToolStripMenuItem";
-            this.renderingToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.renderingToolStripMenuItem.Text = "Rendering";
+            this.renderMenuItem.Name = "renderMenuItem";
+            this.renderMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.renderMenuItem.Text = "Render";
+            this.renderMenuItem.Click += new System.EventHandler(this.renderMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -531,7 +570,7 @@ namespace Yna.Editor
             this.assetsTreeView.Size = new System.Drawing.Size(219, 345);
             this.assetsTreeView.TabIndex = 0;
             // 
-            // MainEditor
+            // MainEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -542,7 +581,7 @@ namespace Yna.Editor
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "MainEditor";
+            this.Name = "MainEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yna Engine Editor";
             this.Load += new System.EventHandler(this.MainEditor_Load);
@@ -605,18 +644,23 @@ namespace Yna.Editor
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem gameObjectToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ynEntityToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ynGroupToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ynParticleToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ynSpriteToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ynTextToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem sceneToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scene2DToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scene2DGUIToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scene3DToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem renderingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renderMenuItem;
         private EditorGameControl glGameControl;
+        private System.Windows.Forms.ToolStripMenuItem cubeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cylinderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem icoSphereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem planeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pyramidToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sphereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem torusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem terrainsimpleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem terrainHeighmapToolStripMenuItem;
     }
 }
 

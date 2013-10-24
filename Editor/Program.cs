@@ -16,7 +16,7 @@ namespace Yna.Editor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainEditor());
+            Application.Run(new MainEditorForm());
         }
     }
 }

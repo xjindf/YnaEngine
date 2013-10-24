@@ -13,10 +13,12 @@ namespace Yna.Editor
     using GdiColor = System.Drawing.Color;
     using XnaColor = Microsoft.Xna.Framework.Color;
 
-    public partial class MainEditor : Form
+    public partial class MainEditorForm : Form
     {
         private Thread _splashThread;
         private bool _autoUpdateScene;
+
+        private RenderSettingsForm _settingsForm;
 
         public bool AutoUpdateScene
         {
@@ -34,7 +36,7 @@ namespace Yna.Editor
             }
         }
 
-        public MainEditor()
+        public MainEditorForm()
         {
             _splashThread = new Thread(new ThreadStart(OnSplashThread));
             _splashThread.Start();
@@ -63,7 +65,7 @@ namespace Yna.Editor
             glGameControl.Click += glGameControl_Click;
 
             _splashThread.Abort();
-            
+
         }
 
         private void UpdateGLControl(object sender, EventArgs e)
@@ -79,6 +81,14 @@ namespace Yna.Editor
         private void aboutMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("YnaEngine Editor is designed to build 2D or 3D scene for use it in YnaEngine.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void renderMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_settingsForm == null)
+                _settingsForm = new RenderSettingsForm();
+
+            _settingsForm.ShowDialog();
         }
     }
 }
