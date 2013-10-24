@@ -34,12 +34,16 @@ namespace Yna.Editor
 
         public void AddGameObject(YnEntity gameObject)
         {
-
+            gameObject.LoadContent();
+            gameObject.Initialize();
+            _gameObjects.Add(gameObject);
         }
 
         public void AddGameObject(YnEntity3D gameObject)
         {
-
+            gameObject.LoadContent();
+            gameObject.Initialize();
+            _gameObjects3D.Add(gameObject);
         }
 
         protected override void Initialize()
@@ -55,7 +59,7 @@ namespace Yna.Editor
             _stopWatch = new Stopwatch(); 
             _stopWatch.Start();
 
-            _is3DScene = false;
+            _is3DScene = true;
 
             gameTime = new GameTime();
         }
