@@ -156,11 +156,24 @@ namespace Yna.Editor
             glGameControl.Click += glGameControl_Click;
             glGameControl.GameObjectClicked += glGameControl_GameObjectClicked;
             glGameControl.MouseMove += glGameControl_MouseMove;
-            glGameControl.MouseUp += (s, e) => _currentGameObject = null;
+            //glGameControl.MouseUp += (s, e) => _currentGameObject = null;
 
             _splashThread.Abort();
 
             transformControl1.TransformPropertyChanged += transformControl1_TransformPropertyChanged;
+            textControl1.TextChanged += textControl1_TextChanged;
+        }
+
+        void textControl1_TextChanged(object sender, Components.StringChangedEventArgs e)
+        {
+            if (_currentGameObject != null)
+            {
+                if (_currentGameObject is YnText)
+                {
+                    YnText goText = _currentGameObject as YnText;
+                    goText.Text = e.Text;
+                }
+            }
         }
 
         void transformControl1_TransformPropertyChanged(object sender, Components.TransformChangedEventArgs e)
