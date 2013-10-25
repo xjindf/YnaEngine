@@ -57,6 +57,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\SpriteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\SpriteControl.Designer.cs">
+      <DependentUpon>SpriteControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TextControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\TextControl.Designer.cs">
+      <DependentUpon>TextControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TransformControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\TransformControl.Designer.cs">
+      <DependentUpon>TransformControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TransformValueChangedEventArgs.cs" />
     <Compile Include="EditorGameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,6 +104,15 @@
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Components\SpriteControl.resx">
+      <DependentUpon>SpriteControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\TextControl.resx">
+      <DependentUpon>TextControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\TransformControl.resx">
+      <DependentUpon>TransformControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainEditorForm.resx">
       <DependentUpon>MainEditorForm.cs</DependentUpon>
     </EmbeddedResource>

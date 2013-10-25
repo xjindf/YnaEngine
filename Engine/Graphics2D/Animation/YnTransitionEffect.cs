@@ -14,7 +14,7 @@ namespace Yna.Engine.Graphics2D.Animation
     /// <summary>
     /// Simple transition effect
     /// </summary>
-    public class YnTransitionEffect : YnBasicEntity, IEffectAnimation
+    public class YnTransitionEffect : GameObject, IEffectAnimation
     {
         private TransitionState _transitionState;
         private float _timeTransitionOn;

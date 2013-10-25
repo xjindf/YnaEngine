@@ -95,7 +95,7 @@
     <Compile Include="Storage\IStorageDevice.cs" />
     <Compile Include="Storage\StorageManager.cs" />
     <Compile Include="Graphics2D\YnState2D.cs" />
-    <Compile Include="YnBasicEntity.cs" />
+    <Compile Include="GameObject.cs" />
     <Compile Include="YnG.cs" />
     <Compile Include="YnGame.cs" />
     <Compile Include="Graphics2D\YnGroup.cs" />

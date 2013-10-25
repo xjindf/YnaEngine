@@ -9,7 +9,7 @@ namespace Yna.Engine.Graphics2D.Animation
     /// <summary>
     /// A Shake effect for a SpriteBatchCamera
     /// </summary>
-    public class YnShakeEffect : YnBasicEntity, IEffectAnimation
+    public class YnShakeEffect : GameObject, IEffectAnimation
     {
         protected static readonly Random random = new Random();
         protected bool _shaking;

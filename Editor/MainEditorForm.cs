@@ -11,6 +11,7 @@ namespace Yna.Editor
 {
     using Microsoft.Xna.Framework.Graphics;
     using System.Threading;
+    using Yna.Engine;
     using Yna.Engine.Graphics2D;
     using Yna.Engine.Graphics3D;
     using Yna.Engine.Graphics3D.Geometry;
@@ -33,6 +34,7 @@ namespace Yna.Editor
         private TreeNode _rootSceneNode;
         private TreeNode _currentSceneNode;
         private RenderSettingsForm _settingsForm;
+        private GameObject _currentGameObject;
 
         public bool AutoUpdateScene
         {
@@ -153,6 +155,7 @@ namespace Yna.Editor
             Application.Idle += UpdateGLControl;
             glGameControl.Click += glGameControl_Click;
             glGameControl.GameObjectClicked += glGameControl_GameObjectClicked;
+            glGameControl.MouseMove += glGameControl_MouseMove;
 
             _splashThread.Abort();
         }
@@ -183,7 +186,7 @@ namespace Yna.Editor
             string type = temp[1];
             string subType = temp[2];
 
-            AddGameObject(type, subType)
+            AddGameObject(type, subType);
         }
 
         #endregion
@@ -199,7 +202,17 @@ namespace Yna.Editor
 
         private void glGameControl_GameObjectClicked(object sender, GameObjectClickedEventArgs e)
         {
-            Console.WriteLine("Clicked !");
+            _currentGameObject = e.GameObject;
+        }
+
+        void glGameControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_currentGameObject != null)
+            {
+                MouseEventArgs me = e as MouseEventArgs; 
+                if (me.Button == System.Windows.Forms.MouseButtons.Left)
+                    glGameControl.MoveGameObject(_currentGameObject, me.X, me.Y);
+            }
         }
 
         private void UpdateGLControl(object sender, EventArgs e)

@@ -65,26 +65,14 @@ namespace Yna.Editor
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.glGameControl = new Yna.Editor.EditorGameControl();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.transformPositionX = new System.Windows.Forms.TextBox();
-            this.transformPositionY = new System.Windows.Forms.TextBox();
-            this.transformPositionZ = new System.Windows.Forms.TextBox();
-            this.transformRotationX = new System.Windows.Forms.TextBox();
-            this.transformRotationY = new System.Windows.Forms.TextBox();
-            this.transformRotationZ = new System.Windows.Forms.TextBox();
-            this.transformScaleX = new System.Windows.Forms.TextBox();
-            this.transformScaleY = new System.Windows.Forms.TextBox();
-            this.transformScaleZ = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.sceneTreeView = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.assetsTreeView = new System.Windows.Forms.TreeView();
             this.item_Geometry_Empty = new System.Windows.Forms.ToolStripMenuItem();
+            this.transformControl1 = new Yna.Editor.Components.TransformControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -94,8 +82,7 @@ namespace Yna.Editor
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -109,7 +96,7 @@ namespace Yna.Editor
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -196,7 +183,7 @@ namespace Yna.Editor
             this.item_Terrain_Simple,
             this.item_Terrain_Heightmap});
             this.menuItem_GameObject.Name = "menuItem_GameObject";
-            this.menuItem_GameObject.Size = new System.Drawing.Size(152, 22);
+            this.menuItem_GameObject.Size = new System.Drawing.Size(116, 22);
             this.menuItem_GameObject.Text = "Add";
             // 
             // item_Sprite_Group
@@ -290,7 +277,7 @@ namespace Yna.Editor
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // helpToolStripMenuItem
@@ -319,7 +306,7 @@ namespace Yna.Editor
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 539);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -336,8 +323,8 @@ namespace Yna.Editor
             // mainSplitContainer.Panel2
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.splitContainer2);
-            this.mainSplitContainer.Size = new System.Drawing.Size(784, 515);
-            this.mainSplitContainer.SplitterDistance = 537;
+            this.mainSplitContainer.Size = new System.Drawing.Size(1008, 515);
+            this.mainSplitContainer.SplitterDistance = 732;
             this.mainSplitContainer.TabIndex = 3;
             // 
             // glGameControl
@@ -348,7 +335,7 @@ namespace Yna.Editor
             this.glGameControl.BackColor = System.Drawing.Color.Black;
             this.glGameControl.Location = new System.Drawing.Point(0, 0);
             this.glGameControl.Name = "glGameControl";
-            this.glGameControl.Size = new System.Drawing.Size(535, 515);
+            this.glGameControl.Size = new System.Drawing.Size(730, 515);
             this.glGameControl.TabIndex = 0;
             this.glGameControl.VSync = false;
             // 
@@ -361,158 +348,25 @@ namespace Yna.Editor
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.groupBox1);
+            this.splitContainer2.Panel1.Controls.Add(this.flowLayoutPanel1);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer2.Size = new System.Drawing.Size(243, 515);
-            this.splitContainer2.SplitterDistance = 130;
+            this.splitContainer2.Size = new System.Drawing.Size(272, 515);
+            this.splitContainer2.SplitterDistance = 227;
             this.splitContainer2.TabIndex = 0;
             // 
-            // groupBox1
+            // flowLayoutPanel1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(7, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(229, 99);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Transform";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.transformPositionX, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.transformPositionY, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.transformPositionZ, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.transformRotationX, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.transformRotationY, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.transformRotationZ, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.transformScaleX, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.transformScaleY, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.transformScaleZ, 3, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 20);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(217, 73);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Position";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 28);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Rotation";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 52);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Scale";
-            // 
-            // transformPositionX
-            // 
-            this.transformPositionX.Location = new System.Drawing.Point(61, 3);
-            this.transformPositionX.Name = "transformPositionX";
-            this.transformPositionX.Size = new System.Drawing.Size(52, 20);
-            this.transformPositionX.TabIndex = 3;
-            this.transformPositionX.Text = "0";
-            // 
-            // transformPositionY
-            // 
-            this.transformPositionY.Location = new System.Drawing.Point(119, 3);
-            this.transformPositionY.Name = "transformPositionY";
-            this.transformPositionY.Size = new System.Drawing.Size(46, 20);
-            this.transformPositionY.TabIndex = 4;
-            this.transformPositionY.Text = "0";
-            // 
-            // transformPositionZ
-            // 
-            this.transformPositionZ.Location = new System.Drawing.Point(171, 3);
-            this.transformPositionZ.Name = "transformPositionZ";
-            this.transformPositionZ.Size = new System.Drawing.Size(43, 20);
-            this.transformPositionZ.TabIndex = 5;
-            this.transformPositionZ.Text = "0";
-            // 
-            // transformRotationX
-            // 
-            this.transformRotationX.Location = new System.Drawing.Point(61, 27);
-            this.transformRotationX.Name = "transformRotationX";
-            this.transformRotationX.Size = new System.Drawing.Size(52, 20);
-            this.transformRotationX.TabIndex = 6;
-            this.transformRotationX.Text = "0";
-            // 
-            // transformRotationY
-            // 
-            this.transformRotationY.Location = new System.Drawing.Point(119, 27);
-            this.transformRotationY.Name = "transformRotationY";
-            this.transformRotationY.Size = new System.Drawing.Size(46, 20);
-            this.transformRotationY.TabIndex = 7;
-            this.transformRotationY.Text = "0";
-            // 
-            // transformRotationZ
-            // 
-            this.transformRotationZ.Location = new System.Drawing.Point(171, 27);
-            this.transformRotationZ.Name = "transformRotationZ";
-            this.transformRotationZ.Size = new System.Drawing.Size(43, 20);
-            this.transformRotationZ.TabIndex = 8;
-            this.transformRotationZ.Text = "0";
-            // 
-            // transformScaleX
-            // 
-            this.transformScaleX.Location = new System.Drawing.Point(61, 51);
-            this.transformScaleX.Name = "transformScaleX";
-            this.transformScaleX.Size = new System.Drawing.Size(52, 20);
-            this.transformScaleX.TabIndex = 9;
-            this.transformScaleX.Text = "0";
-            // 
-            // transformScaleY
-            // 
-            this.transformScaleY.Location = new System.Drawing.Point(119, 51);
-            this.transformScaleY.Name = "transformScaleY";
-            this.transformScaleY.Size = new System.Drawing.Size(46, 20);
-            this.transformScaleY.TabIndex = 10;
-            this.transformScaleY.Text = "0";
-            // 
-            // transformScaleZ
-            // 
-            this.transformScaleZ.Location = new System.Drawing.Point(171, 51);
-            this.transformScaleZ.Name = "transformScaleZ";
-            this.transformScaleZ.Size = new System.Drawing.Size(43, 20);
-            this.transformScaleZ.TabIndex = 11;
-            this.transformScaleZ.Text = "0";
+            this.flowLayoutPanel1.Controls.Add(this.transformControl1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(266, 221);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -524,7 +378,7 @@ namespace Yna.Editor
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(237, 378);
+            this.tabControl1.Size = new System.Drawing.Size(266, 281);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -533,7 +387,7 @@ namespace Yna.Editor
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(229, 352);
+            this.tabPage1.Size = new System.Drawing.Size(258, 255);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Scene";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -545,7 +399,7 @@ namespace Yna.Editor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sceneTreeView.Location = new System.Drawing.Point(0, 3);
             this.sceneTreeView.Name = "sceneTreeView";
-            this.sceneTreeView.Size = new System.Drawing.Size(229, 343);
+            this.sceneTreeView.Size = new System.Drawing.Size(258, 246);
             this.sceneTreeView.TabIndex = 0;
             // 
             // tabPage2
@@ -554,7 +408,7 @@ namespace Yna.Editor
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(229, 352);
+            this.tabPage2.Size = new System.Drawing.Size(229, 255);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assets";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -575,17 +429,24 @@ namespace Yna.Editor
             this.item_Geometry_Empty.Size = new System.Drawing.Size(178, 22);
             this.item_Geometry_Empty.Text = "Empty";
             // 
+            // transformControl1
+            // 
+            this.transformControl1.Location = new System.Drawing.Point(3, 3);
+            this.transformControl1.Name = "transformControl1";
+            this.transformControl1.Size = new System.Drawing.Size(258, 108);
+            this.transformControl1.TabIndex = 0;
+            // 
             // MainEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(1008, 561);
             this.Controls.Add(this.mainSplitContainer);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(1024, 600);
             this.Name = "MainEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yna Engine Editor";
@@ -600,9 +461,7 @@ namespace Yna.Editor
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -625,20 +484,6 @@ namespace Yna.Editor
         private System.Windows.Forms.ToolStripMenuItem saveMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gameObjectToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox transformPositionX;
-        private System.Windows.Forms.TextBox transformPositionY;
-        private System.Windows.Forms.TextBox transformPositionZ;
-        private System.Windows.Forms.TextBox transformRotationX;
-        private System.Windows.Forms.TextBox transformRotationY;
-        private System.Windows.Forms.TextBox transformRotationZ;
-        private System.Windows.Forms.TextBox transformScaleX;
-        private System.Windows.Forms.TextBox transformScaleY;
-        private System.Windows.Forms.TextBox transformScaleZ;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TreeView sceneTreeView;
@@ -668,6 +513,8 @@ namespace Yna.Editor
         private System.Windows.Forms.ToolStripMenuItem item_Geometry_Empty;
         private EditorGameControl glGameControl;
         private System.Windows.Forms.ToolStripMenuItem tToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private Components.TransformControl transformControl1;
     }
 }
 

@@ -38,7 +38,7 @@ namespace Yna.Engine.Graphics2D
         /// <summary>
         /// Gets basic objects
         /// </summary>
-        public List<YnBasicEntity> BasicEntities
+        public List<GameObject> BasicEntities
         {
             get { return _scene.BaseObjects; }
         }
@@ -214,7 +214,7 @@ namespace Yna.Engine.Graphics2D
         /// Add a basic object to the scene
         /// </summary>
         /// <param name="basicObject">A basic object</param>
-        public void Add(YnBasicEntity basicObject)
+        public void Add(GameObject basicObject)
         {
             _scene.Add(basicObject);
         }
@@ -238,7 +238,7 @@ namespace Yna.Engine.Graphics2D
         /// Remove a basic object to the scene
         /// </summary>
         /// <param name="basicObject">A basic object</param>
-        public void Remove(YnBasicEntity basicObject)
+        public void Remove(GameObject basicObject)
         {
             _scene.Remove(basicObject);
         }
@@ -252,7 +252,7 @@ namespace Yna.Engine.Graphics2D
             _scene.Remove(entity);
         }
 
-        public YnBasicEntity GetMemberByName(string name)
+        public GameObject GetMemberByName(string name)
         {
             return _scene.GetMemberByName(name);
         }

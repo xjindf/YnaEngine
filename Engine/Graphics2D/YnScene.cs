@@ -18,7 +18,7 @@ namespace Yna.Engine.Graphics2D.Scene
         /// <summary>
         /// Gets or sets basic objects
         /// </summary>
-        public List<YnBasicEntity> BaseObjects
+        public List<GameObject> BaseObjects
         {
             get { return _baseList.Members; }
         }
@@ -72,7 +72,7 @@ namespace Yna.Engine.Graphics2D.Scene
         /// Add a basic object
         /// </summary>
         /// <param name="basicObject">A basic object</param>
-        public virtual void Add(YnBasicEntity basicObject)
+        public virtual void Add(GameObject basicObject)
         {
             _baseList.Add(basicObject);
         }
@@ -86,7 +86,7 @@ namespace Yna.Engine.Graphics2D.Scene
         /// Remove a basic object
         /// </summary>
         /// <param name="basicObject">A basic object</param>
-        public virtual void Remove(YnBasicEntity basicObject)
+        public virtual void Remove(GameObject basicObject)
         {
             _baseList.Remove(basicObject);
         }
@@ -107,9 +107,9 @@ namespace Yna.Engine.Graphics2D.Scene
         /// </summary>
         /// <param name="name">Name of the object</param>
         /// <returns>An YnBase object or null if don't exists</returns>
-        public virtual YnBasicEntity GetMemberByName(string name)
+        public virtual GameObject GetMemberByName(string name)
         {
-            YnBasicEntity basicEntity = null;
+            GameObject basicEntity = null;
 
             int baseSize = _baseList.Count;
             int i = 0;
