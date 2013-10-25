@@ -156,8 +156,28 @@ namespace Yna.Editor
             glGameControl.Click += glGameControl_Click;
             glGameControl.GameObjectClicked += glGameControl_GameObjectClicked;
             glGameControl.MouseMove += glGameControl_MouseMove;
+            glGameControl.MouseUp += (s, e) => _currentGameObject = null;
 
             _splashThread.Abort();
+
+            transformControl1.TransformPropertyChanged += transformControl1_TransformPropertyChanged;
+        }
+
+        void transformControl1_TransformPropertyChanged(object sender, Components.TransformChangedEventArgs e)
+        {
+            if (_currentGameObject != null)
+            {
+                if (_currentGameObject is YnEntity)
+                {
+                    YnEntity go = _currentGameObject as YnEntity;
+                        
+                }
+                else if (_currentGameObject is YnEntity3D)
+                {
+                    YnEntity3D go3 = _currentGameObject as YnEntity3D;
+
+                }
+            }
         }
 
         #region Menu handlers
@@ -203,15 +223,44 @@ namespace Yna.Editor
         private void glGameControl_GameObjectClicked(object sender, GameObjectClickedEventArgs e)
         {
             _currentGameObject = e.GameObject;
+
+            if (_currentGameObject is YnEntity)
+            {
+                YnEntity go = _currentGameObject as YnEntity;
+                transformControl1.SetTransform(go.Position, go.Rotation, go.Scale);
+
+                if (go is YnText)
+                {
+                    YnText text = go as YnText;
+                    textControl1.SetText(text.Text);
+                }
+
+                if (go.Texture != null)
+                    spriteControl1.SetTexture(go.Texture.Name);
+            }
+            else if (_currentGameObject is YnEntity3D)
+            {
+                YnEntity3D go = _currentGameObject as YnEntity3D;
+                transformControl1.SetTransform(go.Position, go.Rotation, go.Scale);
+            }
         }
 
         void glGameControl_MouseMove(object sender, MouseEventArgs e)
         {
+             MouseEventArgs me = e as MouseEventArgs; 
+
             if (_currentGameObject != null)
             {
-                MouseEventArgs me = e as MouseEventArgs; 
+               
                 if (me.Button == System.Windows.Forms.MouseButtons.Left)
                     glGameControl.MoveGameObject(_currentGameObject, me.X, me.Y);
+            }
+            else if (_currentGameObject == null && me.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                GameObject [] gos = glGameControl.checkMouseClick(me.X, me.Y, true);
+
+                foreach (GameObject go in gos)
+                    glGameControl.MoveGameObject(go, me.X, me.Y);
             }
         }
 

@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.isEnabled = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textSprite = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.isEnabled);
             this.groupBox1.Controls.Add(this.flowLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(2, 3);
             this.groupBox1.Name = "groupBox1";
@@ -50,13 +50,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Text Sprite";
             // 
-            // richTextBox1
+            // isEnabled
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(37, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(158, 70);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.isEnabled.AutoSize = true;
+            this.isEnabled.Checked = true;
+            this.isEnabled.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.isEnabled.Location = new System.Drawing.Point(7, 19);
+            this.isEnabled.Name = "isEnabled";
+            this.isEnabled.Size = new System.Drawing.Size(65, 17);
+            this.isEnabled.TabIndex = 3;
+            this.isEnabled.Text = "Enabled";
+            this.isEnabled.UseVisualStyleBackColor = true;
+            this.isEnabled.CheckedChanged += new System.EventHandler(this.isEnabled_CheckedChanged);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.textSprite);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 42);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 139);
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // label1
             // 
@@ -67,15 +82,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Text";
             // 
-            // flowLayoutPanel1
+            // textSprite
             // 
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.richTextBox1);
-            this.flowLayoutPanel1.Controls.Add(this.label2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 42);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 139);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.textSprite.Location = new System.Drawing.Point(37, 3);
+            this.textSprite.Name = "textSprite";
+            this.textSprite.Size = new System.Drawing.Size(158, 70);
+            this.textSprite.TabIndex = 1;
+            this.textSprite.Text = "";
+            this.textSprite.TextChanged += new System.EventHandler(this.textSprite_TextChanged);
             // 
             // label2
             // 
@@ -85,18 +99,6 @@
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Color";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(7, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(65, 17);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "Enabled";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // TextControl
             // 
@@ -116,11 +118,11 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox textSprite;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox isEnabled;
     }
 }

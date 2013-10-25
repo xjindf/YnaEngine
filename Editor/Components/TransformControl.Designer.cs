@@ -64,7 +64,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.06024F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.93976F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
@@ -118,7 +118,7 @@
             // 
             // transform_Position_X
             // 
-            this.transform_Position_X.Location = new System.Drawing.Point(77, 3);
+            this.transform_Position_X.Location = new System.Drawing.Point(75, 3);
             this.transform_Position_X.Name = "transform_Position_X";
             this.transform_Position_X.Size = new System.Drawing.Size(30, 20);
             this.transform_Position_X.TabIndex = 3;
@@ -127,7 +127,7 @@
             // 
             // transform_Position_Y
             // 
-            this.transform_Position_Y.Location = new System.Drawing.Point(116, 3);
+            this.transform_Position_Y.Location = new System.Drawing.Point(114, 3);
             this.transform_Position_Y.Name = "transform_Position_Y";
             this.transform_Position_Y.Size = new System.Drawing.Size(30, 20);
             this.transform_Position_Y.TabIndex = 4;
@@ -136,7 +136,7 @@
             // 
             // transform_Position_Z
             // 
-            this.transform_Position_Z.Location = new System.Drawing.Point(155, 3);
+            this.transform_Position_Z.Location = new System.Drawing.Point(153, 3);
             this.transform_Position_Z.Name = "transform_Position_Z";
             this.transform_Position_Z.Size = new System.Drawing.Size(30, 20);
             this.transform_Position_Z.TabIndex = 5;
@@ -145,7 +145,7 @@
             // 
             // transform_Rotation_X
             // 
-            this.transform_Rotation_X.Location = new System.Drawing.Point(77, 27);
+            this.transform_Rotation_X.Location = new System.Drawing.Point(75, 27);
             this.transform_Rotation_X.Name = "transform_Rotation_X";
             this.transform_Rotation_X.Size = new System.Drawing.Size(30, 20);
             this.transform_Rotation_X.TabIndex = 6;
@@ -154,7 +154,7 @@
             // 
             // transform_Rotation_Y
             // 
-            this.transform_Rotation_Y.Location = new System.Drawing.Point(116, 27);
+            this.transform_Rotation_Y.Location = new System.Drawing.Point(114, 27);
             this.transform_Rotation_Y.Name = "transform_Rotation_Y";
             this.transform_Rotation_Y.Size = new System.Drawing.Size(30, 20);
             this.transform_Rotation_Y.TabIndex = 7;
@@ -163,7 +163,7 @@
             // 
             // transform_Rotation_Z
             // 
-            this.transform_Rotation_Z.Location = new System.Drawing.Point(155, 27);
+            this.transform_Rotation_Z.Location = new System.Drawing.Point(153, 27);
             this.transform_Rotation_Z.Name = "transform_Rotation_Z";
             this.transform_Rotation_Z.Size = new System.Drawing.Size(30, 20);
             this.transform_Rotation_Z.TabIndex = 8;
@@ -172,7 +172,7 @@
             // 
             // transform_Scale_X
             // 
-            this.transform_Scale_X.Location = new System.Drawing.Point(77, 51);
+            this.transform_Scale_X.Location = new System.Drawing.Point(75, 51);
             this.transform_Scale_X.Name = "transform_Scale_X";
             this.transform_Scale_X.Size = new System.Drawing.Size(30, 20);
             this.transform_Scale_X.TabIndex = 9;
@@ -181,7 +181,7 @@
             // 
             // transform_Scale_Y
             // 
-            this.transform_Scale_Y.Location = new System.Drawing.Point(116, 51);
+            this.transform_Scale_Y.Location = new System.Drawing.Point(114, 51);
             this.transform_Scale_Y.Name = "transform_Scale_Y";
             this.transform_Scale_Y.Size = new System.Drawing.Size(30, 20);
             this.transform_Scale_Y.TabIndex = 10;
@@ -190,7 +190,7 @@
             // 
             // transform_Scale_Z
             // 
-            this.transform_Scale_Z.Location = new System.Drawing.Point(155, 51);
+            this.transform_Scale_Z.Location = new System.Drawing.Point(153, 51);
             this.transform_Scale_Z.Name = "transform_Scale_Z";
             this.transform_Scale_Z.Size = new System.Drawing.Size(30, 20);
             this.transform_Scale_Z.TabIndex = 11;

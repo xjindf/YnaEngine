@@ -57,12 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\EnabledChangedEventArgs.cs" />
     <Compile Include="Components\SpriteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Components\SpriteControl.Designer.cs">
       <DependentUpon>SpriteControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\StringValueChangedEventArgs.cs" />
     <Compile Include="Components\TextControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

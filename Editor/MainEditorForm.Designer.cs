@@ -65,14 +65,16 @@ namespace Yna.Editor
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.glGameControl = new Yna.Editor.EditorGameControl();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelGameObject = new System.Windows.Forms.FlowLayoutPanel();
+            this.transformControl1 = new Yna.Editor.Components.TransformControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.sceneTreeView = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.assetsTreeView = new System.Windows.Forms.TreeView();
             this.item_Geometry_Empty = new System.Windows.Forms.ToolStripMenuItem();
-            this.transformControl1 = new Yna.Editor.Components.TransformControl();
+            this.spriteControl1 = new Yna.Editor.Components.SpriteControl();
+            this.textControl1 = new Yna.Editor.Components.TextControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -82,7 +84,7 @@ namespace Yna.Editor
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.panelGameObject.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -348,25 +350,34 @@ namespace Yna.Editor
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.flowLayoutPanel1);
+            this.splitContainer2.Panel1.Controls.Add(this.panelGameObject);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer2.Size = new System.Drawing.Size(272, 515);
-            this.splitContainer2.SplitterDistance = 227;
+            this.splitContainer2.SplitterDistance = 357;
             this.splitContainer2.TabIndex = 0;
             // 
-            // flowLayoutPanel1
+            // panelGameObject
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panelGameObject.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.Controls.Add(this.transformControl1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(266, 221);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.panelGameObject.Controls.Add(this.transformControl1);
+            this.panelGameObject.Controls.Add(this.spriteControl1);
+            this.panelGameObject.Controls.Add(this.textControl1);
+            this.panelGameObject.Location = new System.Drawing.Point(3, 3);
+            this.panelGameObject.Name = "panelGameObject";
+            this.panelGameObject.Size = new System.Drawing.Size(266, 351);
+            this.panelGameObject.TabIndex = 0;
+            // 
+            // transformControl1
+            // 
+            this.transformControl1.Location = new System.Drawing.Point(3, 3);
+            this.transformControl1.Name = "transformControl1";
+            this.transformControl1.Size = new System.Drawing.Size(224, 108);
+            this.transformControl1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -378,7 +389,7 @@ namespace Yna.Editor
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(266, 281);
+            this.tabControl1.Size = new System.Drawing.Size(266, 151);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -387,7 +398,7 @@ namespace Yna.Editor
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(258, 255);
+            this.tabPage1.Size = new System.Drawing.Size(258, 125);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Scene";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -399,7 +410,7 @@ namespace Yna.Editor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sceneTreeView.Location = new System.Drawing.Point(0, 3);
             this.sceneTreeView.Name = "sceneTreeView";
-            this.sceneTreeView.Size = new System.Drawing.Size(258, 246);
+            this.sceneTreeView.Size = new System.Drawing.Size(258, 116);
             this.sceneTreeView.TabIndex = 0;
             // 
             // tabPage2
@@ -408,7 +419,7 @@ namespace Yna.Editor
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(229, 255);
+            this.tabPage2.Size = new System.Drawing.Size(258, 200);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assets";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -429,12 +440,19 @@ namespace Yna.Editor
             this.item_Geometry_Empty.Size = new System.Drawing.Size(178, 22);
             this.item_Geometry_Empty.Text = "Empty";
             // 
-            // transformControl1
+            // spriteControl1
             // 
-            this.transformControl1.Location = new System.Drawing.Point(3, 3);
-            this.transformControl1.Name = "transformControl1";
-            this.transformControl1.Size = new System.Drawing.Size(258, 108);
-            this.transformControl1.TabIndex = 0;
+            this.spriteControl1.Location = new System.Drawing.Point(3, 117);
+            this.spriteControl1.Name = "spriteControl1";
+            this.spriteControl1.Size = new System.Drawing.Size(215, 86);
+            this.spriteControl1.TabIndex = 1;
+            // 
+            // textControl1
+            // 
+            this.textControl1.Location = new System.Drawing.Point(3, 209);
+            this.textControl1.Name = "textControl1";
+            this.textControl1.Size = new System.Drawing.Size(215, 202);
+            this.textControl1.TabIndex = 2;
             // 
             // MainEditorForm
             // 
@@ -461,7 +479,7 @@ namespace Yna.Editor
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panelGameObject.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -513,8 +531,10 @@ namespace Yna.Editor
         private System.Windows.Forms.ToolStripMenuItem item_Geometry_Empty;
         private EditorGameControl glGameControl;
         private System.Windows.Forms.ToolStripMenuItem tToolStripMenuItem;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel panelGameObject;
         private Components.TransformControl transformControl1;
+        private Components.SpriteControl spriteControl1;
+        private Components.TextControl textControl1;
     }
 }
 
