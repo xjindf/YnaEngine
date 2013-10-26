@@ -27,19 +27,24 @@ namespace Yna.Editor.Components
             if (openFileDialogImage == null)
             {
                 openFileDialogImage = new OpenFileDialog();
+                openFileDialogImage.Filter = "Jpeg (*.jpg)|*.jpg|Jpeg (*.png)|*.png|All files (*.*)|*.*";
+                openFileDialogImage.Title = "Please select an image file to load";
                 openFileDialogImage.RestoreDirectory = true;
                 openFileDialogImage.Multiselect = false;
                 openFileDialogImage.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonPictures);
             }
 
-            var result = openFileDialogImage.OpenFile();
-
-            if (openFileDialogImage.FileName != String.Empty)
+            if (openFileDialogImage.ShowDialog() == DialogResult.OK)
             {
-                texturePath.Text = openFileDialogImage.FileName;
+                if (openFileDialogImage.FileName != String.Empty)
+                {
+                    texturePath.Text = openFileDialogImage.FileName;
 
-                if (TextureChanged != null)
-                    TextureChanged(this, new StringChangedEventArgs(texturePath.Text));
+                    if (TextureChanged != null)
+                        TextureChanged(this, new StringChangedEventArgs(texturePath.Text));
+                }
+                else
+                    MessageBox.Show("Invalid image file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

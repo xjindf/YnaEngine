@@ -706,6 +706,12 @@ namespace Yna.Engine.Graphics2D
 
         #region Other methods
 
+        public virtual void ReloadTexture()
+        {
+            _assetLoaded = false;
+            LoadContent();
+        }
+
         /// <summary>
         /// Ease the positionning. Sets the position of the entity.
         /// </summary>

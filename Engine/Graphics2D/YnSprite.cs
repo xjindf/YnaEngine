@@ -14,16 +14,16 @@ namespace Yna.Engine.Graphics2D
 
         // Some physics
         protected bool _enableDefaultPhysics;
-		protected Vector2 _acceleration;
-		protected Vector2 _velocity;
-		protected float _maxVelocity;
-        
+        protected Vector2 _acceleration;
+        protected Vector2 _velocity;
+        protected float _maxVelocity;
+
         // Moving the sprite
         protected Vector2 _distance;
         protected Vector2 _direction;
         protected Vector2 _previousPosition;
         protected Vector2 _previousDistance;
-        
+
         // Collide with screen
         protected bool _forceInsideScreen;
         protected bool _forceAllowAcrossScreen;
@@ -31,7 +31,7 @@ namespace Yna.Engine.Graphics2D
         // Position
         protected Rectangle? _sourceRectangle;
         protected Rectangle _gameViewport;
-		
+
         // Animations
         protected bool _hasAnimation;
         protected SpriteAnimator _animator;
@@ -53,46 +53,46 @@ namespace Yna.Engine.Graphics2D
         /// Gets or sets Acceleration
         /// </summary>
         public Vector2 Acceleration
-		{
-			get { return _acceleration; }
-			set { _acceleration = value; }
-		}
-		
+        {
+            get { return _acceleration; }
+            set { _acceleration = value; }
+        }
+
         /// <summary>
         /// Gets or sets Velocity
         /// </summary>
-		public Vector2 Velocity
-		{
-			get { return _velocity; }
-			set { _velocity = value; }
-		}
-		
+        public Vector2 Velocity
+        {
+            get { return _velocity; }
+            set { _velocity = value; }
+        }
+
         /// <summary>
         /// Gets or sets the X value of the Velocity
         /// </summary>
-		public float VelocityX
-		{
-			get { return _velocity.X; }
-			set { _velocity.X = value; }	
-		}
-		
+        public float VelocityX
+        {
+            get { return _velocity.X; }
+            set { _velocity.X = value; }
+        }
+
         /// <summary>
         /// Gets or sets set Y value of the Velocity
         /// </summary>
-		public float VelocityY
-		{
-			get { return _velocity.Y; }
-			set { _velocity.Y = value; }	
-		}
-		
+        public float VelocityY
+        {
+            get { return _velocity.Y; }
+            set { _velocity.Y = value; }
+        }
+
         /// <summary>
         /// Gets or sets the VelocityMax
         /// </summary>
-		public float VelocityMax
-		{
-			get { return _maxVelocity; }
-			set { _maxVelocity = value; }
-		}
+        public float VelocityMax
+        {
+            get { return _maxVelocity; }
+            set { _maxVelocity = value; }
+        }
 
         /// <summary>
         /// Gets or sets the rectangle Viewport used for this sprite. Default is the size of the screen
@@ -171,7 +171,7 @@ namespace Yna.Engine.Graphics2D
         /// </summary>
         public Rectangle? SourceRectangle
         {
-            get { return _sourceRectangle;  }
+            get { return _sourceRectangle; }
             set { _sourceRectangle = value; }
         }
 
@@ -189,22 +189,22 @@ namespace Yna.Engine.Graphics2D
         /// <summary>
         /// Create a sprite with default values
         /// </summary>
-        public YnSprite() 
-            : base ()
+        public YnSprite()
+            : base()
         {
             _sourceRectangle = null;
             _gameViewport = new Rectangle(0, 0, YnScreen.Width, YnScreen.Height);
             _forceInsideScreen = false;
             _forceAllowAcrossScreen = false;
-            
+
             _hasAnimation = false;
             _animator = new SpriteAnimator();
-            
+
             _acceleration = Vector2.One;
-			_velocity = Vector2.Zero;
+            _velocity = Vector2.Zero;
             _maxVelocity = 1.0f;
             _enableDefaultPhysics = true;
-            
+
             _distance = Vector2.One;
             _direction = Vector2.Zero;
             _previousPosition = Vector2.Zero;
@@ -233,7 +233,7 @@ namespace Yna.Engine.Graphics2D
         /// </summary>
         /// <param name="position">Position of the sprite</param>
         /// <param name="assetName">Image name that will loaded from the content manager</param>
-        public YnSprite(Vector2 position, string assetName) 
+        public YnSprite(Vector2 position, string assetName)
             : this(position)
         {
             _assetName = assetName;
@@ -266,7 +266,7 @@ namespace Yna.Engine.Graphics2D
         public void PrepareAnimation(int width, int height)
         {
             _animator.Initialize(width, height, _texture.Width, _texture.Height);
-            
+
             // The sprite size is now the size of a sprite on the spritesheet
             _rectangle = new Rectangle(X, Y, width, height);
 
@@ -296,29 +296,29 @@ namespace Yna.Engine.Graphics2D
         /// <param name="reversed">Reverse or not the animation</param>
         public void AddAnimation(string name, int startIndex, int endIndex, int frameRate, bool reversed)
         {
-        	// Securize the start and end index
-        	if(startIndex > endIndex)
-        	{
-        		int temp = endIndex;
-        		endIndex = startIndex;
-        		startIndex = temp;
-        	}
-        	
-        	// Build the index array
-        	int count = endIndex - startIndex;
-        	int[] indexes = new int[count+1];
-        	int currentIntex = startIndex;
+            // Securize the start and end index
+            if (startIndex > endIndex)
+            {
+                int temp = endIndex;
+                endIndex = startIndex;
+                startIndex = temp;
+            }
 
-        	for(int i = 0; i <= count; i++)
-        	{
-        		indexes[i] = currentIntex;
-        		currentIntex++;
-        	}
-        	
-        	// Call the proper method
-        	AddAnimation(name, indexes, frameRate, reversed);
+            // Build the index array
+            int count = endIndex - startIndex;
+            int[] indexes = new int[count + 1];
+            int currentIntex = startIndex;
+
+            for (int i = 0; i <= count; i++)
+            {
+                indexes[i] = currentIntex;
+                currentIntex++;
+            }
+
+            // Call the proper method
+            AddAnimation(name, indexes, frameRate, reversed);
         }
-        
+
         /// <summary>
         /// Add an animation
         /// </summary>
@@ -339,7 +339,7 @@ namespace Yna.Engine.Graphics2D
         /// <returns>Index of the animation</returns>
         public int GetCurrentAnimationIndex(string animationKeyName)
         {
-            if (_hasAnimation)           
+            if (_hasAnimation)
                 return _animator.Animations[animationKeyName].Index;
             else
                 return 0;
@@ -392,17 +392,15 @@ namespace Yna.Engine.Graphics2D
             if (!_assetLoaded)
             {
                 if (_texture == null && _assetName != String.Empty)
-                {
                     _texture = YnG.Content.Load<Texture2D>(_assetName);
 
-                    // if the sprite has animations destination and source rectangle are already setted correctly
-                    if (!_hasAnimation)
-                    {
-                        _sourceRectangle = new Rectangle(0, 0, _texture.Width, _texture.Height);
-                        _rectangle = new Rectangle((int)_position.X, (int)_position.Y, _texture.Width, _texture.Height);
-                    }
+                // if the sprite has animations destination and source rectangle are already setted correctly
+                if (_texture != null && !_hasAnimation)
+                {
+                    _sourceRectangle = new Rectangle(0, 0, _texture.Width, _texture.Height);
+                    _rectangle = new Rectangle((int)_position.X, (int)_position.Y, _texture.Width, _texture.Height);
                 }
-               
+
                 _assetLoaded = true;
             }
         }
@@ -430,7 +428,7 @@ namespace Yna.Engine.Graphics2D
                 _previousPosition.Y = _position.Y;
                 _previousDistance.X = _distance.X;
                 _previousDistance.Y = _distance.Y;
-                
+
                 // Physics
                 if (_enableDefaultPhysics)
                 {
@@ -497,7 +495,7 @@ namespace Yna.Engine.Graphics2D
             _distance.Y = _position.Y - _previousPosition.Y;
             _direction.X = _distance.X;
             _direction.Y = _distance.Y;
-            
+
             if (_direction.X != 0 && _direction.Y != 0)
                 _direction.Normalize();
         }
@@ -506,7 +504,7 @@ namespace Yna.Engine.Graphics2D
         {
             if (Enabled)
                 PostUpdate(gameTime);
-           
+
             if (Visible)
                 spriteBatch.Draw(_texture, _position, _sourceRectangle, _color * _alpha, _rotation, _origin, _scale, _effects, _layerDepth);
         }

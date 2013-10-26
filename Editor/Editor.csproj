@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\EnabledChangedEventArgs.cs" />
+    <Compile Include="Components\GameObjectClickedEventArgs.cs" />
     <Compile Include="Components\SpriteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -216,8 +216,7 @@ namespace Yna.Engine.Winforms
                     // If the device state is ok, check whether it is big enough.
                     PresentationParameters pp = GraphicsDevice.PresentationParameters;
 
-                    deviceNeedsReset = (ClientSize.Width > pp.BackBufferWidth) ||
-                                       (ClientSize.Height > pp.BackBufferHeight);
+                    deviceNeedsReset = (ClientSize.Width > pp.BackBufferWidth) || (ClientSize.Height > pp.BackBufferHeight);
                     break;
             }
 
@@ -227,6 +226,7 @@ namespace Yna.Engine.Winforms
                 try
                 {
                     graphicsDeviceService.ResetDevice(ClientSize.Width, ClientSize.Height);
+                    YnScreen.Setup(ClientSize.Width, ClientSize.Height);
                 }
                 catch (Exception e)
                 {

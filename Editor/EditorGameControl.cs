@@ -11,19 +11,11 @@ using Yna.Engine.Winforms;
 using System.Diagnostics;
 using Yna.Engine.Graphics3D;
 using Yna.Engine.Graphics3D.Camera;
+using Yna.Editor.Components;
+using System.Xml;
 
 namespace Yna.Editor
 {
-    public class GameObjectClickedEventArgs : EventArgs
-    {
-        public GameObject GameObject { get; set; }
-
-        public GameObjectClickedEventArgs(GameObject go)
-        {
-            GameObject = go;
-        }
-    }
-
     public class EditorGameControl : YnGameControl
     {
         public enum GameObjectType
@@ -64,7 +56,34 @@ namespace Yna.Editor
             _gameObjects3D.Add(gameObject);
         }
 
-        public GameObject[] checkMouseClick(int x, int y, bool clicked = true)
+        public string SaveToXML()
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+
+            XmlDeclaration xmlDec = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null);
+            xmlDoc.AppendChild(xmlDec);
+
+            XmlElement root = xmlDoc.CreateElement("Level");
+            root.SetAttribute("Width", YnScreen.Width.ToString());
+            root.SetAttribute("Height", YnScreen.Height.ToString());
+            xmlDoc.AppendChild(root);
+
+            XmlElement go2D = xmlDoc.CreateElement("GameObjects");
+            root.AppendChild(go2D);
+
+            XmlElement go3D = xmlDoc.CreateElement("GameObjects3D");
+            root.AppendChild(go3D);
+
+            foreach (YnEntity go in _gameObjects)
+            {
+                XmlElement xGo = xmlDoc.CreateElement(go.Name);
+                go2D.AppendChild(xGo);
+            }
+
+            return xmlDoc.OuterXml;
+        }
+
+        public GameObject[] CheckMouseClick(int x, int y, bool clicked = true)
         {
             List<GameObject> gameObjects = new List<GameObject>();
  
@@ -106,8 +125,8 @@ namespace Yna.Editor
                 
                 if (index >= 0)
                 {
-                    _gameObjects[index].X = x;
-                    _gameObjects[index].Y = y;
+                    _gameObjects[index].X = x - _gameObjects[index].Width / 2;
+                    _gameObjects[index].Y = y - _gameObjects[index].Height / 2;
                 }
             }
             else if (gameObject is YnEntity3D)
