@@ -39,6 +39,7 @@
     <Compile Include="Audio\DummyAudioAdapter.cs" />
     <Compile Include="Audio\XnaAudioAdapter.cs" />
     <Compile Include="Extensions\BoundingFrustrumExtension.cs" />
+    <Compile Include="GameSettings.cs" />
     <Compile Include="Graphics2D\Component\VirtualJoyPad.cs" />
     <Compile Include="Graphics2D\ICollidable.cs" />
     <Compile Include="Extensions\BoundingBoxExtension.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Extensions\Vector2Extension.cs" />
     <Compile Include="Extensions\ViewportExtension.cs" />
     <Compile Include="Graphics2D\YnScene.cs" />
+    <Compile Include="Scene.cs" />
     <Compile Include="Winforms\GraphicsDeviceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateManager.cs" />
     <Compile Include="YnGameEntityCollection.cs" />
+    <Compile Include="SceneSettings.cs" />
     <Compile Include="YnState.cs" />
     <Compile Include="Storage\BasicStorageDevice.cs" />
     <Compile Include="Storage\IStorageDevice.cs" />
@@ -127,7 +130,6 @@
     <Compile Include="Graphics3D\YnMeshGeometry.cs" />
     <Compile Include="Graphics3D\YnMeshModel.cs" />
     <Compile Include="Graphics3D\YnScene3D.cs" />
-    <Compile Include="Graphics3D\YnTransform.cs" />
     <Compile Include="Graphics3D\Renderer\QuadRenderer.cs" />
     <Compile Include="Graphics3D\Terrain\SkyBox.cs" />
     <Compile Include="Graphics3D\Camera\BaseCamera.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Script\MoveScript.cs" />
     <Compile Include="Script\ScriptAnimator.cs" />
     <Compile Include="Script\WaitScript.cs" />
+    <Compile Include="YnTransform.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Graphics3D\Material\Resources\NormalMapEffect.dx11.mgfxo" />

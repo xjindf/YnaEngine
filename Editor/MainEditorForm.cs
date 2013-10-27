@@ -15,6 +15,7 @@ namespace Yna.Editor
     using Yna.Editor.Components;
     using Yna.Engine;
     using Yna.Engine.Graphics2D;
+    using Yna.Engine.Graphics2D.Particle;
     using Yna.Engine.Graphics3D;
     using Yna.Engine.Graphics3D.Geometry;
     using Yna.Engine.Graphics3D.Terrain;
@@ -22,6 +23,7 @@ namespace Yna.Editor
     using XnaColor = Microsoft.Xna.Framework.Color;
     using XnaVector2 = Microsoft.Xna.Framework.Vector2;
     using XnaVector3 = Microsoft.Xna.Framework.Vector3;
+    using XnaMathHelper = Microsoft.Xna.Framework.MathHelper;
 
     public enum EditorMode
     {
@@ -35,8 +37,9 @@ namespace Yna.Editor
         private string _typeToAdd;
         private TreeNode _rootSceneNode;
         private TreeNode _currentSceneNode;
-        private RenderSettingsForm _settingsForm;
+        private SceneSettingsForm _settingsForm;
         private GameObject _currentGameObject;
+        private SceneSettings _sceneSettings;
 
         // EditorGameControl glGameControl;
 
@@ -73,6 +76,7 @@ namespace Yna.Editor
                 item.Click += gameObjectMenuItem_Click;
 
             _typeToAdd = String.Empty;
+            _sceneSettings = new SceneSettings();
 
             YnText.DefaultColor = XnaColor.White;
         }
@@ -89,6 +93,9 @@ namespace Yna.Editor
             transformControl1.TransformChanged += transformControl1_TransformPropertyChanged;
             textControl1.TextChanged += textControl1_TextChanged;
             spriteControl1.TextureChanged += spriteControl1_TextureChanged;
+            spriteControl1.ColorChanged += spriteControl1_ColorChanged;
+            spriteControl1.OriginChanged += spriteControl1_OriginChanged;
+            spriteControl1.OrderChanged += spriteControl1_OrderChanged;
         }
 
         private void AddGameObject(string type, string subType)
@@ -100,7 +107,9 @@ namespace Yna.Editor
                 switch (subType)
                 {
                     case "Sprite": gameObject = new YnSprite("images/default_sprite"); break;
-                    case "Particles": break;
+                    case "Particles":
+                        gameObject = new YnEmitter(new XnaVector2(YnScreen.Width / 2, YnScreen.Height / 2), XnaVector2.UnitY, XnaMathHelper.PiOver4, 150);
+                        break;
                     case "Text": gameObject = new YnText("font/default", "Hello World"); break;
                 }
 
@@ -160,21 +169,6 @@ namespace Yna.Editor
 
         #region Inspector handlers
 
-        private void spriteControl1_TextureChanged(object sender, PropertyChangedEventArgs<string> e)
-        {
-            if (_currentGameObject != null)
-            {
-                Texture2D texture = Texture2D.FromStream(YnG.GraphicsDevice, new FileStream(e.Value, FileMode.Open));
-
-                if (texture != null)
-                {
-                    YnEntity gameObject = _currentGameObject as YnEntity;
-                    gameObject.Texture = texture;
-                    gameObject.ReloadTexture();
-                }
-            }
-        }
-
         private void textControl1_TextChanged(object sender, PropertyChangedEventArgs<string> e)
         {
             if (_currentGameObject != null)
@@ -222,6 +216,61 @@ namespace Yna.Editor
 
         #endregion
 
+        #region Inspector - Sprite handlers
+
+        private void spriteControl1_TextureChanged(object sender, PropertyChangedEventArgs<string> e)
+        {
+            if (_currentGameObject != null)
+            {
+                Texture2D texture = Texture2D.FromStream(YnG.GraphicsDevice, new FileStream(e.Value, FileMode.Open));
+
+                if (texture != null)
+                {
+                    YnEntity gameObject = _currentGameObject as YnEntity;
+                    gameObject.Texture = texture;
+                    gameObject.ReloadTexture();
+                }
+            }
+        }
+
+        private void spriteControl1_OrderChanged(object sender, PropertyChangedEventArgs<float> e)
+        {
+            if (_currentGameObject != null)
+            {
+                if (_currentGameObject is YnEntity)
+                {
+                    YnEntity go = _currentGameObject as YnEntity;
+                    go.LayerDepth = e.Value;
+                }
+            }
+        }
+
+        private void spriteControl1_OriginChanged(object sender, PropertyChangedEventArgs<int> e)
+        {
+            if (_currentGameObject != null)
+            {
+                if (_currentGameObject is YnEntity)
+                {
+                    YnEntity go = _currentGameObject as YnEntity;
+                    go.SetOrigin((ObjectOrigin)e.Value);
+                }
+            }
+        }
+
+        private void spriteControl1_ColorChanged(object sender, PropertyChangedEventArgs<GdiColor> e)
+        {
+            if (_currentGameObject != null)
+            {
+                if (_currentGameObject is YnEntity)
+                {
+                    YnEntity go = _currentGameObject as YnEntity;
+                    go.Color = new XnaColor(e.Value.R, e.Value.G, e.Value.B, e.Value.A);
+                }
+            }
+        }
+
+        #endregion
+
         #region Menu handlers
 
         private void exitMenuItem_Click(object sender, EventArgs e)
@@ -237,8 +286,9 @@ namespace Yna.Editor
         private void renderMenuItem_Click(object sender, EventArgs e)
         {
             if (_settingsForm == null)
-                _settingsForm = new RenderSettingsForm();
+                _settingsForm = new SceneSettingsForm();
 
+            _settingsForm.SceneSettings = _sceneSettings;
             _settingsForm.ShowDialog();
         }
 

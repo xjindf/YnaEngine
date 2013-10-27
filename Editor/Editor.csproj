@@ -101,11 +101,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RenderSettingsForm.cs">
+    <Compile Include="SceneSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RenderSettingsForm.Designer.cs">
-      <DependentUpon>RenderSettingsForm.cs</DependentUpon>
+    <Compile Include="SceneSettingsForm.Designer.cs">
+      <DependentUpon>SceneSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
@@ -133,8 +133,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RenderSettingsForm.resx">
-      <DependentUpon>RenderSettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="SceneSettingsForm.resx">
+      <DependentUpon>SceneSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
