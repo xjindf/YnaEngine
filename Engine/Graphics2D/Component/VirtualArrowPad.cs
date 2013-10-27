@@ -21,7 +21,7 @@ namespace Yna.Engine.Graphics2D.Component
     /// <summary>
     /// A graphic virtual pad component that you can add to a scene and use for moving an object/camera
     /// </summary>
-    public class YnVirtualPad : YnGroup
+    public class VirtualArrowPad : YnGroup
     {
         // Direction
         private YnSprite _upPad;
@@ -210,7 +210,7 @@ namespace Yna.Engine.Graphics2D.Component
         /// <summary>
         /// Create a new Virtual pad
         /// </summary>
-        public YnVirtualPad()
+        public VirtualArrowPad()
         {
             InitializeDefault();
             InitializeWithoutTextures();
@@ -225,7 +225,7 @@ namespace Yna.Engine.Graphics2D.Component
         /// Order for buttons : ButtonA, ButtonB, ButtonPause
         /// </summary>
         /// <param name="textureNames"></param>
-        public YnVirtualPad(string [] dpadTextureNames, string[] buttonTextureNames)
+        public VirtualArrowPad(string [] dpadTextureNames, string[] buttonTextureNames)
             : base()
         {
             _dpadTextureNames = dpadTextureNames;

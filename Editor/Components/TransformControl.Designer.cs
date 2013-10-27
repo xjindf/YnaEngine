@@ -49,7 +49,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(7, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(215, 100);
             this.groupBox1.TabIndex = 3;
@@ -61,10 +61,10 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.06024F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.93976F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.61744F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.79419F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.79419F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.79419F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
@@ -118,7 +118,7 @@
             // 
             // transform_Position_X
             // 
-            this.transform_Position_X.Location = new System.Drawing.Point(75, 3);
+            this.transform_Position_X.Location = new System.Drawing.Point(74, 3);
             this.transform_Position_X.Name = "transform_Position_X";
             this.transform_Position_X.Size = new System.Drawing.Size(30, 20);
             this.transform_Position_X.TabIndex = 3;
@@ -127,7 +127,7 @@
             // 
             // transform_Position_Y
             // 
-            this.transform_Position_Y.Location = new System.Drawing.Point(114, 3);
+            this.transform_Position_Y.Location = new System.Drawing.Point(113, 3);
             this.transform_Position_Y.Name = "transform_Position_Y";
             this.transform_Position_Y.Size = new System.Drawing.Size(30, 20);
             this.transform_Position_Y.TabIndex = 4;
@@ -136,7 +136,7 @@
             // 
             // transform_Position_Z
             // 
-            this.transform_Position_Z.Location = new System.Drawing.Point(153, 3);
+            this.transform_Position_Z.Location = new System.Drawing.Point(152, 3);
             this.transform_Position_Z.Name = "transform_Position_Z";
             this.transform_Position_Z.Size = new System.Drawing.Size(30, 20);
             this.transform_Position_Z.TabIndex = 5;
@@ -145,7 +145,7 @@
             // 
             // transform_Rotation_X
             // 
-            this.transform_Rotation_X.Location = new System.Drawing.Point(75, 27);
+            this.transform_Rotation_X.Location = new System.Drawing.Point(74, 27);
             this.transform_Rotation_X.Name = "transform_Rotation_X";
             this.transform_Rotation_X.Size = new System.Drawing.Size(30, 20);
             this.transform_Rotation_X.TabIndex = 6;
@@ -154,7 +154,7 @@
             // 
             // transform_Rotation_Y
             // 
-            this.transform_Rotation_Y.Location = new System.Drawing.Point(114, 27);
+            this.transform_Rotation_Y.Location = new System.Drawing.Point(113, 27);
             this.transform_Rotation_Y.Name = "transform_Rotation_Y";
             this.transform_Rotation_Y.Size = new System.Drawing.Size(30, 20);
             this.transform_Rotation_Y.TabIndex = 7;
@@ -163,7 +163,7 @@
             // 
             // transform_Rotation_Z
             // 
-            this.transform_Rotation_Z.Location = new System.Drawing.Point(153, 27);
+            this.transform_Rotation_Z.Location = new System.Drawing.Point(152, 27);
             this.transform_Rotation_Z.Name = "transform_Rotation_Z";
             this.transform_Rotation_Z.Size = new System.Drawing.Size(30, 20);
             this.transform_Rotation_Z.TabIndex = 8;
@@ -172,7 +172,7 @@
             // 
             // transform_Scale_X
             // 
-            this.transform_Scale_X.Location = new System.Drawing.Point(75, 51);
+            this.transform_Scale_X.Location = new System.Drawing.Point(74, 51);
             this.transform_Scale_X.Name = "transform_Scale_X";
             this.transform_Scale_X.Size = new System.Drawing.Size(30, 20);
             this.transform_Scale_X.TabIndex = 9;
@@ -181,7 +181,7 @@
             // 
             // transform_Scale_Y
             // 
-            this.transform_Scale_Y.Location = new System.Drawing.Point(114, 51);
+            this.transform_Scale_Y.Location = new System.Drawing.Point(113, 51);
             this.transform_Scale_Y.Name = "transform_Scale_Y";
             this.transform_Scale_Y.Size = new System.Drawing.Size(30, 20);
             this.transform_Scale_Y.TabIndex = 10;
@@ -190,7 +190,7 @@
             // 
             // transform_Scale_Z
             // 
-            this.transform_Scale_Z.Location = new System.Drawing.Point(153, 51);
+            this.transform_Scale_Z.Location = new System.Drawing.Point(152, 51);
             this.transform_Scale_Z.Name = "transform_Scale_Z";
             this.transform_Scale_Z.Size = new System.Drawing.Size(30, 20);
             this.transform_Scale_Z.TabIndex = 11;
@@ -203,7 +203,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "TransformControl";
-            this.Size = new System.Drawing.Size(225, 109);
+            this.Size = new System.Drawing.Size(215, 102);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -214,7 +214,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -227,6 +226,7 @@
         private System.Windows.Forms.TextBox transform_Scale_X;
         private System.Windows.Forms.TextBox transform_Scale_Y;
         private System.Windows.Forms.TextBox transform_Scale_Z;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 
     }
 }

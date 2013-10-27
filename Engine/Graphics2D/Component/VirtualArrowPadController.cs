@@ -10,16 +10,16 @@ namespace Yna.Engine.Graphics2D.Component
     /// <summary>
     /// A Virtual pad controller that create a virtual pad and manage events
     /// </summary>
-    public class YnVirtualPadController
+    public class VirtualArrowPadController
     {
         protected bool[] _buttons;
 
-        private YnVirtualPad _virtualPad;
+        private VirtualArrowPad _virtualPad;
 
         /// <summary>
         /// Gets or sets the virtual pad used with this controller
         /// </summary>
-        public YnVirtualPad VirtualPad
+        public VirtualArrowPad VirtualPad
         {
             get { return _virtualPad; }
             set { _virtualPad = value; }
@@ -28,9 +28,9 @@ namespace Yna.Engine.Graphics2D.Component
         /// <summary>
         /// Create a new controller for a virtual pad
         /// </summary>
-        public YnVirtualPadController()
+        public VirtualArrowPadController()
         {
-            _virtualPad = new YnVirtualPad();
+            _virtualPad = new VirtualArrowPad();
             _virtualPad.VirtualPadPressed += _virtualPad_Pressed;
             _virtualPad.VirtualPadReleased += _virtualPad_Released;
             _buttons = new bool[10];
@@ -39,7 +39,7 @@ namespace Yna.Engine.Graphics2D.Component
                 _buttons[i] = false;
         }
 
-		public YnVirtualPadController(YnVirtualPad virtualPad)
+		public VirtualArrowPadController(VirtualArrowPad virtualPad)
         {
             _virtualPad = virtualPad;
             _virtualPad.VirtualPadPressed += _virtualPad_Pressed;

@@ -12,6 +12,7 @@ namespace Yna.Editor
     using Microsoft.Xna.Framework.Graphics;
     using System.IO;
     using System.Threading;
+    using Yna.Editor.Components;
     using Yna.Engine;
     using Yna.Engine.Graphics2D;
     using Yna.Engine.Graphics3D;
@@ -36,6 +37,8 @@ namespace Yna.Editor
         private TreeNode _currentSceneNode;
         private RenderSettingsForm _settingsForm;
         private GameObject _currentGameObject;
+
+        // EditorGameControl glGameControl;
 
         public bool AutoUpdateScene
         {
@@ -83,7 +86,7 @@ namespace Yna.Editor
 
             _splashThread.Abort();
 
-            transformControl1.TransformPropertyChanged += transformControl1_TransformPropertyChanged;
+            transformControl1.TransformChanged += transformControl1_TransformPropertyChanged;
             textControl1.TextChanged += textControl1_TextChanged;
             spriteControl1.TextureChanged += spriteControl1_TextureChanged;
         }
@@ -157,11 +160,11 @@ namespace Yna.Editor
 
         #region Inspector handlers
 
-        private void spriteControl1_TextureChanged(object sender, Components.StringChangedEventArgs e)
+        private void spriteControl1_TextureChanged(object sender, PropertyChangedEventArgs<string> e)
         {
             if (_currentGameObject != null)
             {
-                Texture2D texture = Texture2D.FromStream(YnG.GraphicsDevice, new FileStream(e.Text, FileMode.Open));
+                Texture2D texture = Texture2D.FromStream(YnG.GraphicsDevice, new FileStream(e.Value, FileMode.Open));
 
                 if (texture != null)
                 {
@@ -172,78 +175,37 @@ namespace Yna.Editor
             }
         }
 
-        private void textControl1_TextChanged(object sender, Components.StringChangedEventArgs e)
+        private void textControl1_TextChanged(object sender, PropertyChangedEventArgs<string> e)
         {
             if (_currentGameObject != null)
             {
                 if (_currentGameObject is YnText)
                 {
                     YnText goText = _currentGameObject as YnText;
-                    goText.Text = e.Text;
+                    goText.Text = e.Value;
                 }
             }
         }
 
-        private void transformControl1_TransformPropertyChanged(object sender, Components.TransformChangedEventArgs e)
+        private void transformControl1_TransformPropertyChanged(object sender, TransformChangedEventArgs e)
         {
             if (_currentGameObject != null)
             {
                 if (_currentGameObject is YnEntity)
                 {
                     YnEntity go = _currentGameObject as YnEntity;
-                        
-                    if (e.Property == "Position")
-                    {
-                        switch (e.Axis)
-                        {
-                            case "X": go.X = (int)e.Value; break;
-                            case "Y": go.Y = (int)e.Value; break;
-                        }
-                    }
-                    else if (e.Property == "Rotation")
-                    {
-                        go.Rotation = e.Value;
-                    }
-                    else if (e.Property == "Scale")
-                    {
-                        switch (e.Axis)
-                        {
-                            case "X": go.Scale = new XnaVector2(e.Value, go.Scale.Y); break;
-                            case "Y": go.Scale = new XnaVector2(go.Scale.X, e.Value); break;
-                        }
-                    }
+
+                    go.X = (int)e.Transform[0].X;
+                    go.Y = (int)e.Transform[0].Y;
+                    go.Rotation = e.Transform[1].Y;
+                    go.Scale = new XnaVector2(e.Transform[2].X, e.Transform[2].Y);
                 }
                 else if (_currentGameObject is YnEntity3D)
                 {
                     YnEntity3D go3 = _currentGameObject as YnEntity3D;
-
-                    if (e.Property == "Position")
-                    {
-                        switch (e.Axis)
-                        {
-                            case "X": go3.X = e.Value; break;
-                            case "Y": go3.Y = e.Value; break;
-                            case "Z": go3.Z = e.Value; break;
-                        }
-                    }
-                    else if (e.Property == "Rotation")
-                    {
-                        switch (e.Axis)
-                        {
-                            case "X": go3.Rotation = new XnaVector3(e.Value, go3.Rotation.Y, go3.Rotation.Z); break;
-                            case "Y": go3.Rotation = new XnaVector3(go3.Rotation.X, e.Value, go3.Rotation.Z); break;
-                            case "Z": go3.Rotation = new XnaVector3(go3.Rotation.X, go3.Rotation.Y, e.Value); break;
-                        }
-                    }
-                    else if (e.Property == "Scale")
-                    {
-                        switch (e.Axis)
-                        {
-                            case "X": go3.Scale = new XnaVector3(e.Value, go3.Scale.Y, go3.Scale.Z); break;
-                            case "Y": go3.Scale = new XnaVector3(go3.Scale.X, e.Value, go3.Scale.Z); break;
-                            case "Z": go3.Scale = new XnaVector3(go3.Scale.X, go3.Scale.Y, e.Value); break;
-                        }
-                    }
+                    go3.Position = e.Transform[0];
+                    go3.Rotation = e.Transform[1];
+                    go3.Scale = e.Transform[2];
                 }
             }
         }
@@ -297,7 +259,10 @@ namespace Yna.Editor
         {
             MouseEventArgs me = e as MouseEventArgs;
 
-            glGameControl.CheckMouseClick(me.X, me.Y);
+            if (me.Button == System.Windows.Forms.MouseButtons.Right)
+                _currentGameObject = null;
+            else
+                glGameControl.CheckMouseClick(me.X, me.Y);
         }
 
         private void glGameControl_GameObjectClicked(object sender, GameObjectClickedEventArgs e)
@@ -307,40 +272,40 @@ namespace Yna.Editor
             if (_currentGameObject is YnEntity)
             {
                 YnEntity go = _currentGameObject as YnEntity;
-                transformControl1.SetTransform(go.Position, go.Rotation, go.Scale);
+                transformControl1.Setup(new XnaVector3(go.X, go.Y, 1), new XnaVector3(0, go.Rotation, 0), new XnaVector3(go.Scale.X, go.Scale.Y, 1), true);
 
                 if (go is YnText)
                 {
                     YnText text = go as YnText;
-                    textControl1.SetText(text.Text);
+                    textControl1.Setup(text.Text);
                 }
 
                 if (go.Texture != null)
-                    spriteControl1.SetTexture(go.Texture.Name);
+                    spriteControl1.Setup(go.Texture.Name, 0, XnaColorToGDI(go.Color), go.LayerDepth);
             }
             else if (_currentGameObject is YnEntity3D)
             {
                 YnEntity3D go = _currentGameObject as YnEntity3D;
-                transformControl1.SetTransform(go.Position, go.Rotation, go.Scale);
+                transformControl1.Setup(go.Position, go.Rotation, go.Scale, false);
             }
         }
 
         void glGameControl_MouseMove(object sender, MouseEventArgs e)
         {
-             MouseEventArgs me = e as MouseEventArgs; 
+            MouseEventArgs me = e as MouseEventArgs;
 
             if (_currentGameObject != null)
             {
-               
+
                 if (me.Button == System.Windows.Forms.MouseButtons.Left)
                     glGameControl.MoveGameObject(_currentGameObject, me.X, me.Y);
             }
             else if (_currentGameObject == null && me.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                GameObject [] gos = glGameControl.CheckMouseClick(me.X, me.Y, true);
+                GameObject[] gos = glGameControl.CheckMouseClick(me.X, me.Y, true);
 
-                foreach (GameObject go in gos)
-                    glGameControl.MoveGameObject(go, me.X, me.Y);
+                if (gos.Length > 0)
+                    glGameControl.MoveGameObject(gos[0], me.X, me.Y);
             }
         }
 
@@ -350,5 +315,10 @@ namespace Yna.Editor
         }
 
         #endregion
+
+        private Color XnaColorToGDI(XnaColor xnaColor)
+        {
+            return Color.FromArgb(xnaColor.A, xnaColor.R, xnaColor.G, xnaColor.B);
+        }
     }
 }

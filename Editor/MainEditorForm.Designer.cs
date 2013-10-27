@@ -61,23 +61,21 @@ namespace Yna.Editor
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.glGameControl = new Yna.Editor.EditorGameControl();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panelGameObject = new System.Windows.Forms.FlowLayoutPanel();
-            this.transformControl1 = new Yna.Editor.Components.TransformControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.sceneTreeView = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.assetsTreeView = new System.Windows.Forms.TreeView();
             this.item_Geometry_Empty = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameObjectControl1 = new Yna.Editor.Components.GameObjectControl();
+            this.transformControl1 = new Yna.Editor.Components.TransformControl();
             this.spriteControl1 = new Yna.Editor.Components.SpriteControl();
             this.textControl1 = new Yna.Editor.Components.TextControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
-            this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
             this.mainSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -98,7 +96,7 @@ namespace Yna.Editor
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(821, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -304,42 +302,18 @@ namespace Yna.Editor
             this.renderMenuItem.Text = "Render";
             this.renderMenuItem.Click += new System.EventHandler(this.renderMenuItem_Click);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // mainSplitContainer
             // 
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainSplitContainer.Location = new System.Drawing.Point(0, 24);
             this.mainSplitContainer.Name = "mainSplitContainer";
             // 
-            // mainSplitContainer.Panel1
-            // 
-            this.mainSplitContainer.Panel1.Controls.Add(this.glGameControl);
-            // 
             // mainSplitContainer.Panel2
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.splitContainer2);
-            this.mainSplitContainer.Size = new System.Drawing.Size(1008, 515);
-            this.mainSplitContainer.SplitterDistance = 732;
+            this.mainSplitContainer.Size = new System.Drawing.Size(821, 537);
+            this.mainSplitContainer.SplitterDistance = 575;
             this.mainSplitContainer.TabIndex = 3;
-            // 
-            // glGameControl
-            // 
-            this.glGameControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.glGameControl.BackColor = System.Drawing.Color.Black;
-            this.glGameControl.Location = new System.Drawing.Point(0, 0);
-            this.glGameControl.Name = "glGameControl";
-            this.glGameControl.Size = new System.Drawing.Size(730, 515);
-            this.glGameControl.TabIndex = 0;
-            this.glGameControl.VSync = false;
             // 
             // splitContainer2
             // 
@@ -355,8 +329,8 @@ namespace Yna.Editor
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer2.Size = new System.Drawing.Size(272, 515);
-            this.splitContainer2.SplitterDistance = 357;
+            this.splitContainer2.Size = new System.Drawing.Size(242, 537);
+            this.splitContainer2.SplitterDistance = 371;
             this.splitContainer2.TabIndex = 0;
             // 
             // panelGameObject
@@ -364,20 +338,15 @@ namespace Yna.Editor
             this.panelGameObject.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelGameObject.AutoScroll = true;
+            this.panelGameObject.Controls.Add(this.gameObjectControl1);
             this.panelGameObject.Controls.Add(this.transformControl1);
             this.panelGameObject.Controls.Add(this.spriteControl1);
             this.panelGameObject.Controls.Add(this.textControl1);
             this.panelGameObject.Location = new System.Drawing.Point(3, 3);
             this.panelGameObject.Name = "panelGameObject";
-            this.panelGameObject.Size = new System.Drawing.Size(266, 351);
+            this.panelGameObject.Size = new System.Drawing.Size(236, 365);
             this.panelGameObject.TabIndex = 0;
-            // 
-            // transformControl1
-            // 
-            this.transformControl1.Location = new System.Drawing.Point(3, 3);
-            this.transformControl1.Name = "transformControl1";
-            this.transformControl1.Size = new System.Drawing.Size(224, 108);
-            this.transformControl1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -389,7 +358,7 @@ namespace Yna.Editor
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(266, 151);
+            this.tabControl1.Size = new System.Drawing.Size(236, 159);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -398,7 +367,7 @@ namespace Yna.Editor
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(258, 125);
+            this.tabPage1.Size = new System.Drawing.Size(228, 133);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Scene";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -410,7 +379,7 @@ namespace Yna.Editor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sceneTreeView.Location = new System.Drawing.Point(0, 3);
             this.sceneTreeView.Name = "sceneTreeView";
-            this.sceneTreeView.Size = new System.Drawing.Size(258, 116);
+            this.sceneTreeView.Size = new System.Drawing.Size(228, 124);
             this.sceneTreeView.TabIndex = 0;
             // 
             // tabPage2
@@ -419,7 +388,7 @@ namespace Yna.Editor
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(258, 200);
+            this.tabPage2.Size = new System.Drawing.Size(234, 194);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assets";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -431,7 +400,7 @@ namespace Yna.Editor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.assetsTreeView.Location = new System.Drawing.Point(7, 4);
             this.assetsTreeView.Name = "assetsTreeView";
-            this.assetsTreeView.Size = new System.Drawing.Size(219, 345);
+            this.assetsTreeView.Size = new System.Drawing.Size(177, 352);
             this.assetsTreeView.TabIndex = 0;
             // 
             // item_Geometry_Empty
@@ -440,38 +409,50 @@ namespace Yna.Editor
             this.item_Geometry_Empty.Size = new System.Drawing.Size(178, 22);
             this.item_Geometry_Empty.Text = "Empty";
             // 
+            // gameObjectControl1
+            // 
+            this.gameObjectControl1.Location = new System.Drawing.Point(3, 3);
+            this.gameObjectControl1.Name = "gameObjectControl1";
+            this.gameObjectControl1.Size = new System.Drawing.Size(215, 125);
+            this.gameObjectControl1.TabIndex = 0;
+            // 
+            // transformControl1
+            // 
+            this.transformControl1.Location = new System.Drawing.Point(3, 134);
+            this.transformControl1.Name = "transformControl1";
+            this.transformControl1.Size = new System.Drawing.Size(215, 102);
+            this.transformControl1.TabIndex = 1;
+            // 
             // spriteControl1
             // 
-            this.spriteControl1.Location = new System.Drawing.Point(3, 117);
+            this.spriteControl1.Location = new System.Drawing.Point(3, 242);
             this.spriteControl1.Name = "spriteControl1";
-            this.spriteControl1.Size = new System.Drawing.Size(215, 86);
-            this.spriteControl1.TabIndex = 1;
+            this.spriteControl1.Size = new System.Drawing.Size(215, 134);
+            this.spriteControl1.TabIndex = 2;
             // 
             // textControl1
             // 
-            this.textControl1.Location = new System.Drawing.Point(3, 209);
+            this.textControl1.Location = new System.Drawing.Point(3, 382);
             this.textControl1.Name = "textControl1";
-            this.textControl1.Size = new System.Drawing.Size(215, 202);
-            this.textControl1.TabIndex = 2;
+            this.textControl1.Size = new System.Drawing.Size(215, 77);
+            this.textControl1.TabIndex = 3;
             // 
             // MainEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.ClientSize = new System.Drawing.Size(821, 561);
             this.Controls.Add(this.mainSplitContainer);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(1024, 600);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yna Engine Editor";
             this.Load += new System.EventHandler(this.MainEditor_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.mainSplitContainer.Panel1.ResumeLayout(false);
             this.mainSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();
             this.mainSplitContainer.ResumeLayout(false);
@@ -495,7 +476,6 @@ namespace Yna.Editor
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.SplitContainer mainSplitContainer;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openMenuItem;
@@ -529,9 +509,9 @@ namespace Yna.Editor
         private System.Windows.Forms.ToolStripMenuItem item_Terrain_Simple;
         private System.Windows.Forms.ToolStripMenuItem item_Terrain_Heightmap;
         private System.Windows.Forms.ToolStripMenuItem item_Geometry_Empty;
-        private EditorGameControl glGameControl;
         private System.Windows.Forms.ToolStripMenuItem tToolStripMenuItem;
         private System.Windows.Forms.FlowLayoutPanel panelGameObject;
+        private Components.GameObjectControl gameObjectControl1;
         private Components.TransformControl transformControl1;
         private Components.SpriteControl spriteControl1;
         private Components.TextControl textControl1;

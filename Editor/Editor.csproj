@@ -57,21 +57,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\EnabledChangedEventArgs.cs" />
     <Compile Include="Components\GameObjectClickedEventArgs.cs" />
+    <Compile Include="Components\GameObjectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\GameObjectControl.Designer.cs">
+      <DependentUpon>GameObjectControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\PropertyChangedEventArgs.cs" />
     <Compile Include="Components\SpriteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Components\SpriteControl.Designer.cs">
       <DependentUpon>SpriteControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\StringValueChangedEventArgs.cs" />
     <Compile Include="Components\TextControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Components\TextControl.Designer.cs">
       <DependentUpon>TextControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\TransformChangedEventArgs.cs" />
     <Compile Include="Components\TransformControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Components\GameObjectControl.resx">
+      <DependentUpon>GameObjectControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\SpriteControl.resx">
       <DependentUpon>SpriteControl.cs</DependentUpon>
     </EmbeddedResource>

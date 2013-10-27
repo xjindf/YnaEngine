@@ -3,6 +3,7 @@
 // file 'LICENSE', which is part of this source code package.
 using System;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Yna.Engine
 {
@@ -17,7 +18,9 @@ namespace Yna.Engine
 
         protected uint _id;
         protected string _name;
+        protected string _tag;
         protected bool _enabled;
+        protected List<GameObject> _children;
 
         #endregion
 
@@ -33,12 +36,21 @@ namespace Yna.Engine
         }
 
         /// <summary>
-        /// Get or Set the name of this object
+        /// Gets or Sets the name of this object
         /// </summary>
         public string Name
         {
             get { return _name; }
             set { _name = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the tag
+        /// </summary>
+        public string Tag
+        {
+            get { return _tag; }
+            set { _tag = value; }
         }
 
         /// <summary>
@@ -59,12 +71,20 @@ namespace Yna.Engine
             set { _enabled = value; }
         }
 
+        public List<GameObject> Children
+        {
+            get { return _children; }
+            set { _children = value; }
+        }
+
         #endregion
 
         public GameObject()
         {
             _id = counterId++;
             _name = String.Format("GameObject{0}", Id.ToString());
+            _tag = "Default";
+            _children = new List<GameObject>();
             _enabled = true;
         }
 

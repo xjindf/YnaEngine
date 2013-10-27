@@ -11,29 +11,32 @@ namespace Yna.Editor.Components
 {
     public partial class TextControl : UserControl
     {
-        public event EventHandler<StringChangedEventArgs> TextChanged = null;
-        public event EventHandler<EnabledChangedEventArgs> EnabledChanged = null;
+        private bool _locked;
+
+        public event EventHandler<PropertyChangedEventArgs<string>> TextChanged = null;
 
         public TextControl()
         {
             InitializeComponent();
+            _locked = false;
+        }
+
+        public void Setup(string text)
+        {
+            _locked = true;    
+            textSprite.Text = text;
+            _locked = false;
         }
 
         private void textSprite_TextChanged(object sender, EventArgs e)
         {
-            if (TextChanged != null)
-                TextChanged(this, new StringChangedEventArgs(textSprite.Text));
+            if (!_locked && TextChanged != null)
+                TextChanged(this, new PropertyChangedEventArgs<string>(textSprite.Text));
         }
 
-        private void isEnabled_CheckedChanged(object sender, EventArgs e)
+        private void linkLongText_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (EnabledChanged != null)
-                EnabledChanged(this, new EnabledChangedEventArgs(isEnabled.Checked));
-        }
 
-        public void SetText(string text)
-        {
-            textSprite.Text = text;
         }
     }
 }
