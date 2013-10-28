@@ -40,6 +40,7 @@
     <Compile Include="Audio\XnaAudioAdapter.cs" />
     <Compile Include="Extensions\BoundingFrustrumExtension.cs" />
     <Compile Include="GameSettings.cs" />
+    <Compile Include="GameTimeService.cs" />
     <Compile Include="Graphics2D\Component\VirtualJoyPad.cs" />
     <Compile Include="Graphics2D\ICollidable.cs" />
     <Compile Include="Extensions\BoundingBoxExtension.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="YnInput.cs" />
     <Compile Include="YnQuadTree.cs" />
     <Compile Include="YnScreen.cs" />
+    <Compile Include="YnTime.cs" />
     <Compile Include="YnTimer.cs" />
     <Compile Include="YnRandom.cs" />
     <Compile Include="Extensions\PointExtension.cs" />
