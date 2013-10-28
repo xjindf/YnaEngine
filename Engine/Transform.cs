@@ -3,41 +3,54 @@
 // file 'LICENSE', which is part of this source code package.
 using System;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
-namespace Yna.Engine.Graphics3D
+namespace Yna.Engine
 {
-    public class YnTransform
+    public class Transform : Component
     {
         private Matrix _world;
         private Vector3 _rotation;
         private Vector3 _position;
         private Vector3 _scale;
-        private YnTransform _parent;
+        private Transform _parent;
+        protected List<Transform> _transforms;
 
-        public Matrix World
+        public Transform Parent
+        {
+            get { return _parent; }
+            set { _parent = value; }
+        }
+
+        public List<Transform> Transforms
+        {
+            get { return _transforms; }
+        }
+
+        public Matrix WorldMatrix
         {
             get { return _world; }
-            set { _world = value; }
         }
 
-        public Matrix Transform
+        public Transform()
         {
-            get { return GetTransform(); }
+            Initialize();
         }
 
-        public YnTransform()
+        public Transform(Transform parent)
+            : this()
+        {
+            _parent = parent;
+        }
+
+        public override void Initialize()
         {
             _position = Vector3.Zero;
             _rotation = Vector3.Zero;
             _scale = Vector3.Zero;
             _world = Matrix.Identity;
             _parent = null;
-        }
-
-        public YnTransform(YnTransform parent)
-            : this()
-        {
-            _parent = parent;
+            _transforms = new List<Transform>();
         }
 
         public void Translate(float x, float y, float z)
@@ -69,16 +82,7 @@ namespace Yna.Engine.Graphics3D
             _scale.Z = sz;
         }
 
-        public Matrix GetTransform()
-        {
-            Matrix transform = Matrix.CreateScale(_scale) * 
-                Matrix.CreateFromYawPitchRoll(_rotation.Y, _rotation.X, _rotation.Z) * 
-                Matrix.CreateTranslation(_position);
-
-            return transform;
-        }
-
-        public void Update()
+        public override void Update()
         {
             // Set the matrix world to identify
             _world = Matrix.Identity;
@@ -88,10 +92,10 @@ namespace Yna.Engine.Graphics3D
             // If a parent exists
             if (_parent != null)
             {
-                _world = _parent.World;
-                _world *= Matrix.CreateFromAxisAngle(_parent.World.Right, _rotation.X);
-                _world *= Matrix.CreateFromAxisAngle(_parent.World.Up, _rotation.Y);
-                _world *= Matrix.CreateFromAxisAngle(_parent.World.Forward, _rotation.Z);
+                _world = _parent.WorldMatrix;
+                _world *= Matrix.CreateFromAxisAngle(_parent.WorldMatrix.Right, _rotation.X);
+                _world *= Matrix.CreateFromAxisAngle(_parent.WorldMatrix.Up, _rotation.Y);
+                _world *= Matrix.CreateFromAxisAngle(_parent.WorldMatrix.Forward, _rotation.Z);
             }
             // Local transforms
             else

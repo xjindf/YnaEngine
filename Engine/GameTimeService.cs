@@ -45,10 +45,10 @@ namespace Yna.Engine
         {
             if (Enabled)
             {
-                _tmpElapsed = _stopWatch.Elapsed;
+                _tmpTotal = _stopWatch.Elapsed;
                 _tmpElapsed = _tmpElapsed - _lastUpdate;
                 _gameTime.ElapsedGameTime = _tmpElapsed;
-                _gameTime.TotalGameTime = _tmpElapsed;
+                _gameTime.TotalGameTime = _tmpTotal;
             }
         } 
     }

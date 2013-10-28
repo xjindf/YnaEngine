@@ -13,7 +13,6 @@ namespace Yna.Engine
     {
         public string Name { get; set; }
 
-        private bool _is3DScene;
         private bool _initialized;
         private bool _assetLoaded;
         private DirectionalLight[] _lights;
@@ -73,6 +72,7 @@ namespace Yna.Engine
                 gameObject.LoadContent();
 
             _gameObjects.Add(gameObject);
+            _nbGameObjects++;
         }
 
         /// <summary>
@@ -88,6 +88,7 @@ namespace Yna.Engine
                 gameObject.LoadContent();
 
             _gameObjects3D.Add(gameObject);
+            _nbGameObjects3D++;
         }
 
         /// <summary>

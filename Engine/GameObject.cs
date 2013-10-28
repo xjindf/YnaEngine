@@ -26,7 +26,8 @@ namespace Yna.Engine
         protected string _tag;
         protected SceneLayer _sceneLayer;
         protected bool _enabled;
-        protected List<GameObject> _children;
+        protected Transform _transform;
+        protected List<Component> _components;
 
         #endregion
 
@@ -83,22 +84,22 @@ namespace Yna.Engine
             set { _enabled = value; }
         }
 
-        public List<GameObject> Children
-        {
-            get { return _children; }
-            set { _children = value; }
-        }
-
         #endregion
 
         public GameObject()
         {
             _id = counterId++;
             _name = String.Format("GameObject{0}", Id.ToString());
+            _transform = new Transform();
             _tag = "Default";
-            _children = new List<GameObject>();
-            _sceneLayer = SceneLayer.Layer2D;
+            _sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
             _enabled = true;
+        }
+
+        public GameObject(Transform parent)
+            : base ()
+        {
+            _transform.Parent = parent;
         }
 
         /// <summary>
@@ -106,5 +107,19 @@ namespace Yna.Engine
         /// </summary>
         /// <param name="gameTime"></param>
         public abstract void Update(GameTime gameTime);
+
+        public void Execute()
+        {
+            if (_enabled)
+            {
+                for (int i = 0; i < _components.Count; i++)
+                {
+                    _components[i].Update();
+
+                    if (_components[i] is DrawableComponent)
+                        (_components[i] as DrawableComponent).Draw();
+                }
+            }
+        }
     }
 }

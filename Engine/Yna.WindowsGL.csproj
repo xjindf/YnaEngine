@@ -38,6 +38,8 @@
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Audio\DummyAudioAdapter.cs" />
     <Compile Include="Audio\XnaAudioAdapter.cs" />
+    <Compile Include="Component.cs" />
+    <Compile Include="DrawableComponent.cs" />
     <Compile Include="Extensions\BoundingFrustrumExtension.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="GameTimeService.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="ISettings.cs" />
     <Compile Include="SceneManager.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="SpriteRenderer.cs" />
     <Compile Include="Winforms\GraphicsDeviceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -194,7 +197,7 @@
     <Compile Include="Script\MoveScript.cs" />
     <Compile Include="Script\ScriptAnimator.cs" />
     <Compile Include="Script\WaitScript.cs" />
-    <Compile Include="YnTransform.cs" />
+    <Compile Include="Transform.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Graphics3D\Material\Resources\NormalMapEffect.dx11.mgfxo" />
