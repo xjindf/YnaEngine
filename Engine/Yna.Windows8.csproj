@@ -110,6 +110,9 @@
     <Compile Include="Audio\XnaAudioAdapter.cs" />
     <Compile Include="EventDispatcher.cs" />
     <Compile Include="Extensions\BoundingFrustrumExtension.cs" />
+    <Compile Include="GameObject.cs" />
+    <Compile Include="Graphics2D\Component\VirtualArrowPad.cs" />
+    <Compile Include="Graphics2D\Component\VirtualArrowPadController.cs" />
     <Compile Include="Graphics2D\ICollidable.cs" />
     <Compile Include="Extensions\BoundingBoxExtension.cs" />
     <Compile Include="Extensions\BoundingSphereExtension.cs" />
@@ -125,7 +128,6 @@
     <Compile Include="YnGameEntityCollection.cs" />
     <Compile Include="YnGameEntity.cs" />
     <Compile Include="Graphics2D\Animation\AnimationEventArgs.cs" />
-    <Compile Include="Graphics2D\Component\YnVirtualPadController.cs" />
     <Compile Include="Graphics2D\Gui\YnWidgetProperties.cs" />
     <Compile Include="Graphics2D\Particle\YnEmitter.cs" />
     <Compile Include="Graphics2D\Particle\YnParticle.cs" />
@@ -135,7 +137,6 @@
     <Compile Include="Graphics2D\Animation\IEffectAnimation.cs" />
     <Compile Include="Graphics2D\Animation\YnInterpolator.cs" />
     <Compile Include="Graphics2D\Event\VirtualPadEventArgs.cs" />
-    <Compile Include="Graphics2D\Component\YnVirtualPad.cs" />
     <Compile Include="Content\ContentEventArgs.cs" />
     <Compile Include="Graphics2D\YnGraphics.cs" />
     <Compile Include="Graphics2D\YnPool.cs" />
@@ -171,7 +172,6 @@
     <Compile Include="Storage\IStorageDevice.cs" />
     <Compile Include="Storage\StorageManager.cs" />
     <Compile Include="Graphics2D\YnState2D.cs" />
-    <Compile Include="YnBasicEntity.cs" />
     <Compile Include="YnG.cs" />
     <Compile Include="YnGame.cs" />
     <Compile Include="Graphics2D\YnGroup.cs" />
@@ -203,7 +203,6 @@
     <Compile Include="Graphics3D\YnMeshGeometry.cs" />
     <Compile Include="Graphics3D\YnMeshModel.cs" />
     <Compile Include="Graphics3D\YnScene3D.cs" />
-    <Compile Include="Graphics3D\YnTransform.cs" />
     <Compile Include="Graphics3D\Renderer\QuadRenderer.cs" />
     <Compile Include="Graphics3D\Terrain\SkyBox.cs" />
     <Compile Include="Graphics3D\Camera\BaseCamera.cs" />
