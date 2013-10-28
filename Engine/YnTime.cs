@@ -7,18 +7,18 @@ namespace Yna.Engine
 {
     public class YnTime
     {
-        internal static GameTimeService gameTimeService;
+        internal static GameTimeService Service;
 
         public static float DeltaTime
         {
-            get { return gameTimeService.GameTime.ElapsedGameTime.Milliseconds * TimeScale; }
+            get { return Service.GameTime.ElapsedGameTime.Milliseconds * TimeScale; }
         }
 
         public static float TimeScale { get; set; }
 
-        internal void Reset()
+        internal static void Reset()
         {
-            gameTimeService.Initialize();
+            Service.Initialize();
             TimeScale = 1.0f;
         }
     }

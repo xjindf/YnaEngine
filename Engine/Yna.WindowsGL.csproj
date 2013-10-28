@@ -51,6 +51,8 @@
     <Compile Include="Extensions\Vector2Extension.cs" />
     <Compile Include="Extensions\ViewportExtension.cs" />
     <Compile Include="Graphics2D\YnScene.cs" />
+    <Compile Include="ISettings.cs" />
+    <Compile Include="SceneManager.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Winforms\GraphicsDeviceControl.cs">
       <SubType>UserControl</SubType>

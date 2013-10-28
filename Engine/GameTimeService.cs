@@ -22,11 +22,23 @@ namespace Yna.Engine
             get { return _gameTime; }
         }
 
-        public void Initialize()
+        public GameTimeService()
         {
             _lastUpdate = new TimeSpan(DateTime.Now.Ticks);
             _stopWatch = new Stopwatch();
-            _stopWatch.Start(); 
+            _stopWatch.Start();
+            _gameTime = new GameTime();
+            _tmpElapsed = new TimeSpan();
+            _tmpTotal = new TimeSpan();
+
+            YnTime.Service = this;
+        }
+
+        public void Initialize()
+        {
+            _stopWatch.Reset();
+            _stopWatch.Start();
+            YnTime.Reset();
         }
 
         public void Update()

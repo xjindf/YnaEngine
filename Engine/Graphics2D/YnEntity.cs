@@ -56,6 +56,7 @@ namespace Yna.Engine.Graphics2D
         private Rectangle _testEventRectangle;
         protected bool _clicked;
         protected bool _hovered;
+        protected bool _drawAfter3D;
 
         #endregion
 
@@ -94,6 +95,12 @@ namespace Yna.Engine.Graphics2D
         public Vector2 ScreenPosition
         {
             get { return _screenPosition; }
+        }
+
+        public bool DrawAfter3D
+        {
+            get { return _drawAfter3D; }
+            set { _drawAfter3D = value; }
         }
 
         #endregion
@@ -498,6 +505,7 @@ namespace Yna.Engine.Graphics2D
             _layerDepth = 1.0f;
             _parent = null;
             _nbMouseEventObservers = 0;
+            _drawAfter3D = false;
         }
 
         /// <summary>

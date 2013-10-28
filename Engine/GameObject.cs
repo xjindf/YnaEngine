@@ -7,6 +7,11 @@ using System.Collections.Generic;
 
 namespace Yna.Engine
 {
+    public enum SceneLayer
+    {
+        Layer2D, Layer3D, GUI
+    }
+
     /// <summary>
     /// Base class for all object on the Framework. A basic object is updateable
     /// </summary>
@@ -19,6 +24,7 @@ namespace Yna.Engine
         protected uint _id;
         protected string _name;
         protected string _tag;
+        protected SceneLayer _sceneLayer;
         protected bool _enabled;
         protected List<GameObject> _children;
 
@@ -53,6 +59,12 @@ namespace Yna.Engine
             set { _tag = value; }
         }
 
+        public SceneLayer Layer
+        {
+            get { return _sceneLayer;  }
+            set { _sceneLayer = value; }
+        }
+
         /// <summary>
         /// Active or Desactive this object
         /// </summary>
@@ -85,6 +97,7 @@ namespace Yna.Engine
             _name = String.Format("GameObject{0}", Id.ToString());
             _tag = "Default";
             _children = new List<GameObject>();
+            _sceneLayer = SceneLayer.Layer2D;
             _enabled = true;
         }
 

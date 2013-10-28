@@ -11,42 +11,45 @@ namespace Yna.Engine
 {
     public class Scene
     {
+        public string Name { get; set; }
+
         private bool _is3DScene;
         private bool _initialized;
         private bool _assetLoaded;
         private DirectionalLight[] _lights;
 
-        protected GameTime gameTime;
-        private Stopwatch _stopWatch;
-        private TimeSpan _lastUpdate;
-
         protected List<YnEntity> _gameObjects;
+        private int _nbGameObjects;
         protected List<YnEntity3D> _gameObjects3D;
-        protected BaseCamera camera;
+        private int _nbGameObjects3D;
+        protected BaseCamera mainCamera;
         protected GraphicsDevice graphicsDevice;
         protected SpriteBatch spriteBatch;
+        protected SceneSettings sceneSettings;
 
         public Color ClearColor;
 
         public Scene()
         {
+            if (YnTime.Service == null)
+                throw new Exception("[Scene] The YnTime service is not active");
+
             ClearColor = Color.Black;
 
-            camera = new FixedCamera();
             _gameObjects = new List<YnEntity>();
             _gameObjects3D = new List<YnEntity3D>();
 
-            _is3DScene = true;
             _assetLoaded = false;
             _initialized = false;
 
-            _lastUpdate = new TimeSpan(DateTime.Now.Ticks);
-            _stopWatch = new Stopwatch();
-            _stopWatch.Start();
-
-            gameTime = new GameTime();
+            sceneSettings = new SceneSettings();
         }
 
+        /// <summary>
+        /// Add a light to the scene. Note that you can add up to three lights on the scene.
+        /// </summary>
+        /// <param name="light">The light to add</param>
+        /// <returns>Return true if the first light has been replaced by this one, otherwise return false.</returns>
         public bool AddLight(DirectionalLight light)
         {
             if (_lights.Length > 3)
@@ -57,6 +60,10 @@ namespace Yna.Engine
             return false;
         }
 
+        /// <summary>
+        /// Add a 2D game object on the scene. It's initialized and loaded if it's not.
+        /// </summary>
+        /// <param name="gameObject">The game object to add.</param>
         public void AddGameObject(YnEntity gameObject)
         {
             if (!gameObject.Initialized)
@@ -68,6 +75,10 @@ namespace Yna.Engine
             _gameObjects.Add(gameObject);
         }
 
+        /// <summary>
+        /// Add a 3D game object on the scene. It's initialized and loaded if it's not.
+        /// </summary>
+        /// <param name="gameObject">The game object to add.</param>
         public void AddGameObject(YnEntity3D gameObject)
         {
             if (!gameObject.Initialized)
@@ -79,7 +90,10 @@ namespace Yna.Engine
             _gameObjects3D.Add(gameObject);
         }
 
-        protected virtual void Initialize()
+        /// <summary>
+        /// Initialize all game objects and scene components.
+        /// </summary>
+        public virtual void Initialize()
         {
             if (!_initialized)
             {
@@ -92,12 +106,15 @@ namespace Yna.Engine
                 if (spriteBatch == null)
                     spriteBatch = new SpriteBatch(YnG.GraphicsDevice);
 
-                if (camera == null)
-                    camera = new FirstPersonCamera();
+                if (mainCamera == null)
+                    mainCamera = new FirstPersonCamera();
             }
         }
 
-        protected virtual void LoadContent()
+        /// <summary>
+        /// Load assets for the scene.
+        /// </summary>
+        public virtual void LoadContent()
         {
             if (!_assetLoaded)
             {
@@ -109,61 +126,83 @@ namespace Yna.Engine
             }
         }
 
-        protected void UpdateTime()
-        {
-            TimeSpan total = _stopWatch.Elapsed;
-            TimeSpan elapsed = total - _lastUpdate;
-            gameTime.ElapsedGameTime = elapsed;
-            gameTime.TotalGameTime = total;
-        }
-
-        protected virtual void BeforeUpdate()
+        /// <summary>
+        /// Method called before the update method.
+        /// </summary>
+        public virtual void BeforeUpdate()
         {
 
         }
 
-        protected virtual void Update()
+        /// <summary>
+        /// Update logic of game objects 2D and 3D.
+        /// </summary>
+        public virtual void Update()
         {
-            foreach (YnEntity go in _gameObjects)
-                go.Update(gameTime);
+            for (int i = 0; i < _nbGameObjects; i++)
+            {
+                if (_gameObjects[i].Enabled)
+                    _gameObjects[i].Update(YnTime.Service.GameTime);
+            }
 
-            foreach (YnEntity3D go3 in _gameObjects3D)
-                go3.Update(gameTime);
+            for (int i = 0; i < _nbGameObjects3D; i++)
+            {
+                if (_gameObjects3D[i].Enabled)
+                    _gameObjects3D[i].Update(YnTime.Service.GameTime);
+            }
         }
 
-        protected virtual void AfterUpdate()
+        /// <summary>
+        /// Method called after update method.
+        /// </summary>
+        public virtual void AfterUpdate()
         {
 
         }
 
-        protected virtual void Draw()
+        /// <summary>
+        /// Draw the scene on screen.
+        /// </summary>
+        public virtual void Draw()
         {
             graphicsDevice.Clear(ClearColor);
 
-            if (_is3DScene)
-            {
-                if (_gameObjects.Count > 0)
-                {
-                    spriteBatch.Begin();
-
-                    foreach (YnEntity go in _gameObjects)
-                        go.Draw(gameTime, spriteBatch);
-
-                    spriteBatch.End();
-                }
-
-                YnG3.RestoreGraphicsDeviceStates();
-
-                foreach (YnEntity3D go3 in _gameObjects3D)
-                    go3.Draw(gameTime, graphicsDevice, camera);
-            }
-
-            if (_gameObjects.Count > 0)
+            // 2D
+            if (_nbGameObjects > 0)
             {
                 spriteBatch.Begin();
 
-                foreach (YnEntity go in _gameObjects)
-                    go.Draw(gameTime, spriteBatch);
+                for (int i = 0; i < _nbGameObjects; i++)
+                {
+                    if (_gameObjects[i].Visible && _gameObjects[i].Layer != SceneLayer.Layer2D)
+                    _gameObjects[i].Draw(YnTime.Service.GameTime, spriteBatch);
+                }
+
+                spriteBatch.End();
+            }
+
+            // 3D
+            if (_nbGameObjects > 0)
+            {
+                YnG3.RestoreGraphicsDeviceStates();
+
+                for (int i = 0; i < _nbGameObjects3D; i++)
+                {
+                    if (_gameObjects3D[i].Visible && _gameObjects3D[i].Layer == SceneLayer.Layer3D)
+                        _gameObjects3D[i].Draw(YnTime.Service.GameTime, graphicsDevice, mainCamera);
+                }
+            }
+
+            // GUI
+            if (_nbGameObjects > 0)
+            {
+                spriteBatch.Begin();
+
+                for (int i = 0; i < _nbGameObjects; i++)
+                {
+                    if (_gameObjects[i].Visible && _gameObjects[i].Layer != SceneLayer.GUI)
+                        _gameObjects[i].Draw(YnTime.Service.GameTime, spriteBatch);
+                }
 
                 spriteBatch.End();
             }
