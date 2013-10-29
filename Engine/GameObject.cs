@@ -17,16 +17,16 @@ namespace Yna.Engine
     /// </summary>
     public abstract class GameObject
     {
-        #region private declarations
+        #region Fields
 
         private static uint counterId = 0x0001;
-
-        protected uint _id;
+        private uint _id;
         protected string _name;
         protected string _tag;
         protected SceneLayer _sceneLayer;
         protected bool _enabled;
         protected Transform _transform;
+        protected List<GameObject> _children;
         protected List<Component> _components;
         protected List<DrawableComponent> _drawableComponents;
 
@@ -40,7 +40,7 @@ namespace Yna.Engine
         public uint Id
         {
             get { return _id; }
-            set { _id = value; }
+            protected set { _id = value; }
         }
 
         /// <summary>
@@ -71,6 +71,12 @@ namespace Yna.Engine
         {
             get { return _transform; }
             set { _transform = value; }
+        }
+
+        public List<GameObject> Children
+        {
+            get { return _children; }
+            protected set { _children = value; }
         }
 
         /// <summary>
@@ -133,6 +139,47 @@ namespace Yna.Engine
                         _drawableComponents[i].Draw();
                 }
             }
+        }
+
+        public void AddGameObject(GameObject gameObject)
+        {
+            gameObject.Transform.Parent = _transform;
+            _children.Add(gameObject);
+        }
+
+        public void AddComponent(Component component)
+        {
+            _components.Add(component);
+
+            if (component is DrawableComponent)
+                _drawableComponents.Add(component as DrawableComponent);
+        }
+
+        public void RemoveGameObject(GameObject gameObject)
+        {
+            gameObject.Transform.Parent = null;
+            _children.Remove(gameObject);
+        }
+
+        public void RemoveComponent(Component component)
+        {
+            _components.Remove(component);
+
+            if (component is DrawableComponent)
+                _drawableComponents.Remove(component as DrawableComponent);
+        }
+
+        public T GetComponent<T>() where T : class
+        {
+            object result = null;
+
+            int i = 0;
+            int counter = _components.Count;
+
+            while (i < counter && result == null)
+                result = (_components[i] is T) ? _components[i] : result;
+
+            return (T)result;
         }
     }
 }
