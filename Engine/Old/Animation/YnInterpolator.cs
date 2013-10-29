@@ -3,6 +3,7 @@
 // file 'LICENSE', which is part of this source code package.
 using System;
 using Microsoft.Xna.Framework;
+using Yna.Engine.Old.Graphics2D.Animation;
 
 namespace Yna.Engine.Graphics2D.Animation
 {

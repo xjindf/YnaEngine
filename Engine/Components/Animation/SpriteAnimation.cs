@@ -5,7 +5,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Yna.Engine.Graphics2D.Animation
+namespace Yna.Engine.Components.Animation
 {
     /// <summary>
     /// Define a sprite animation

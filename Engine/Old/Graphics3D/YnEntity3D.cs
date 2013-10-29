@@ -62,11 +62,11 @@ namespace Yna.Engine.Graphics3D
         /// </summary>
         public new bool Active
         {
-            get { return _enabled && _visible && !_dirty; }
+            get { return enabled && _visible && !_dirty; }
             set
             {
                 _visible = value;
-                _enabled = value;
+                enabled = value;
                 _dirty = !value;
             }
         }
@@ -326,7 +326,7 @@ namespace Yna.Engine.Graphics3D
             _frustrumCulled = false;
             
             _enableLight = true;
-            _sceneLayer = SceneLayer.Layer3D;
+            sceneLayer = SceneLayer.Layer3D;
         }
 
         public YnEntity3D()

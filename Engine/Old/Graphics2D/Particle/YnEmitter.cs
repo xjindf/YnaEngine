@@ -244,7 +244,7 @@ namespace Yna.Engine.Graphics2D.Particle
 
         public override void Update(GameTime gameTime)
         {
-            if (_enabled)
+            if (enabled)
             {
                 _elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
 

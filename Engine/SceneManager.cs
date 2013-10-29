@@ -53,7 +53,10 @@ namespace Yna.Engine
             int count = _levels.Count;
 
             while (i < count && index == -1)
+            {
                 index = (_levels[i].Name == name) ? i : index;
+                i++;
+            }
 
             LoadScene(index);
         }

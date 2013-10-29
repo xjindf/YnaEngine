@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Yna.Engine.Graphics2D.Animation
+namespace Yna.Engine.Components.Animation
 {
     /// <summary>
     /// Sprite animator class used in Sprite class for animating a sprite with a spritesheet

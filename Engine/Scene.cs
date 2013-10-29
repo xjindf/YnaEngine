@@ -31,7 +31,7 @@ namespace Yna.Engine
         public Scene()
         {
             if (YnTime.Service == null)
-                throw new Exception("[Scene] The YnTime service is not active");
+                throw new Exception("[Scene] The Time service is not active");
 
             ClearColor = Color.Black;
 

@@ -4,6 +4,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Yna.Engine.Components;
 
 namespace Yna.Engine
 {
@@ -19,17 +20,18 @@ namespace Yna.Engine
     {
         #region Fields
 
-        private static uint counterId = 0x0001;
-        private uint _id;
-        protected string _name;
-        protected string _tag;
-        protected SceneLayer _sceneLayer;
-        protected bool _enabled;
-        protected Transform _transform;
-        protected List<GameObject> _children;
-        protected List<Component> _components;
-        protected List<DrawableComponent> _drawableComponents;
-
+        private Guid _guid = Guid.NewGuid();
+		private Dictionary<Type, Component> _componentsCache;
+        private List<Component> _components;
+        private List<DrawableComponent> _drawableComponents;
+        
+        protected bool enabled;
+        protected string name;
+        protected string tag;
+        protected SceneLayer sceneLayer;
+        protected List<GameObject> children;
+        protected Transform transform;
+		
         #endregion
 
         #region Properties
@@ -37,10 +39,9 @@ namespace Yna.Engine
         /// <summary>
         /// Get the unique identification code of this object
         /// </summary>
-        public uint Id
+        public Guid Uid
         {
-            get { return _id; }
-            protected set { _id = value; }
+            get { return _guid; }
         }
 
         /// <summary>
@@ -48,8 +49,8 @@ namespace Yna.Engine
         /// </summary>
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return name; }
+            set { name = value; }
         }
 
         /// <summary>
@@ -57,26 +58,32 @@ namespace Yna.Engine
         /// </summary>
         public string Tag
         {
-            get { return _tag; }
-            set { _tag = value; }
+            get { return tag; }
+            set { tag = value; }
         }
 
         public SceneLayer Layer
         {
-            get { return _sceneLayer; }
-            set { _sceneLayer = value; }
-        }
-
-        public Transform Transform
-        {
-            get { return _transform; }
-            set { _transform = value; }
+            get { return sceneLayer; }
+            set { sceneLayer = value; }
         }
 
         public List<GameObject> Children
         {
-            get { return _children; }
-            protected set { _children = value; }
+            get { return children; }
+            protected set { children = value; }
+        }
+		
+		public List<Component> Components
+		{
+			get { return _components; }
+			internal set { _components = value; }
+		}
+
+        public Transform Transform
+        {
+            get { return transform; }
+            protected set { transform = value; }
         }
 
         /// <summary>
@@ -84,8 +91,8 @@ namespace Yna.Engine
         /// </summary>
         public bool Active
         {
-            get { return _enabled; }
-            set { _enabled = value; }
+            get { return enabled; }
+            set { enabled = value; }
         }
 
         /// <summary>
@@ -93,28 +100,29 @@ namespace Yna.Engine
         /// </summary>
         public bool Enabled
         {
-            get { return _enabled; }
-            set { _enabled = value; }
+            get { return enabled; }
+            set { enabled = value; }
         }
 
         #endregion
 
         public GameObject()
         {
-            _id = counterId++;
-            _name = String.Format("GameObject{0}", Id.ToString());
-            _transform = new Transform(this);
-            _tag = "Default";
-            _sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
+            name = "Game Object";
+            tag = "Default";
+            enabled = true;
+			sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
             _components = new List<Component>();
             _drawableComponents = new List<DrawableComponent>();
-            _enabled = true;
-        }
+			_componentsCache = new Dictionary<Type, Component>();
+            transform = new Transform(this);
+            AddComponent(transform);
+		}
 
         public GameObject(Transform parent)
             : base()
         {
-            _transform.Parent = parent;
+            transform.Parent = parent;
         }
 
         /// <summary>
@@ -123,63 +131,165 @@ namespace Yna.Engine
         /// <param name="gameTime"></param>
         public abstract void Update(GameTime gameTime);
 
-        public void Execute()
+        #region game object management
+
+        /// <summary>
+        /// Change the parent of the game object.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public void SetParent(GameObject gameObject)
         {
-            if (_enabled)
+            gameObject.Transform.Parent = gameObject.Transform;
+        }
+
+        /// <summary>
+        /// Add a game object to the children.
+        /// </summary>
+        /// <param name="gameObject">The game object to add.</param>
+        /// <returns>Return true if the game object has been added, otherwise return false.</returns>
+        public bool AddGameObject(GameObject gameObject)
+        {
+            bool exist = (children.IndexOf(gameObject) >= 0);
+            
+            if (!exist)
             {
-                for (int i = 0; i < _components.Count; i++)
-                {
-                    if (_components[i].Enabled)
-                        _components[i].Update();
-                }
-
-                for (int i = 0; i < _drawableComponents.Count; i++)
-                {
-                    if (_drawableComponents[i].Enabled)
-                        _drawableComponents[i].Draw();
-                }
+                gameObject.SetParent(this);
+                children.Add(gameObject);
             }
-        }
 
-        public void AddGameObject(GameObject gameObject)
+            return exist;
+        }
+		
+        /// <summary>
+        /// Remove a game object of the children.
+        /// </summary>
+        /// <param name="gameObject">The game object to remove.</param>
+        /// <returns>Return true if the game object has been removed, otherwise return false.</returns>
+		public bool RemoveGameObject(GameObject gameObject)
         {
-            gameObject.Transform.Parent = _transform;
-            _children.Add(gameObject);
+            gameObject.SetParent(null);
+            return children.Remove(gameObject);
         }
 
+        #endregion
+
+        #region Components management
+
+        /// <summary>
+        /// Add a component.
+        /// </summary>
+        /// <param name="component">The component to add.</param>
         public void AddComponent(Component component)
         {
+            Type type = component.GetType();
+			if (_componentsCache.ContainsKey(type))
+				return;
+	
+			_componentsCache.Add(type, component); 
             _components.Add(component);
-
+	
             if (component is DrawableComponent)
                 _drawableComponents.Add(component as DrawableComponent);
         }
 
-        public void RemoveGameObject(GameObject gameObject)
-        {
-            gameObject.Transform.Parent = null;
-            _children.Remove(gameObject);
-        }
-
+        /// <summary>
+        /// Remove a component.
+        /// </summary>
+        /// <param name="component">The component to remove.</param>
         public void RemoveComponent(Component component)
         {
+            Type type = component.GetType();
+			if (!_componentsCache.ContainsKey(type) || component is Transform)
+				return;
+			
+			_componentsCache.Remove(type);
             _components.Remove(component);
 
             if (component is DrawableComponent)
                 _drawableComponents.Remove(component as DrawableComponent);
         }
 
-        public T GetComponent<T>() where T : class
+        /// <summary>
+        /// Gets the first component of type T in this game object.
+        /// </summary>
+        /// <typeparam name="T">Type of component.</typeparam>
+        /// <returns>Return the component of type T if exists, otherwise return null.</returns>
+        public Component GetComponent<T>()
         {
-            object result = null;
+            Type type = typeof(T);
+            if (_componentsCache.ContainsKey(type))
+                return _componentsCache[type];
+			
+			return null;
+        }
+
+        /// <summary>
+        /// Get components of type T in this game object.
+        /// </summary>
+        /// <typeparam name="T">Type of component.</typeparam>
+        /// <returns>Return an array of components of type T if exists, otherwise return an empty array</returns>
+        public Component[] GetComponents<T>() where T : class
+        {
+            Type type = typeof(T);
+            List<Component> results = new List<Component>();
+            
+            foreach (Component component in _components)
+            {
+                if (component.GetType() == type)
+                    results.Add(component as Component);
+            }
+
+            return results.ToArray();
+        }
+
+        /// <summary>
+        /// Gets the first component of type T in children.
+        /// </summary>
+        /// <typeparam name="T">Type of component.</typeparam>
+        /// <returns>Return the component of type T if exists, otherwise return null.</returns>
+        public Component GetComponentInChildren<T>() where T : class
+        {
+            Type type = typeof(T);
+            Component result = null;
 
             int i = 0;
-            int counter = _components.Count;
+            int size = children.Count;
 
-            while (i < counter && result == null)
-                result = (_components[i] is T) ? _components[i] : result;
+            while (i < size && result == null)
+            {
+                result = children[i].GetComponent<T>();
+                i++;
+            }
 
-            return (T)result;
+            if (_componentsCache.ContainsKey(type))
+                return _componentsCache[type];
+
+            return null;
         }
+
+        /// <summary>
+        /// Get components of type T in children.
+        /// </summary>
+        /// <typeparam name="T">Type of component.</typeparam>
+        /// <returns>Return an array of components of type T if exists, otherwise return an empty array</returns>
+        public Component[] GetComponentsInChildren<T>() where T : class
+        {
+            Type type = typeof(T);
+
+            List<Component> results = new List<Component>();
+            Component component = null;
+
+            foreach (GameObject go in Children)
+            {
+                component = go.GetComponent<T>();
+
+                if (component != null)
+                    results.Add(component);
+            }
+
+            return results.ToArray();
+        }
+
+        #endregion
     }
 }

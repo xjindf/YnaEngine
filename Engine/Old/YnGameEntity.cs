@@ -38,10 +38,10 @@ namespace Yna.Engine
         /// </summary>
         public new bool Active
         {
-            get { return _visible && _enabled; }
+            get { return _visible && enabled; }
             set
             {
-                _enabled = value;
+                enabled = value;
                 _visible = value;
 
                 if (value)
@@ -101,7 +101,7 @@ namespace Yna.Engine
         {
             _assetLoaded = false;
             _initialized = false;
-            _enabled = true;
+            enabled = true;
             _visible = true;
         }
 

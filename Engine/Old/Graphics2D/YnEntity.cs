@@ -71,7 +71,7 @@ namespace Yna.Engine.Graphics2D
             set
             {
                 _dirty = value;
-                _enabled = !value;
+                enabled = !value;
                 _visible = !value;
             }
         }
@@ -583,7 +583,7 @@ namespace Yna.Engine.Graphics2D
             _hovered = false;
 
             // Check mouse events
-            if (_enabled)
+            if (enabled)
             {
                 _rectangle.X = (int)(ScreenPosition.X - _origin.X);
                 _rectangle.Y = (int)(ScreenPosition.Y - _origin.Y);
