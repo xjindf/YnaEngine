@@ -15,6 +15,7 @@ namespace Yna.Engine
         private Vector3 _scale;
         private Transform _parent;
         protected List<Transform> _transforms;
+        private GameObject _gameObject;
 
         public Transform Parent
         {
@@ -25,6 +26,13 @@ namespace Yna.Engine
         public List<Transform> Transforms
         {
             get { return _transforms; }
+            protected set { _transforms = value; }
+        }
+
+        public GameObject GameObject
+        {
+            get { return _gameObject; }
+            internal set { _gameObject = value; }
         }
 
         public Matrix WorldMatrix
@@ -34,13 +42,14 @@ namespace Yna.Engine
 
         public Transform()
         {
-            Initialize();
+            Initialize(); 
         }
 
-        public Transform(Transform parent)
-            : this()
-        {
-            _parent = parent;
+        public Transform(GameObject gameObject)
+        { 
+            Initialize();
+            _gameObject = gameObject;
+            _parent = gameObject.Transform.Parent;
         }
 
         public override void Initialize()

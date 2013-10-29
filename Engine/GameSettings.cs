@@ -27,38 +27,51 @@ namespace Yna.Engine
         public bool KeyboardEnabled { get; set; }
         public bool MouseEnabled { get; set; }
 
+        // Path
+        public string SaveConfigPath { get; set; }
+        public string SaveGamePath { get; set; }
+        public string ContentPath { get; set; }
+
         public GameSettings()
         {
+            // Screen
             Width = 1024;
             Height = 600;
             ReferenceWidth = 1024;
             ReferenceHeight = 600;
             IsFullscreen = false;
 
+            // Audio
             SoundEnabled = true;
             SoundVolume = 1.0f;
             MusicEnabled = true;
             MusicVolume = 1.0f;
 
+            // Input
             TouchEnabled = true;
             JoypadEnabled = true;
             KeyboardEnabled = true;
             MouseEnabled = true;
+
+            // Storage
+            SaveConfigPath = "data/config";
+            SaveGamePath = "data/saves";
+            ContentPath = "Content";
         }
 
         public void Load()
         {
-
+            GameSettings settings = YnG.StorageManager.Load<GameSettings>(SaveConfigPath, "settings.yna");
         }
 
         public void Save()
         {
-
+            YnG.StorageManager.Save<GameSettings>(SaveConfigPath, "settings.yna", this);
         }
 
         public void Clear()
         {
-
+            
         }
     }
 }

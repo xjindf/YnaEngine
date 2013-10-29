@@ -28,6 +28,7 @@ namespace Yna.Engine
         protected bool _enabled;
         protected Transform _transform;
         protected List<Component> _components;
+        protected List<DrawableComponent> _drawableComponents;
 
         #endregion
 
@@ -62,8 +63,14 @@ namespace Yna.Engine
 
         public SceneLayer Layer
         {
-            get { return _sceneLayer;  }
+            get { return _sceneLayer; }
             set { _sceneLayer = value; }
+        }
+
+        public Transform Transform
+        {
+            get { return _transform; }
+            set { _transform = value; }
         }
 
         /// <summary>
@@ -90,14 +97,16 @@ namespace Yna.Engine
         {
             _id = counterId++;
             _name = String.Format("GameObject{0}", Id.ToString());
-            _transform = new Transform();
+            _transform = new Transform(this);
             _tag = "Default";
             _sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
+            _components = new List<Component>();
+            _drawableComponents = new List<DrawableComponent>();
             _enabled = true;
         }
 
         public GameObject(Transform parent)
-            : base ()
+            : base()
         {
             _transform.Parent = parent;
         }
@@ -114,10 +123,14 @@ namespace Yna.Engine
             {
                 for (int i = 0; i < _components.Count; i++)
                 {
-                    _components[i].Update();
+                    if (_components[i].Enabled)
+                        _components[i].Update();
+                }
 
-                    if (_components[i] is DrawableComponent)
-                        (_components[i] as DrawableComponent).Draw();
+                for (int i = 0; i < _drawableComponents.Count; i++)
+                {
+                    if (_drawableComponents[i].Enabled)
+                        _drawableComponents[i].Draw();
                 }
             }
         }
