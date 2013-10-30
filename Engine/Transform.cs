@@ -49,7 +49,7 @@ namespace Yna.Engine
         { 
             Initialize();
             _gameObject = gameObject;
-            _parent = gameObject.Transform.Parent;
+            _parent = (gameObject.Components[0] as Transform).Parent;
         }
 
         public override void Initialize()

@@ -21,15 +21,15 @@ namespace Yna.Engine
 
         private static uint counterId = 0x0001;
         private uint _id;
+		protected bool _enabled;
         protected string _name;
         protected string _tag;
         protected SceneLayer _sceneLayer;
-        protected bool _enabled;
-        protected Transform _transform;
+		private Dictionary<Type, Component> _componentsCache;
         protected List<GameObject> _children;
         protected List<Component> _components;
         protected List<DrawableComponent> _drawableComponents;
-
+		
         #endregion
 
         #region Properties
@@ -67,17 +67,17 @@ namespace Yna.Engine
             set { _sceneLayer = value; }
         }
 
-        public Transform Transform
-        {
-            get { return _transform; }
-            set { _transform = value; }
-        }
-
         public List<GameObject> Children
         {
             get { return _children; }
             protected set { _children = value; }
         }
+		
+		public List<Component> Components
+		{
+			get { return _components; }
+			internal set { _components = value; }
+		}
 
         /// <summary>
         /// Active or Desactive this object
@@ -103,18 +103,19 @@ namespace Yna.Engine
         {
             _id = counterId++;
             _name = String.Format("GameObject{0}", Id.ToString());
-            _transform = new Transform(this);
             _tag = "Default";
-            _sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
+            _enabled = true;
+			_sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
             _components = new List<Component>();
             _drawableComponents = new List<DrawableComponent>();
-            _enabled = true;
-        }
+			_componentsCache = new Dictionary<Type, Component>();
+			AddComponent(new Transform(this));
+		}
 
         public GameObject(Transform parent)
             : base()
         {
-            _transform.Parent = parent;
+            GetComponent<Transform>().Parent = parent;
         }
 
         /// <summary>
@@ -141,28 +142,43 @@ namespace Yna.Engine
             }
         }
 
+        public void SetParent(GameObject gameObject)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddGameObject(GameObject gameObject)
         {
-            gameObject.Transform.Parent = _transform;
+            gameObject.SetParent(this);
             _children.Add(gameObject);
+        }
+		
+		public void RemoveGameObject(GameObject gameObject)
+        {
+            gameObject.SetParent(null);
+            _children.Remove(gameObject);
         }
 
         public void AddComponent(Component component)
         {
+            Type type = component.GetType();
+			if (_componentsCache.ContainsKey(type))
+				return;
+	
+			_componentsCache.Add(type, component); 
             _components.Add(component);
-
+	
             if (component is DrawableComponent)
                 _drawableComponents.Add(component as DrawableComponent);
         }
 
-        public void RemoveGameObject(GameObject gameObject)
-        {
-            gameObject.Transform.Parent = null;
-            _children.Remove(gameObject);
-        }
-
         public void RemoveComponent(Component component)
         {
+            Type type = component.GetType();
+			if (!_componentsCache.ContainsKey(type) || component is Transform)
+				return;
+			
+			_componentsCache.Remove(type);
             _components.Remove(component);
 
             if (component is DrawableComponent)
@@ -171,15 +187,31 @@ namespace Yna.Engine
 
         public T GetComponent<T>() where T : class
         {
+            Type type = typeof(T);
+            if (_componentsCache.ContainsKey(type))
+                return _componentsCache[type] as T;
+			
+			return default(T);
+        }
+
+        public T GetComponentInChildren<T>() where T : class
+        {
+            Type type = typeof(T);
+
             object result = null;
-
             int i = 0;
-            int counter = _components.Count;
+            int size = _children.Count;
 
-            while (i < counter && result == null)
-                result = (_components[i] is T) ? _components[i] : result;
+            while (i < size && result == null)
+            {
+                result = _children[i].GetComponent<T>();
+                i++;
+            }
 
-            return (T)result;
+            if (_componentsCache.ContainsKey(type))
+                return _componentsCache[type] as T;
+
+            return default(T);
         }
     }
 }
