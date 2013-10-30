@@ -10,6 +10,7 @@ using Yna.Engine;
 
 namespace Yna.Editor
 {
+    using Yna.Engine.Scene;
     using XnaColor = Microsoft.Xna.Framework.Color;
 
     public partial class SceneSettingsForm : Form

@@ -8,7 +8,8 @@ namespace Yna.Engine
     public abstract class Component
     {
         private bool _enabled = true;
-        private GameObject _gameObject;
+        protected uint _order;
+        protected GameObject _gameObject;
 
         /// <summary>
         /// Determine if the component is enabled of disabled.
@@ -28,6 +29,12 @@ namespace Yna.Engine
             protected set { _gameObject = value; }
         }
 
+        public uint Order
+        {
+            get { return _order; }
+            protected set { _order = value; }
+        }
+
         /// <summary>
         /// Create an empty component.
         /// </summary>
@@ -45,6 +52,7 @@ namespace Yna.Engine
         {
             _enabled = true;
             _gameObject = gameObject;
+            _order = 0;
         }
 
         /// <summary>
@@ -69,6 +77,21 @@ namespace Yna.Engine
         /// </summary>
         public virtual void AfterUpdate()
         {
+        }
+
+        public int CompareTo(Component other)
+        {
+            if (this is DrawableComponent && !(other is DrawableComponent))
+                return 1;
+            else if (!(this is DrawableComponent) && other is DrawableComponent)
+                return -1;
+            else
+                return 0;
+        }
+
+        public static int CompareTo(Component c1, Component c2)
+        {
+            return c1.CompareTo(c2);
         }
     }
 }

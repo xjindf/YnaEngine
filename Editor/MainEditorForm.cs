@@ -24,6 +24,7 @@ namespace Yna.Editor
     using XnaVector2 = Microsoft.Xna.Framework.Vector2;
     using XnaVector3 = Microsoft.Xna.Framework.Vector3;
     using XnaMathHelper = Microsoft.Xna.Framework.MathHelper;
+    using Yna.Engine.Scene;
 
     public enum EditorMode
     {

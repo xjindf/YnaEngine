@@ -20,6 +20,7 @@ namespace Yna.Engine
     {
         #region Fields
 
+        private uint counter = 0;
         private Guid _guid = Guid.NewGuid();
 		private Dictionary<Type, Component> _componentsCache;
         private List<Component> _components;
@@ -27,6 +28,7 @@ namespace Yna.Engine
         protected bool enabled;
         protected string name;
         protected string tag;
+        protected uint order;
         protected SceneLayer sceneLayer;
         protected List<GameObject> children;
         protected Transform transform;
@@ -85,6 +87,12 @@ namespace Yna.Engine
             protected set { transform = value; }
         }
 
+        public uint Order
+        {
+            get { return order; }
+            protected set { order = value; }
+        }
+
         /// <summary>
         /// Active or Desactive this object
         /// </summary>
@@ -111,6 +119,7 @@ namespace Yna.Engine
             tag = "Default";
             enabled = true;
 			sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
+            order = counter++;
             _components = new List<Component>();
 			_componentsCache = new Dictionary<Type, Component>();
             transform = new Transform(this);
@@ -121,6 +130,12 @@ namespace Yna.Engine
             : base()
         {
             transform.Parent = parent;
+        }
+
+        public virtual void Initialize()
+        {
+            foreach (Component component in _components)
+                component.Initialize();
         }
 
         /// <summary>
@@ -283,5 +298,20 @@ namespace Yna.Engine
         }
 
         #endregion
+
+        public int CompareTo(GameObject other)
+        {
+            if (order > other.Order)
+                return 1;
+            else if (order < other.Order)
+                return -1;
+            else
+                return 0;
+        }
+
+        public static int CompareTo(GameObject go1, GameObject go2)
+        {
+            return go1.CompareTo(go2);
+        }
     }
 }

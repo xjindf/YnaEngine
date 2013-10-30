@@ -18,7 +18,7 @@ namespace Yna.Engine.Components
         protected Vector2 _lastDistance;
 
         // Position
-        protected Rectangle _boundingRect;
+        protected Point _size;
         protected Rectangle? _sourceRectangle;
         protected Rectangle _gameViewport;
 
@@ -40,15 +40,15 @@ namespace Yna.Engine.Components
         protected bool _hasAnimation;
         protected SpriteAnimator _animator;
 
-        public Rectangle BoundingRect
+        public Point Size
         {
-            get { return _boundingRect; }
-            set { _boundingRect = value; }
+            get { return _size; }
+            set { _size = value; }
         }
 
         public SpriteRenderer()
         {
-            _boundingRect = Rectangle.Empty;
+            _size = Point.Zero;
             _texture = null;
             _assetName = String.Empty;
             _assetLoaded = false;
@@ -85,7 +85,8 @@ namespace Yna.Engine.Components
             _animator.Initialize(width, height, _texture.Width, _texture.Height);
 
             // The sprite size is now the size of a sprite on the spritesheet
-            _boundingRect = new Rectangle((int)GameObject.Transform.Position.X, (int)GameObject.Transform.Position.Y, width, height);
+            _size.X = width;
+            _size.Y = height;
             
             _hasAnimation = true;
         }

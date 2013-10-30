@@ -23,7 +23,6 @@ namespace Yna.Engine.Scene
         public void Start()
         {
             _currentScene.Initialize();
-            _currentScene.LoadContent();
         }
 
         public void Execute()
@@ -37,9 +36,7 @@ namespace Yna.Engine.Scene
             }
 
             _gameTimeService.Update();
-            _currentScene.BeforeUpdate();
             _currentScene.Update();
-            _currentScene.AfterUpdate();
             _currentScene.Draw();
         }
 
