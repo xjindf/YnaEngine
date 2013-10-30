@@ -23,7 +23,6 @@ namespace Yna.Engine
         private Guid _guid = Guid.NewGuid();
 		private Dictionary<Type, Component> _componentsCache;
         private List<Component> _components;
-        private List<DrawableComponent> _drawableComponents;
         
         protected bool enabled;
         protected string name;
@@ -113,7 +112,6 @@ namespace Yna.Engine
             enabled = true;
 			sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
             _components = new List<Component>();
-            _drawableComponents = new List<DrawableComponent>();
 			_componentsCache = new Dictionary<Type, Component>();
             transform = new Transform(this);
             AddComponent(transform);
@@ -187,9 +185,6 @@ namespace Yna.Engine
 	
 			_componentsCache.Add(type, component); 
             _components.Add(component);
-	
-            if (component is DrawableComponent)
-                _drawableComponents.Add(component as DrawableComponent);
         }
 
         /// <summary>
@@ -204,9 +199,6 @@ namespace Yna.Engine
 			
 			_componentsCache.Remove(type);
             _components.Remove(component);
-
-            if (component is DrawableComponent)
-                _drawableComponents.Remove(component as DrawableComponent);
         }
 
         /// <summary>

@@ -16,8 +16,6 @@ namespace Yna.Engine
     /// </summary>
     public static class YnG
     {
-        private static int _width;
-        private static int _height;
         private static Game _game;
         private static GraphicsDevice _device;
         private static GraphicsDeviceManager _graphics;
@@ -80,102 +78,10 @@ namespace Yna.Engine
         /// </summary>
         public static StorageManager StorageManager { get; set; }
 
-        #endregion
-
-        #region Inputs
-
-        public static bool ShowMouse
-        {
-            get { return Game.IsMouseVisible; }
-            set { Game.IsMouseVisible = value; }
-        }
-
-        #endregion
-
-        #region StateManager
-
-        // @deprecated
-        public static void SetStateActive(string name, bool desactiveOtherStates)
-        {
-            LogError("YnG.SetStateActive", "YnG.LoadLevel");
-            if (StateManager != null)
-                StateManager.SetActive(name, desactiveOtherStates);
-        }
-
         public static void LoadLevel(string name)
         {
             if (StateManager != null)
                 StateManager.SetActive(name, true);
-        }
-
-        #endregion
-
-        #region Deprecated
-
-        public static int Width
-        {
-            get
-            {
-                LogError("YnG.Width", "YnScreen.Width");
-                return YnScreen.Width;
-            }
-        }
-
-        public static int Height
-        {
-            get
-            {
-                LogError("YnG.Height", "YnScreen.Height");
-                return YnScreen.Height;
-            }
-        }
-
-        /// <summary>
-        /// Gets or Set the keyboard states
-        /// </summary>
-        public static YnKeyboard Keys 
-        { 
-            get 
-            {
-                LogError("YnG.Keys", "YnInput.Keys");
-                return YnInput.Keys; 
-            } 
-        }
-
-        /// <summary>
-        /// Gets or Set the mouse states
-        /// </summary>
-        public static YnMouse Mouse 
-        {
-            get
-            {
-                LogError("YnG.Mouse", "YnInput.Mouse");
-                return YnInput.Mouse;
-            } 
-        }
-
-        /// <summary>
-        /// Gets or Set the Gamepad states
-        /// </summary>
-        public static YnGamepad Gamepad 
-        {
-            get
-            {
-                LogError("YnG.Gamepad", "YnInput.Gamepad");
-                return YnInput.Gamepad;
-            } 
-        }
-
-        /// <summary>
-        /// Gets or Set the Touch states
-        /// </summary>
-        public static YnTouch Touch 
-        {
-            get
-            {
-                LogError("YnG.Touch", "YnInput.Touch");
-                return YnInput.Touch;
-            }  
         }
 
         #endregion

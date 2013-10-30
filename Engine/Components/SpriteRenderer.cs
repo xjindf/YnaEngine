@@ -40,6 +40,12 @@ namespace Yna.Engine.Components
         protected bool _hasAnimation;
         protected SpriteAnimator _animator;
 
+        public Rectangle BoundingRect
+        {
+            get { return _boundingRect; }
+            set { _boundingRect = value; }
+        }
+
         public SpriteRenderer()
         {
             _boundingRect = Rectangle.Empty;
@@ -80,7 +86,7 @@ namespace Yna.Engine.Components
 
             // The sprite size is now the size of a sprite on the spritesheet
             _boundingRect = new Rectangle((int)GameObject.Transform.Position.X, (int)GameObject.Transform.Position.Y, width, height);
-
+            
             _hasAnimation = true;
         }
 

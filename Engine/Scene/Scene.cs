@@ -2,12 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Yna.Engine.Graphics2D;
 using Yna.Engine.Graphics3D;
 using Yna.Engine.Graphics3D.Camera;
 
-namespace Yna.Engine
+namespace Yna.Engine.Scene
 {
     public class Scene
     {

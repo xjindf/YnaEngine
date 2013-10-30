@@ -598,55 +598,55 @@ namespace Yna.Engine.Graphics2D
                 // We check if the mouse events only if an event handler exists for one of mouse events
                 if (_nbMouseEventObservers > 0)
                 {
-                    if (_testEventRectangle.Contains(YnG.Mouse.X, YnG.Mouse.Y))
+                    if (_testEventRectangle.Contains(YnInput.Mouse.X, YnInput.Mouse.Y))
                     {
                         _hovered = true;
                         // Mouse Over
-                        MouseOverSprite(new MouseOverEntityEventArgs(YnG.Mouse.X, YnG.Mouse.Y));
+                        MouseOverSprite(new MouseOverEntityEventArgs(YnInput.Mouse.X, YnInput.Mouse.Y));
 
                         // Just clicked
-                        if (YnG.Mouse.JustClicked(MouseButton.Left) || YnG.Mouse.JustClicked(MouseButton.Middle) || YnG.Mouse.JustClicked(MouseButton.Right))
+                        if (YnInput.Mouse.JustClicked(MouseButton.Left) || YnInput.Mouse.JustClicked(MouseButton.Middle) || YnInput.Mouse.JustClicked(MouseButton.Right))
                         {
                             _clicked = true;
                             MouseButton mouseButton;
 
-                            if (YnG.Mouse.JustClicked(MouseButton.Left))
+                            if (YnInput.Mouse.JustClicked(MouseButton.Left))
                                 mouseButton = MouseButton.Left;
-                            else if (YnG.Mouse.JustClicked(MouseButton.Middle))
+                            else if (YnInput.Mouse.JustClicked(MouseButton.Middle))
                                 mouseButton = MouseButton.Middle;
                             else
                                 mouseButton = MouseButton.Right;
 
-                            MouseJustClickedSprite(new MouseClickEntityEventArgs(YnG.Mouse.X, YnG.Mouse.Y, mouseButton, true, false));
+                            MouseJustClickedSprite(new MouseClickEntityEventArgs(YnInput.Mouse.X, YnInput.Mouse.Y, mouseButton, true, false));
                         }
 
                         // One click
-                        else if (YnG.Mouse.ClickOn(MouseButton.Left, ButtonState.Pressed) || YnG.Mouse.ClickOn(MouseButton.Middle, ButtonState.Pressed) || YnG.Mouse.ClickOn(MouseButton.Right, ButtonState.Pressed))
+                        else if (YnInput.Mouse.ClickOn(MouseButton.Left, ButtonState.Pressed) || YnInput.Mouse.ClickOn(MouseButton.Middle, ButtonState.Pressed) || YnInput.Mouse.ClickOn(MouseButton.Right, ButtonState.Pressed))
                         {
                             MouseButton mouseButton;
 
-                            if (YnG.Mouse.ClickOn(MouseButton.Left, ButtonState.Pressed))
+                            if (YnInput.Mouse.ClickOn(MouseButton.Left, ButtonState.Pressed))
                                 mouseButton = MouseButton.Left;
-                            else if (YnG.Mouse.ClickOn(MouseButton.Middle, ButtonState.Pressed))
+                            else if (YnInput.Mouse.ClickOn(MouseButton.Middle, ButtonState.Pressed))
                                 mouseButton = MouseButton.Middle;
                             else
                                 mouseButton = MouseButton.Right;
 
-                            MouseClickSprite(new MouseClickEntityEventArgs(YnG.Mouse.X, YnG.Mouse.Y, mouseButton, false, false));
+                            MouseClickSprite(new MouseClickEntityEventArgs(YnInput.Mouse.X, YnInput.Mouse.Y, mouseButton, false, false));
                         }
                         else
                         {
-                            MouseReleaseSprite(new MouseReleaseEntityEventArgs(YnG.Mouse.X, YnG.Mouse.Y));
+                            MouseReleaseSprite(new MouseReleaseEntityEventArgs(YnInput.Mouse.X, YnInput.Mouse.Y));
                         }
                     }
                     // Mouse leave
-                    else if (Rectangle.Contains(YnG.Mouse.LastMouseState.X, YnG.Mouse.LastMouseState.Y))
+                    else if (Rectangle.Contains(YnInput.Mouse.LastMouseState.X, YnInput.Mouse.LastMouseState.Y))
                     {
-                        MouseLeaveSprite(new MouseLeaveEntityEventArgs(YnG.Mouse.LastMouseState.X, YnG.Mouse.LastMouseState.Y, YnG.Mouse.X, YnG.Mouse.Y));
+                        MouseLeaveSprite(new MouseLeaveEntityEventArgs(YnInput.Mouse.LastMouseState.X, YnInput.Mouse.LastMouseState.Y, YnInput.Mouse.X, YnInput.Mouse.Y));
                     }
                     else
                     {
-                        MouseReleaseSprite(new MouseReleaseEntityEventArgs(YnG.Mouse.X, YnG.Mouse.Y));
+                        MouseReleaseSprite(new MouseReleaseEntityEventArgs(YnInput.Mouse.X, YnInput.Mouse.Y));
                     }
                 }
                 #endregion

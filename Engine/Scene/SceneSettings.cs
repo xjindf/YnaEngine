@@ -1,10 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Yna.Engine
+namespace Yna.Engine.Scene
 {
     [Serializable]
     public class SceneSettings

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Yna.Engine
+namespace Yna.Engine.Scene
 {
     /// <summary>
     /// The scene manager is responsible to play and switch all scenes of the game.
