@@ -8,9 +8,10 @@ namespace Yna.Engine
     public abstract class Component
     {
         private bool _enabled = true;
+        private GameObject _gameObject;
 
         /// <summary>
-        /// Determine if the component is enabled of disabled
+        /// Determine if the component is enabled of disabled.
         /// </summary>
         public bool Enabled 
         {
@@ -19,13 +20,55 @@ namespace Yna.Engine
         }
 
         /// <summary>
+        /// Gets the game object of this component.
+        /// </summary>
+        public GameObject GameObject
+        {
+            get { return _gameObject; }
+            protected set { _gameObject = value; }
+        }
+
+        /// <summary>
+        /// Create an empty component.
+        /// </summary>
+        public Component()
+        {
+            _enabled = false;
+            _gameObject = null;
+        }
+
+        /// <summary>
+        /// Create a component attached to a game object.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public Component(GameObject gameObject)
+        {
+            _enabled = true;
+            _gameObject = gameObject;
+        }
+
+        /// <summary>
         /// Initialize the logic.
         /// </summary>
         public abstract void Initialize();
 
         /// <summary>
+        /// This method is called before update loop.
+        /// </summary>
+        public virtual void BeforeUpdate()
+        {
+        }
+
+        /// <summary>
         /// Update the logic.
         /// </summary>
         public abstract void Update();
+    
+        /// <summary>
+        /// This method is called after update loop.
+        /// </summary>
+        public virtual void AfterUpdate()
+        {
+        }
     }
 }

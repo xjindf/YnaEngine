@@ -88,7 +88,7 @@ namespace Yna.Engine.Graphics3D
         public YnState3D(string name, BaseCamera camera)
             : this(camera)
         {
-            _name = name;
+            name = name;
         }
 
         /// <summary>

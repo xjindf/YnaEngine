@@ -1,12 +1,12 @@
 ﻿// YnaEngine - Copyright (C) YnaEngine team
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of this source code package.
-namespace Yna.Engine.Graphics2D
+namespace Yna.Engine.Components.Collider
 {
     /// <summary>
     /// Define a circle with coordinate and radius
     /// </summary>
-    public class YnCircle
+    public class Circle
     {
         /// <summary>
         /// Gets or sets the X coordinate of the circle
@@ -26,7 +26,7 @@ namespace Yna.Engine.Graphics2D
         /// <summary>
         /// Create a new circle with default value 0, 0, 0
         /// </summary>
-        public YnCircle()
+        public Circle()
         {
             X = 0;
             Y = 0;
@@ -39,7 +39,7 @@ namespace Yna.Engine.Graphics2D
         /// <param name="x">Position on X</param>
         /// <param name="y">Position on Y</param>
         /// <param name="radius">Radius</param>
-        public YnCircle(int x, int y, int radius)
+        public Circle(int x, int y, int radius)
         {
             X = x;
             Y = y;
@@ -53,7 +53,7 @@ namespace Yna.Engine.Graphics2D
         /// <param name="y">Y coordinate</param>
         /// <param name="circle">A circle</param>
         /// <returns>True if collide then false</returns>
-        public static bool Collide(int x, int y, YnCircle circle)
+        public static bool Collide(int x, int y, Circle circle)
         {
             int r2 = (x - circle.X) * (x - circle.X) + (y - circle.Y) * (y - circle.Y);
             return r2 > (circle.Radius * circle.Radius);
@@ -65,7 +65,7 @@ namespace Yna.Engine.Graphics2D
         /// <param name="circleA"></param>
         /// <param name="circleB"></param>
         /// <returns></returns>
-        public static bool Collide(YnCircle circleA, YnCircle circleB)
+        public static bool Collide(Circle circleA, Circle circleB)
         {
             int r2 = (circleA.X - circleB.X) * (circleA.X - circleB.X) + (circleA.Y - circleB.Y) * (circleA.Y - circleB.Y);
             return r2 > ((circleA.Radius + circleB.Radius) * (circleA.Radius + circleB.Radius));

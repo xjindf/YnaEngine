@@ -5,6 +5,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Yna.Engine.Graphics2D.Animation;
+using Yna.Engine.Old.Graphics2D.Animation;
 
 namespace Yna.Engine.Graphics2D
 {

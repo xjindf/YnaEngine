@@ -55,8 +55,8 @@ namespace Yna.Engine.Graphics3D
         /// <returns>A ray</returns>
         public static Ray GetMouseRay(BaseCamera camera)
         {
-            Vector3 nearPoint = new Vector3(YnG.Mouse.Position, 0);
-            Vector3 farPoint = new Vector3(YnG.Mouse.Position, 1);
+            Vector3 nearPoint = new Vector3(YnInput.Mouse.Position, 0);
+            Vector3 farPoint = new Vector3(YnInput.Mouse.Position, 1);
 
             nearPoint = YnG.GraphicsDevice.Viewport.Unproject(nearPoint, camera.Projection, camera.View, Matrix.Identity);
             farPoint = YnG.GraphicsDevice.Viewport.Unproject(farPoint, camera.Projection, camera.View, Matrix.Identity);

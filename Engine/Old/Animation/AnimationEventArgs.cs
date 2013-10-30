@@ -3,7 +3,7 @@
 // file 'LICENSE', which is part of this source code package.
 using System;
 
-namespace Yna.Engine.Graphics2D.Animation
+namespace Yna.Engine.Old.Graphics2D.Animation
 {
     /// <summary>
     /// Event class used when an interpolator object done its job.

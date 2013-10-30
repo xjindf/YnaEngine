@@ -46,46 +46,46 @@ namespace Yna.Engine.Graphics3D.Controls
         protected override void UpdateKeyboardInput(GameTime gameTime)
         {
             // Translation Up/Down
-            if (YnG.Keys.Pressed(Keys.A))
+            if (YnInput.Keys.Pressed(Keys.A))
                 PhysicsPosition.Velocity.Y += _moveSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
-            else if (YnG.Keys.Pressed(Keys.E))
+            else if (YnInput.Keys.Pressed(Keys.E))
                 PhysicsPosition.Velocity.Y -= _moveSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
 
             // Translation Forward/backward
-            if (YnG.Keys.Up)
+            if (YnInput.Keys.Up)
                 PhysicsPosition.Velocity.Z += _moveSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
-            else if (YnG.Keys.Down)
+            else if (YnInput.Keys.Down)
                 PhysicsPosition.Velocity.Z -= _moveSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
 
             // Translation Left/Right
-            if (YnG.Keys.Pressed(Keys.Q))
+            if (YnInput.Keys.Pressed(Keys.Q))
                 PhysicsPosition.Velocity.X += _strafeSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
-            else if (YnG.Keys.Pressed(Keys.D))
+            else if (YnInput.Keys.Pressed(Keys.D))
                 PhysicsPosition.Velocity.X -= _strafeSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
 
             // Rotation Left/Right
-            if (YnG.Keys.Left)
+            if (YnInput.Keys.Left)
                 PhysicsRotation.Velocity.Y += _rotationSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
-            else if (YnG.Keys.Right)
+            else if (YnInput.Keys.Right)
                 PhysicsRotation.Velocity.Y -= _rotationSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
 
             // Look Up/Down
-            if (YnG.Keys.Pressed(Keys.PageUp))
+            if (YnInput.Keys.Pressed(Keys.PageUp))
                 PhysicsRotation.Velocity.X += _pitchSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
-            else if (YnG.Keys.Pressed(Keys.PageDown))
+            else if (YnInput.Keys.Pressed(Keys.PageDown))
                 PhysicsRotation.Velocity.X -= _pitchSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
 
             // Roll
-            if (YnG.Keys.Pressed(Keys.W))
+            if (YnInput.Keys.Pressed(Keys.W))
                 PhysicsRotation.Velocity.Z += _pitchSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
-            else if (YnG.Keys.Pressed(Keys.X))
+            else if (YnInput.Keys.Pressed(Keys.X))
                 PhysicsRotation.Velocity.Z -= _pitchSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
         }
 
         protected override void UpdateGamepadInput(GameTime gameTime)
         {
-            Vector2 leftStickValue = YnG.Gamepad.LeftStickValue(_playerIndex);
-            Vector2 rightStickValue = YnG.Gamepad.RightStickValue(_playerIndex);
+            Vector2 leftStickValue = YnInput.Gamepad.LeftStickValue(_playerIndex);
+            Vector2 rightStickValue = YnInput.Gamepad.RightStickValue(_playerIndex);
 
             // Translate
             PhysicsPosition.Velocity.X += -leftStickValue.X * _moveSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
@@ -98,16 +98,16 @@ namespace Yna.Engine.Graphics3D.Controls
             PhysicsRotation.Velocity.X += -rightStickValue.Y * _pitchSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f; 
 
             // Move Up
-            if (YnG.Gamepad.LeftShoulder(_playerIndex))
+            if (YnInput.Gamepad.LeftShoulder(_playerIndex))
                 PhysicsPosition.Velocity.Y += _moveSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
-            else if (YnG.Gamepad.RightShoulder(_playerIndex))
+            else if (YnInput.Gamepad.RightShoulder(_playerIndex))
                 PhysicsPosition.Velocity.Y -= _moveSpeed * gameTime.ElapsedGameTime.Milliseconds * 0.01f;
         }
 
         protected override void UpdateMouseInput(GameTime gameTime)
         {
-            Camera.RotateY(YnG.Mouse.Delta.X * 0.2f);
-            Camera.RotateX(-YnG.Mouse.Delta.Y * 0.2f);
+            Camera.RotateY(YnInput.Mouse.Delta.X * 0.2f);
+            Camera.RotateX(-YnInput.Mouse.Delta.Y * 0.2f);
         }
     }
 }

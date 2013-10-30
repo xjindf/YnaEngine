@@ -83,7 +83,7 @@ namespace Yna.Engine.Graphics2D
         public YnState2D(string name, bool active, bool enableGui)
             : base(name)
         {
-            _enabled = active;
+            enabled = active;
             _visible = active;
 
             InitializeDefaultState();

@@ -127,10 +127,10 @@ namespace Yna.Engine.Graphics3D.Controls
         /// <param name="gameTime"></param>
         protected virtual void UpdateTouchInput(GameTime gameTime)
         {
-            if (YnG.Touch.Moved(0) && !_virtualPadController.hasPressedButton())
+            if (YnInput.Touch.Moved(0) && !_virtualPadController.hasPressedButton())
             {
-                PhysicsRotation.Velocity.Y += YnG.Touch.GetDelta(0).X * 0.1f;
-                PhysicsRotation.Velocity.X -= YnG.Touch.GetDelta(0).Y * 0.1f;
+                PhysicsRotation.Velocity.Y += YnInput.Touch.GetDelta(0).X * 0.1f;
+                PhysicsRotation.Velocity.X -= YnInput.Touch.GetDelta(0).Y * 0.1f;
             }
         }
 

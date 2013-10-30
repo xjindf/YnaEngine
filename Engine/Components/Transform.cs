@@ -5,7 +5,7 @@ using System;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Yna.Engine
+namespace Yna.Engine.Components
 {
     public class Transform : Component
     {
@@ -15,7 +15,6 @@ namespace Yna.Engine
         private Vector3 _scale;
         private Transform _parent;
         protected List<Transform> _transforms;
-        private GameObject _gameObject;
 
         public Transform Parent
         {
@@ -29,10 +28,22 @@ namespace Yna.Engine
             protected set { _transforms = value; }
         }
 
-        public GameObject GameObject
+        public Vector3 Position
         {
-            get { return _gameObject; }
-            internal set { _gameObject = value; }
+            get { return _position; }
+            set { _position = value; }
+        }
+
+        public Vector3 Rotation
+        {
+            get { return _rotation; }
+            set { _rotation = value; }
+        }
+
+        public Vector3 Scale
+        {
+            get { return _scale; }
+            set { _scale = value; }
         }
 
         public Matrix WorldMatrix
@@ -40,16 +51,11 @@ namespace Yna.Engine
             get { return _world; }
         }
 
-        public Transform()
-        {
-            Initialize(); 
-        }
-
         public Transform(GameObject gameObject)
+            : base (gameObject)
         { 
             Initialize();
-            _gameObject = gameObject;
-            _parent = (gameObject.Components[0] as Transform).Parent;
+            _parent = gameObject.Transform.Parent;
         }
 
         public override void Initialize()
@@ -84,7 +90,7 @@ namespace Yna.Engine
             _rotation.Z += rz;
         }
 
-        public void Scale(float sx, float sy, float sz)
+        public void Scaling(float sx, float sy, float sz)
         {
             _scale.X = sx;
             _scale.Y = sy;

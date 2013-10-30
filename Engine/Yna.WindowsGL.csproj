@@ -39,7 +39,19 @@
     <Compile Include="Audio\DummyAudioAdapter.cs" />
     <Compile Include="Audio\XnaAudioAdapter.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="Components\Camera.cs" />
+    <Compile Include="Components\Collider\SpriteCollider.cs" />
+    <Compile Include="Components\ComponentExceptions.cs" />
+    <Compile Include="Components\IComponentInterfaces.cs" />
+    <Compile Include="Components\MeshRenderer.cs" />
     <Compile Include="DrawableComponent.cs" />
+    <Compile Include="Old\Animation\AnimationEventArgs.cs" />
+    <Compile Include="Old\Animation\IEffectAnimation.cs" />
+    <Compile Include="Old\Animation\SpriteAnimation.cs" />
+    <Compile Include="Old\Animation\SpriteAnimator.cs" />
+    <Compile Include="Old\Animation\YnInterpolator.cs" />
+    <Compile Include="Old\Animation\YnShakeEffect.cs" />
+    <Compile Include="Old\Animation\YnTransitionEffect.cs" />
     <Compile Include="Old\Extensions\BoundingFrustrumExtension.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="GameTimeService.cs" />
@@ -54,9 +66,10 @@
     <Compile Include="Old\Extensions\ViewportExtension.cs" />
     <Compile Include="Old\Graphics2D\YnScene.cs" />
     <Compile Include="ISettings.cs" />
-    <Compile Include="SceneManager.cs" />
-    <Compile Include="Scene.cs" />
-    <Compile Include="SpriteRenderer.cs" />
+    <Compile Include="Scene\QuadTree.cs" />
+    <Compile Include="Scene\SceneManager.cs" />
+    <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Components\SpriteRenderer.cs" />
     <Compile Include="Winforms\GraphicsDeviceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,38 +81,34 @@
     <Compile Include="EventDispatcher.cs" />
     <Compile Include="Old\YnBasicCollection.cs" />
     <Compile Include="Old\YnGameEntity.cs" />
-    <Compile Include="Old\Graphics2D\Animation\AnimationEventArgs.cs" />
+    <Compile Include="Components\Animation\AnimationEventArgs.cs" />
     <Compile Include="Old\Graphics2D\Component\VirtualArrowPadController.cs" />
     <Compile Include="Old\Graphics2D\Particle\YnEmitter.cs" />
     <Compile Include="Old\Graphics2D\Particle\YnParticle.cs" />
     <Compile Include="Old\Graphics2D\Event\MouseEntityEvents.cs" />
     <Compile Include="Old\Graphics2D\Event\TouchEntityEvents.cs" />
-    <Compile Include="Old\Graphics2D\YnCircle.cs" />
-    <Compile Include="Old\Graphics2D\Animation\IEffectAnimation.cs" />
-    <Compile Include="Old\Graphics2D\Animation\YnInterpolator.cs" />
+    <Compile Include="Components\Collider\Circle.cs" />
     <Compile Include="Old\Graphics2D\Event\VirtualPadEventArgs.cs" />
     <Compile Include="Old\Graphics2D\Component\VirtualArrowPad.cs" />
     <Compile Include="Content\ContentEventArgs.cs" />
-    <Compile Include="Old\Graphics2D\YnGraphics.cs" />
+    <Compile Include="YnGraphics.cs" />
     <Compile Include="Old\Graphics2D\YnPool.cs" />
     <Compile Include="Old\Graphics2D\YnText.cs" />
     <Compile Include="Old\Graphics2D\YnCamera2D.cs" />
-    <Compile Include="Old\Graphics2D\Animation\SpriteAnimation.cs" />
-    <Compile Include="Old\Graphics2D\Animation\SpriteAnimator.cs" />
-    <Compile Include="Old\Graphics2D\Animation\YnTransitionEffect.cs" />
-    <Compile Include="Old\Graphics2D\Animation\YnShakeEffect.cs" />
+    <Compile Include="Components\Animation\SpriteAnimation.cs" />
+    <Compile Include="Components\Animation\SpriteAnimator.cs" />
     <Compile Include="Old\Graphics2D\Event\GlobalEventArgs.cs" />
     <Compile Include="Old\Graphics2D\YnCollider.cs" />
     <Compile Include="Old\Graphics2D\YnSprite.cs" />
     <Compile Include="Content\ContentHelper.cs" />
-    <Compile Include="Input\YnGamepad.cs" />
-    <Compile Include="Input\YnKeyboard.cs" />
-    <Compile Include="Input\YnMouse.cs" />
-    <Compile Include="Input\YnTouch.cs" />
+    <Compile Include="Inputs\YnGamepad.cs" />
+    <Compile Include="Inputs\YnKeyboard.cs" />
+    <Compile Include="Inputs\YnMouse.cs" />
+    <Compile Include="Inputs\YnTouch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Old\StateManager.cs" />
     <Compile Include="Old\YnGameEntityCollection.cs" />
-    <Compile Include="SceneSettings.cs" />
+    <Compile Include="Scene\SceneSettings.cs" />
     <Compile Include="Old\YnState.cs" />
     <Compile Include="Storage\BasicStorageDevice.cs" />
     <Compile Include="Storage\IStorageDevice.cs" />
@@ -112,7 +121,7 @@
     <Compile Include="Old\Graphics2D\YnEntity.cs" />
     <Compile Include="Old\YnCollection.cs" />
     <Compile Include="YnInput.cs" />
-    <Compile Include="YnQuadTree.cs" />
+    <Compile Include="Old\QuadTree.cs" />
     <Compile Include="YnScreen.cs" />
     <Compile Include="YnTime.cs" />
     <Compile Include="Old\YnTimer.cs" />
@@ -197,7 +206,7 @@
     <Compile Include="Old\Script\MoveScript.cs" />
     <Compile Include="Old\Script\ScriptAnimator.cs" />
     <Compile Include="Old\Script\WaitScript.cs" />
-    <Compile Include="Transform.cs" />
+    <Compile Include="Components\Transform.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Old\Graphics3D\Material\Resources\NormalMapEffect.dx11.mgfxo" />
@@ -218,5 +227,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

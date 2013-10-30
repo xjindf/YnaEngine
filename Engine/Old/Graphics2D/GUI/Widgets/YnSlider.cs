@@ -117,7 +117,7 @@ namespace Yna.Engine.Graphics2D.Gui.Widgets
             base.DoCustomUpdate(gameTime);
             if (_dragging)
             {
-                Vector2 delta = YnG.Mouse.Delta;
+                Vector2 delta = YnInput.Mouse.Delta;
                 // Horizontal move only
                 _cursor.Move((int)delta.X, 0);
 

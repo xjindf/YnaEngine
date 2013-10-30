@@ -78,9 +78,9 @@ namespace Yna.Engine
         public YnState()
             : base()
         {
-            _name = "State_" + (ScreenCounter++);
+            name = "State_" + (ScreenCounter++);
             _reinitializeAfterActivation = true;
-            _enabled = true;
+            enabled = true;
             _visible = true;
             _assetLoaded = false;
         }
@@ -88,7 +88,7 @@ namespace Yna.Engine
         public YnState(string name)
             : this()
         {
-            _name = name;
+            name = name;
         }
 
         #endregion

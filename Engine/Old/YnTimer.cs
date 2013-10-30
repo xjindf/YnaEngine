@@ -109,7 +109,7 @@ namespace Yna.Engine
             Repeat = 0;
             _elapsedTime = 0;
             _counter = Repeat;
-            _enabled = false;
+            enabled = false;
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Yna.Engine
         /// </summary>
         public void Start()
         {
-            _enabled = true;
+            enabled = true;
             TimerStarted(EventArgs.Empty);
         }
 
@@ -137,7 +137,7 @@ namespace Yna.Engine
         /// </summary>
         public void Restart()
         {
-            _enabled = true;
+            enabled = true;
             _counter = 0;
             _elapsedTime = 0;
             TimerRestarted(EventArgs.Empty);
@@ -148,7 +148,7 @@ namespace Yna.Engine
         /// </summary>
         public void Pause()
         {
-            _enabled = false;
+            enabled = false;
             TimerPaused(EventArgs.Empty);
         }
 
@@ -157,7 +157,7 @@ namespace Yna.Engine
         /// </summary>
         public void Resume()
         {
-            _enabled = true;
+            enabled = true;
             TimerResumed(EventArgs.Empty);
         }
 
@@ -166,7 +166,7 @@ namespace Yna.Engine
         /// </summary>
         public void Stop()
         {
-            _enabled = false;
+            enabled = false;
             _counter = 0;
             _elapsedTime = 0;
             TimerStopped(EventArgs.Empty);
@@ -177,7 +177,7 @@ namespace Yna.Engine
         /// </summary>
         public void Kill()
         {
-            _enabled = false;
+            enabled = false;
             _counter = 0;
             _elapsedTime = 0;
           
@@ -235,7 +235,7 @@ namespace Yna.Engine
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            if (_enabled)
+            if (enabled)
             {
                 _elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
 
@@ -243,7 +243,7 @@ namespace Yna.Engine
                 {
                     if (_counter == 0)
                     {
-                        _enabled = false;
+                        enabled = false;
                     }
                     else
                     {
