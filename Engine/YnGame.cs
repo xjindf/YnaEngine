@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Yna.Engine.Audio;
 using Yna.Engine.Input;
 using Yna.Engine.Storage;
+using Yna.Engine.Scene;
 
 namespace Yna.Engine
 {
@@ -36,7 +37,7 @@ namespace Yna.Engine
             YnG.GraphicsDevice = GraphicsDevice;
             YnG.GraphicsDeviceManager = this.graphics;
             YnG.Content = this.Content;
-            YnG.StateManager = new StateManager(this);
+            YnG.SceneManager = new SceneManager();
             YnG.StorageManager = new StorageManager();
             YnG.AudioManager = new AudioManager();
 
@@ -49,7 +50,6 @@ namespace Yna.Engine
             Components.Add(YnInput.Mouse);
             Components.Add(YnInput.Gamepad);
             Components.Add(YnInput.Touch);
-            Components.Add(YnG.StateManager);
 
             YnScreen.Width = this.graphics.PreferredBackBufferWidth;
             YnScreen.Height = this.graphics.PreferredBackBufferHeight;
@@ -72,7 +72,7 @@ namespace Yna.Engine
         public YnGame(int width, int height, string title)
             : this()
         {
-#if XNA || MONOGAME && (OPENGL || DIRECTX || LINUX || MACOSX) ||SDL2
+#if !MOBILE
             YnScreen.Setup(width, height, width, height, true);
             this.Window.Title = title;
 #endif
@@ -84,7 +84,6 @@ namespace Yna.Engine
         {
             YnScreen.Width = this.graphics.PreferredBackBufferWidth;
             YnScreen.Height = this.graphics.PreferredBackBufferHeight;
-            // TODO use YnScreen
         }
 
         #region GameState pattern
@@ -95,6 +94,8 @@ namespace Yna.Engine
 
             if (YnG.GraphicsDevice == null)
                 YnG.GraphicsDevice = GraphicsDevice;
+
+            YnG.SceneManager.Initialize();
         }
 
         /// <summary>
@@ -113,6 +114,16 @@ namespace Yna.Engine
         {
             base.UnloadContent();
             YnG.AudioManager.Dispose();
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+            
+            YnTime.DeltaTime = gameTime.ElapsedGameTime.Milliseconds;
+            YnTime.TotalGameTime = gameTime.TotalGameTime.Milliseconds;
+
+            YnG.SceneManager.Execute();
         }
         #endregion
     }

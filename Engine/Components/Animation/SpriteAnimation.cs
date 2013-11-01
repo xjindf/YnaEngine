@@ -14,7 +14,7 @@ namespace Yna.Engine.Components.Animation
     {
         private int _index;
         private int _length;
-        private long _elapsedTime;
+        private float _elapsedTime;
         private int _frameRate;
         private double _frameRateValue;
 
@@ -133,9 +133,9 @@ namespace Yna.Engine.Components.Animation
         /// Update frame animation index.
         /// </summary>
         /// <param name="gameTime">GameTime object</param>
-        public void Update(GameTime gameTime)
+        public void Update(float gameTime)
         {
-            _elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
+            _elapsedTime += gameTime;
 
             if (_elapsedTime > _frameRateValue)
             {

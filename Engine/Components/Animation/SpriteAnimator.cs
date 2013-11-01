@@ -142,7 +142,7 @@ namespace Yna.Engine.Components.Animation
         /// Update animator.
         /// </summary>
         /// <param name="gameTime">GameTime object.</param>
-        public void Update(GameTime gameTime)
+        public void Update(float gameTime)
         {
             if (_currentAnimationName != String.Empty)
                 _animations[_currentAnimationName].Update(gameTime);

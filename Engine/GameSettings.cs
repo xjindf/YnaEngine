@@ -3,7 +3,7 @@
 namespace Yna.Engine
 {
     [Serializable]
-    public class GameSettings : ISettings
+    public class GameSettings : IPersistable
     {
         // Screen
         public int Width { get; set; }

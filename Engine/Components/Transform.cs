@@ -55,7 +55,6 @@ namespace Yna.Engine.Components
             : base (gameObject)
         { 
             Initialize();
-            _parent = gameObject.Transform.Parent;
         }
 
         public override void Initialize()

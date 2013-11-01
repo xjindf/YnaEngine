@@ -61,6 +61,12 @@ namespace Yna.Engine.Components
 
         #endregion
 
+        public static Camera Main
+        {
+            get;
+            internal set;
+        }
+
         public Camera(GameObject gameObject)
             : base(gameObject)
         {

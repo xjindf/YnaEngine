@@ -34,6 +34,7 @@ namespace Yna.Engine
         public DrawableComponent()
             : base()
         {
+            Layer = ComponentLayer.Layer3D;
         }
 
         /// <summary>
@@ -57,12 +58,5 @@ namespace Yna.Engine
         /// Draw the component on screen.
         /// </summary>
         public abstract void Draw();
-
-        /// <summary>
-        /// This method is called after draw loop.
-        /// </summary>
-        public virtual void AfterDraw()
-        {
-        }
     }
 }

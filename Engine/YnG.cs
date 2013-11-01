@@ -10,6 +10,8 @@ using Yna.Engine.Storage;
 
 namespace Yna.Engine
 {
+    using Yna.Engine.Scene;
+    using YnScene = Yna.Engine.Scene.Scene;
     /// <summary>
     /// Static class that expose important object relative to the current context like
     /// Game, GraphicsDevice, Input, etc...
@@ -20,6 +22,7 @@ namespace Yna.Engine
         private static GraphicsDevice _device;
         private static GraphicsDeviceManager _graphics;
         private static ContentManager _content;
+        internal static YnScene _currentScene;
 
         /// <summary>
         /// Gets or Set the Game instance
@@ -37,6 +40,11 @@ namespace Yna.Engine
         {
             get { return _device; }
             internal set { _device = value; }
+        }
+
+        public static YnScene CurrentScene
+        {
+            get { return _currentScene; }
         }
 
         #region Managers
@@ -60,9 +68,9 @@ namespace Yna.Engine
         }
 
         /// <summary>
-        /// Gets or Set the State Manager
+        /// Gets the Scene Manager
         /// </summary>
-        public static StateManager StateManager
+        public static SceneManager SceneManager
         {
             get;
             internal set;
@@ -80,8 +88,12 @@ namespace Yna.Engine
 
         public static void LoadLevel(string name)
         {
-            if (StateManager != null)
-                StateManager.SetActive(name, true);
+            SceneManager.LoadScene(name);
+        }
+
+        public static void LoadLevel(int id)
+        {
+            SceneManager.LoadScene(id);
         }
 
         #endregion

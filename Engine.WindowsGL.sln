@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechSynthesis", "Engine\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{F4A3B8BA-6D6F-4079-BB7E-5CF3487D98C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,16 @@ Global
 		{F4A3B8BA-6D6F-4079-BB7E-5CF3487D98C1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F4A3B8BA-6D6F-4079-BB7E-5CF3487D98C1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F4A3B8BA-6D6F-4079-BB7E-5CF3487D98C1}.Release|x86.ActiveCfg = Release|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AB6EAE0C-2E08-4D24-A9C0-0DCCE0742B0B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

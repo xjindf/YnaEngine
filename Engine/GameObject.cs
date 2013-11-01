@@ -8,15 +8,10 @@ using Yna.Engine.Components;
 
 namespace Yna.Engine
 {
-    public enum SceneLayer
-    {
-        Layer2D, Layer3D, GUI
-    }
-
     /// <summary>
     /// Base class for all object on the Framework. A basic object is updateable
     /// </summary>
-    public abstract class GameObject
+    public class GameObject : IComparable
     {
         #region Fields
 
@@ -29,7 +24,7 @@ namespace Yna.Engine
         protected string name;
         protected string tag;
         protected uint order;
-        protected SceneLayer sceneLayer;
+        protected string sceneLayer;
         protected List<GameObject> children;
         protected Transform transform;
 		
@@ -63,7 +58,7 @@ namespace Yna.Engine
             set { tag = value; }
         }
 
-        public SceneLayer Layer
+        public string Layer
         {
             get { return sceneLayer; }
             set { sceneLayer = value; }
@@ -118,8 +113,8 @@ namespace Yna.Engine
             name = "Game Object";
             tag = "Default";
             enabled = true;
-			sceneLayer = SceneLayer.Layer2D; // Deprecated, we'll use real layer soon
             order = counter++;
+            sceneLayer = "Default";
             _components = new List<Component>();
 			_componentsCache = new Dictionary<Type, Component>();
             transform = new Transform(this);
@@ -142,7 +137,9 @@ namespace Yna.Engine
         /// Update method called on each engine update
         /// </summary>
         /// <param name="gameTime"></param>
-        public abstract void Update(GameTime gameTime);
+        public virtual void Update(GameTime gameTime)
+        {
+        }
 
         #region game object management
 
@@ -197,7 +194,8 @@ namespace Yna.Engine
             Type type = component.GetType();
 			if (_componentsCache.ContainsKey(type))
 				return;
-	
+
+            component.GameObject = this;
 			_componentsCache.Add(type, component); 
             _components.Add(component);
         }
@@ -221,11 +219,11 @@ namespace Yna.Engine
         /// </summary>
         /// <typeparam name="T">Type of component.</typeparam>
         /// <returns>Return the component of type T if exists, otherwise return null.</returns>
-        public Component GetComponent<T>()
+        public T GetComponent<T>() where T : Component
         {
             Type type = typeof(T);
             if (_componentsCache.ContainsKey(type))
-                return _componentsCache[type];
+                return _componentsCache[type] as T;
 			
 			return null;
         }
@@ -235,15 +233,15 @@ namespace Yna.Engine
         /// </summary>
         /// <typeparam name="T">Type of component.</typeparam>
         /// <returns>Return an array of components of type T if exists, otherwise return an empty array</returns>
-        public Component[] GetComponents<T>() where T : class
+        public T[] GetComponents<T>() where T : Component
         {
             Type type = typeof(T);
-            List<Component> results = new List<Component>();
+            List<T> results = new List<T>();
             
             foreach (Component component in _components)
             {
                 if (component.GetType() == type)
-                    results.Add(component as Component);
+                    results.Add(component as T);
             }
 
             return results.ToArray();
@@ -254,7 +252,7 @@ namespace Yna.Engine
         /// </summary>
         /// <typeparam name="T">Type of component.</typeparam>
         /// <returns>Return the component of type T if exists, otherwise return null.</returns>
-        public Component GetComponentInChildren<T>() where T : class
+        public T GetComponentInChildren<T>() where T : Component
         {
             Type type = typeof(T);
             Component result = null;
@@ -269,7 +267,7 @@ namespace Yna.Engine
             }
 
             if (_componentsCache.ContainsKey(type))
-                return _componentsCache[type];
+                return _componentsCache[type] as T;
 
             return null;
         }
@@ -279,11 +277,11 @@ namespace Yna.Engine
         /// </summary>
         /// <typeparam name="T">Type of component.</typeparam>
         /// <returns>Return an array of components of type T if exists, otherwise return an empty array</returns>
-        public Component[] GetComponentsInChildren<T>() where T : class
+        public T[] GetComponentsInChildren<T>() where T : Component
         {
             Type type = typeof(T);
 
-            List<Component> results = new List<Component>();
+            List<T> results = new List<T>();
             Component component = null;
 
             foreach (GameObject go in Children)
@@ -291,7 +289,7 @@ namespace Yna.Engine
                 component = go.GetComponent<T>();
 
                 if (component != null)
-                    results.Add(component);
+                    results.Add(component as T);
             }
 
             return results.ToArray();
@@ -312,6 +310,14 @@ namespace Yna.Engine
         public static int CompareTo(GameObject go1, GameObject go2)
         {
             return go1.CompareTo(go2);
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj is GameObject)
+                return CompareTo(obj as GameObject);
+            else
+                return -1;
         }
     }
 }

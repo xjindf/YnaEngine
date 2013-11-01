@@ -326,7 +326,6 @@ namespace Yna.Engine.Graphics3D
             _frustrumCulled = false;
             
             _enableLight = true;
-            sceneLayer = SceneLayer.Layer3D;
         }
 
         public YnEntity3D()

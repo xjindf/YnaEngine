@@ -11,12 +11,12 @@ namespace Yna.Engine.Components.Collider
         /// <summary>
         /// Gets or sets the X coordinate of the circle
         /// </summary>
-        public int X { get; set; }
+        public float X { get; set; }
 
         /// <summary>
         /// Gets or sets the Y coordinate of the circle
         /// </summary>
-        public int Y { get; set; }
+        public float Y { get; set; }
 
         /// <summary>
         /// Gets or sets the radius of the circle
@@ -39,7 +39,7 @@ namespace Yna.Engine.Components.Collider
         /// <param name="x">Position on X</param>
         /// <param name="y">Position on Y</param>
         /// <param name="radius">Radius</param>
-        public Circle(int x, int y, int radius)
+        public Circle(float x, float y, int radius)
         {
             X = x;
             Y = y;
@@ -53,9 +53,9 @@ namespace Yna.Engine.Components.Collider
         /// <param name="y">Y coordinate</param>
         /// <param name="circle">A circle</param>
         /// <returns>True if collide then false</returns>
-        public static bool Collide(int x, int y, Circle circle)
+        public static bool Collide(float x, float y, Circle circle)
         {
-            int r2 = (x - circle.X) * (x - circle.X) + (y - circle.Y) * (y - circle.Y);
+            float r2 = (x - circle.X) * (x - circle.X) + (y - circle.Y) * (y - circle.Y);
             return r2 > (circle.Radius * circle.Radius);
         }
 
@@ -67,7 +67,7 @@ namespace Yna.Engine.Components.Collider
         /// <returns></returns>
         public static bool Collide(Circle circleA, Circle circleB)
         {
-            int r2 = (circleA.X - circleB.X) * (circleA.X - circleB.X) + (circleA.Y - circleB.Y) * (circleA.Y - circleB.Y);
+            float r2 = (circleA.X - circleB.X) * (circleA.X - circleB.X) + (circleA.Y - circleB.Y) * (circleA.Y - circleB.Y);
             return r2 > ((circleA.Radius + circleB.Radius) * (circleA.Radius + circleB.Radius));
         }
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Yna.Engine.Components
 {
-    public class MeshRenderer : DrawableComponent
+    public class MeshRenderer : DrawableComponent, IRenderer
     {
         public MeshRenderer(GameObject gameObject)
             : base(gameObject)

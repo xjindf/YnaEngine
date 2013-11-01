@@ -10,16 +10,12 @@ namespace Yna.Engine.Components
 {
     public class SpriteRenderer : DrawableComponent
     {
-        // Moving the sprite
+        // Position
         protected Vector2 _position;
-        protected Vector2 _distance;
-        protected Vector2 _direction;
         protected Vector2 _lastPosition;
         protected Vector2 _lastDistance;
-
-        // Position
         protected Point _size;
-        protected Rectangle? _sourceRectangle;
+        protected Rectangle _sourceRectangle;
         protected Rectangle _gameViewport;
 
         // Texture
@@ -40,6 +36,12 @@ namespace Yna.Engine.Components
         protected bool _hasAnimation;
         protected SpriteAnimator _animator;
 
+        public Texture2D Texture
+        {
+            get { return _texture; }
+            set { _texture = value; }
+        }
+
         public Point Size
         {
             get { return _size; }
@@ -47,6 +49,7 @@ namespace Yna.Engine.Components
         }
 
         public SpriteRenderer()
+            : base()
         {
             _size = Point.Zero;
             _texture = null;
@@ -60,7 +63,7 @@ namespace Yna.Engine.Components
             _effects = SpriteEffects.None;
             _layerDepth = 1.0f;
 
-            _sourceRectangle = null;
+            _sourceRectangle = Rectangle.Empty;
             _gameViewport = new Rectangle(0, 0, YnScreen.Width, YnScreen.Height);
 
             _hasAnimation = false;
@@ -68,9 +71,9 @@ namespace Yna.Engine.Components
 
             _position = Vector2.Zero;
             _lastPosition = Vector2.Zero;
-            _distance = Vector2.One;
             _lastDistance = Vector2.Zero;
-            _direction = Vector2.Zero;
+
+            Layer = ComponentLayer.Layer2D;
         }
 
         #region Animation methods
@@ -200,26 +203,52 @@ namespace Yna.Engine.Components
 
         #endregion
 
+        public virtual void LoadTexture(string name)
+        {
+            _texture = YnG.Content.Load<Texture2D>(name);
+            ComputeSize();
+        }
+
+        public virtual void ComputeSize()
+        {
+            if (_texture != null)
+            {
+                _sourceRectangle.Width = _texture.Width;
+                _sourceRectangle.Height = _texture.Height;
+            }
+        }
+
         public override void Initialize()
         {
-            throw new NotImplementedException();
+           
         }
 
         public override void Update()
         {
-            throw new NotImplementedException();
+            _lastPosition.X = _position.X;
+            _lastPosition.Y = _position.Y;
+
+            if (_hasAnimation)
+            {
+                _animator.Update(YnTime.DeltaTime);
+
+                if (_lastDistance == Vector2.Zero && _animator.CurrentAnimationName != String.Empty)
+                    _sourceRectangle = _animator.GetCurrentAnimation().Rectangle[0];
+            }
         }
 
-        public override void AfterUpdate()
+        public override void LateUpdate()
         {
             _position.X = GameObject.Transform.Position.X;
             _position.Y = GameObject.Transform.Position.Y;
+
+            _lastDistance.X = _position.X - _lastPosition.X;
+            _lastDistance.Y = _position.Y - _lastPosition.Y;
         }
 
         public override void Draw()
         {
-            if (Enabled)
-                spriteBatch.Draw(_texture, _position, _sourceRectangle, _color * _alpha, _rotation, _origin, _scale, _effects, _layerDepth);
+            spriteBatch.Draw(_texture, _position, _sourceRectangle, _color * _alpha, _rotation, _origin, _scale, _effects, _layerDepth);
         }
     }
 }

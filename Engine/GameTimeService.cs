@@ -27,15 +27,12 @@ namespace Yna.Engine
             _gameTime = new GameTime();
             _tmpElapsed = new TimeSpan();
             _tmpTotal = new TimeSpan();
-
-            YnTime.Service = this;
         }
 
         public void Initialize()
         {
             _stopWatch.Reset();
             _stopWatch.Start();
-            YnTime.Reset();
         }
 
         public void Update()

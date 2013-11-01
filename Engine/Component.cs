@@ -1,15 +1,22 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Yna.Engine
 {
+    public enum ComponentLayer
+    {
+        Default, Layer2D, Layer3D, GUI
+    }
+
     /// <summary>
     /// A component is a part of a game object. It's updated where at the same time of its game object.
     /// </summary>
-    public abstract class Component
+    public abstract class Component : IComparable
     {
         private bool _enabled = true;
-        protected uint _order;
+        protected uint _order = 1;
         protected GameObject _gameObject;
+        internal ComponentLayer Layer = ComponentLayer.Default;
 
         /// <summary>
         /// Determine if the component is enabled of disabled.
@@ -26,7 +33,7 @@ namespace Yna.Engine
         public GameObject GameObject
         {
             get { return _gameObject; }
-            protected set { _gameObject = value; }
+            internal set { _gameObject = value; }
         }
 
         public uint Order
@@ -40,8 +47,6 @@ namespace Yna.Engine
         /// </summary>
         public Component()
         {
-            _enabled = false;
-            _gameObject = null;
         }
 
         /// <summary>
@@ -50,9 +55,7 @@ namespace Yna.Engine
         /// <param name="gameObject"></param>
         public Component(GameObject gameObject)
         {
-            _enabled = true;
             _gameObject = gameObject;
-            _order = 0;
         }
 
         /// <summary>
@@ -75,7 +78,7 @@ namespace Yna.Engine
         /// <summary>
         /// This method is called after update loop.
         /// </summary>
-        public virtual void AfterUpdate()
+        public virtual void LateUpdate()
         {
         }
 
@@ -92,6 +95,14 @@ namespace Yna.Engine
         public static int CompareTo(Component c1, Component c2)
         {
             return c1.CompareTo(c2);
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj is Component)
+                return CompareTo(obj as Component);
+            else
+                return -1;
         }
     }
 }

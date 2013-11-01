@@ -41,9 +41,11 @@
     <Compile Include="Component.cs" />
     <Compile Include="Components\Camera.cs" />
     <Compile Include="Components\Collider\SpriteCollider.cs" />
+    <Compile Include="Components\Collider\SpriteColliderEventArgs.cs" />
     <Compile Include="Components\ComponentExceptions.cs" />
     <Compile Include="Components\IComponentInterfaces.cs" />
     <Compile Include="Components\MeshRenderer.cs" />
+    <Compile Include="Components\YnBehavior.cs" />
     <Compile Include="DrawableComponent.cs" />
     <Compile Include="Old\Animation\AnimationEventArgs.cs" />
     <Compile Include="Old\Animation\IEffectAnimation.cs" />
@@ -65,8 +67,9 @@
     <Compile Include="Old\Extensions\Vector2Extension.cs" />
     <Compile Include="Old\Extensions\ViewportExtension.cs" />
     <Compile Include="Old\Graphics2D\YnScene.cs" />
-    <Compile Include="ISettings.cs" />
+    <Compile Include="IPersistable.cs" />
     <Compile Include="Scene\QuadTree.cs" />
+    <Compile Include="Scene\SceneEventArgs.cs" />
     <Compile Include="Scene\SceneManager.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Components\SpriteRenderer.cs" />

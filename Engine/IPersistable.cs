@@ -3,7 +3,7 @@
     /// <summary>
     /// An interface for settings.
     /// </summary>
-    public interface ISettings
+    public interface IPersistable
     {
         /// <summary>
         /// Load settings.
